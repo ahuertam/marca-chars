@@ -1,0 +1,168 @@
+.character-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.character-form h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #34495e;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52,152,219,0.3);
+}
+
+button {
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #34495e;
+}
+
+.stats-section {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+.stats-section h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.stat-group {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color: white;
+  border-radius: 4px;
+  align-items: center;
+}
+
+.stat-controls {
+  display: grid;
+  grid-template-columns: 60px 40px 60px 80px;
+  gap: 10px;
+  align-items: center;
+}
+
+.bonus-value {
+  color: #2c3e50;
+  font-weight: bold;
+  background-color: #f0f2f5;
+  padding: 5px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.editable-list {
+  margin-top: 20px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.editable-list h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.editable-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.item-input-group input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+}
+
+.item-input-group button {
+  width: auto;
+  margin: 0;
+}
+
+.stat-group label {
+  width: 120px;
+  text-align: left;
+  margin-right: 10px;
+}
+
+.stat-controls {
+  display: grid;
+  grid-template-columns: 60px auto 60px 100px;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.bonus-value {
+  color: #2c3e50;
+  font-weight: bold;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.dice-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  width: auto;
+  margin: 0;
+}
+
+.dice-button:hover {
+  background-color: #2980b9;
+}
+
+.modifier-input {
+  width: 60px !important;
+}
