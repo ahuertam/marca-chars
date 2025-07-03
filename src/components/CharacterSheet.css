@@ -27,46 +27,58 @@
 }
 
 .character-stats {
+  margin-bottom: 20px;
+  max-width: 600px;
+  width: 100%;
   background-color: #f8f9fa;
   padding: 15px;
-  border-radius: 4px;
-  margin-bottom: 20px;
+  border-radius: 8px;
 }
 
 .character-stats h4 {
-  color: #2c3e50;
-  margin: 0 0 15px 0;
+  margin-bottom: 10px;
 }
 
 .stat {
-  display: grid;
-  grid-template-columns: 1fr 60px 80px;
-  gap: 15px;
-  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
   padding: 8px;
-  background-color: #f8f9fa;
+  background-color: white;
   border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.stat-row {
+  display: flex;
   align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
 }
 
 .stat-name {
   font-weight: bold;
-  color: #34495e;
+  width: 120px;
 }
 
 .stat-value {
-  color: #2c3e50;
-  font-weight: bold;
   text-align: center;
+  padding: 4px;
+  background-color: #f8f9fa;
+  border-radius: 3px;
+  border: 1px solid #ddd;
 }
 
 .stat-bonus {
-  color: #2c3e50;
-  font-weight: bold;
-  background-color: #e9ecef;
-  padding: 4px 8px;
-  border-radius: 4px;
   text-align: center;
+  font-style: italic;
+  color: #555;
+  padding: 4px;
+  background-color: #f8f9fa;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  margin-left: 130px;
+  width: 100px;
 }
 
 .character-abilities,

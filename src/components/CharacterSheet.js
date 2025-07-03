@@ -25,9 +25,11 @@ const CharacterSheet = ({ character, onUpdateCharacter }) => {
         <h4>Características</h4>
         {Object.entries(editableCharacter.caracteristicas).map(([stat, value]) => (
           <div key={stat} className="stat">
-            <span className="stat-name">{stat.charAt(0).toUpperCase() + stat.slice(1)}</span>
-            <input type="number" value={value} onChange={(e) => handleChange(`caracteristicas.${stat}`, e.target.value)} />
-            <span className="stat-bonus">Bon: {editableCharacter.bonificadores[stat]}</span>
+            <div className="stat-row">
+              <span className="stat-name">{stat.charAt(0).toUpperCase() + stat.slice(1)}</span>
+              <input type="number" className="stat-value" value={value} onChange={(e) => handleChange(`caracteristicas.${stat}`, e.target.value)} />
+            </div>
+            <div className="stat-bonus">Bonificador: {editableCharacter.bonificadores[stat]}</div>
           </div>
         ))}
       </div>

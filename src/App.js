@@ -43,28 +43,50 @@ function App() {
     localStorage.setItem('characters', JSON.stringify(updatedCharacters));
   };
 
+  const [currentView, setCurrentView] = useState('list');
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Creador de Personajes - La Marca del Este</h1>
+        <div className="nav-buttons">
+          <button 
+            onClick={() => setCurrentView('list')} 
+            className={currentView === 'list' ? 'active' : ''}
+          >
+            Lista de Personajes
+          </button>
+          <button 
+            onClick={() => setCurrentView('create')} 
+            className={currentView === 'create' ? 'active' : ''}
+          >
+            Crear Personaje
+          </button>
+        </div>
       </header>
       <main className="App-main">
-        <div className="left-panel">
-          <CharacterForm onSaveCharacter={handleSaveCharacter} />
-        </div>
-        <div className="right-panel">
-          <CharacterList 
-            characters={characters} 
-            onSelectCharacter={handleSelectCharacter}
-            onDeleteCharacter={handleDeleteCharacter}
-          />
-          {selectedCharacter && (
-            <CharacterSheet 
-              character={selectedCharacter} 
-              onUpdateCharacter={handleUpdateCharacter}
+        {currentView === 'list' ? (
+          <div className="full-width-view">
+            <CharacterList
+              characters={characters}
+              onSelectCharacter={handleSelectCharacter}
+              onDeleteCharacter={handleDeleteCharacter}
             />
-          )}
-        </div>
+            {selectedCharacter && (
+              <CharacterSheet
+                character={selectedCharacter}
+                onUpdateCharacter={handleUpdateCharacter}
+              />
+            )}
+          </div>
+        ) : (
+          <div className="full-width-view">
+            <CharacterForm onSaveCharacter={(character) => {
+              handleSaveCharacter(character);
+              setCurrentView('list');
+            }} />
+          </div>
+        )}
       </main>
     </div>
   );

@@ -1,40 +1,53 @@
 import React, { useState } from 'react';
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
 import './CharacterForm.css';
+import characterData from '../data/characterData.json';
+
+const { characteristicsTooltips, classDescriptions, characterClasses } = characterData;
+
+const initialCharacter = {
+  nombre: '',
+  clase: '',
+  descripcion: '',
+  detalles: {
+    requisitos: '',
+    caracteristicaPrincipal: '',
+    dadoGolpe: '',
+    nivelMaximo: ''
+  },
+  caracteristicas: {
+    FUE: 0,
+    DES: 0,
+    CON: 0,
+    INT: 0,
+    SAB: 0,
+    CAR: 0
+  },
+  bonificadores: {
+    FUE: 0,
+    DES: 0,
+    CON: 0,
+    INT: 0,
+    SAB: 0,
+    CAR: 0
+  },
+  habilidades: [],
+  equipo: []
+};
 
 const CharacterForm = ({ onSaveCharacter }) => {
-  const [character, setCharacter] = useState({
-    nombre: '',
-    clase: '',
-    caracteristicas: {
-      fuerza: 0,
-      destreza: 0,
-      constitucion: 0,
-      inteligencia: 0,
-      sabiduria: 0,
-      carisma: 0
-    },
-    bonificadores: {
-      fuerza: 0,
-      destreza: 0,
-      constitucion: 0,
-      inteligencia: 0,
-      sabiduria: 0,
-      carisma: 0
-    },
-    habilidades: [],
-    equipo: []
-  });
-
+  const [character, setCharacter] = useState(initialCharacter);
   const [newItem, setNewItem] = useState('');
-  const [newSkill, setNewSkill] = useState('');
-
+  const [newSkillName, setNewSkillName] = useState('');
+  const [newSkillDescription, setNewSkillDescription] = useState('');
+  const [modificadores, setModificadores] = useState({ FUE: 0, DES: 0, CON: 0, INT: 0, SAB: 0, CAR: 0 });
+  const [newItemName, setNewItemName] = useState('');
+  const [newItemDescription, setNewItemDescription] = useState('');
   const rollDice = () => {
-    // Tirar 3d6
-    const rolls = Array.from({ length: 3 }, () => Math.floor(Math.random() * 6) + 1);
-    // Ordenar de mayor a menor
+    const rolls = Array.from({ length: 4 }, () => Math.floor(Math.random() * 6) + 1);
     rolls.sort((a, b) => b - a);
-    // Descartar el más bajo y sumar los otros dos
-    return rolls[0] + rolls[1];
+    return rolls[0] + rolls[1] + rolls[2];
   };
 
   const calculateBonus = (value) => {
@@ -57,29 +70,14 @@ const CharacterForm = ({ onSaveCharacter }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const storedCharacters = JSON.parse(localStorage.getItem('characters')) || [];
+    const updatedCharacters = [...storedCharacters, character];
+    localStorage.setItem('characters', JSON.stringify(updatedCharacters));
     onSaveCharacter(character);
-    setCharacter({
-      nombre: '',
-      clase: '',
-      caracteristicas: {
-        fuerza: 0,
-        destreza: 0,
-        constitucion: 0,
-        inteligencia: 0,
-        sabiduria: 0,
-        carisma: 0
-      },
-      bonificadores: {
-        fuerza: 0,
-        destreza: 0,
-        constitucion: 0,
-        inteligencia: 0,
-        sabiduria: 0,
-        carisma: 0
-      },
-      habilidades: [],
-      equipo: []
-    });
+    setCharacter(initialCharacter);
+    setNewSkillName('');
+    setNewSkillDescription('');
+    setNewItem('');
   };
 
   const handleAddItem = () => {
@@ -93,12 +91,13 @@ const CharacterForm = ({ onSaveCharacter }) => {
   };
 
   const handleAddSkill = () => {
-    if (newSkill.trim()) {
+    if (newSkillName.trim() && newSkillDescription.trim()) {
       setCharacter({
         ...character,
-        habilidades: [...character.habilidades, newSkill.trim()]
+        habilidades: [...character.habilidades, { nombre: newSkillName.trim(), descripcion: newSkillDescription.trim() }]
       });
-      setNewSkill('');
+      setNewSkillName('');
+      setNewSkillDescription('');
     }
   };
 
@@ -128,19 +127,65 @@ const CharacterForm = ({ onSaveCharacter }) => {
 
       <div className="form-group">
         <label>Clase:</label>
-        <input
-          type="text"
+        <select
           value={character.clase}
-          onChange={(e) => setCharacter({...character, clase: e.target.value})}
+          onChange={(e) => {
+            const selectedClass = e.target.value;
+            const classInfo = classDescriptions[selectedClass] || {
+              descripcion: '',
+              detalles: {
+                requisitos: '',
+                caracteristicaPrincipal: '',
+                dadoGolpe: '',
+                nivelMaximo: ''
+              }
+            };
+            setCharacter({
+              ...character,
+              clase: selectedClass,
+              descripcion: classInfo.descripcion,
+              detalles: classInfo.detalles
+            });
+          }}
           required
-        />
+        >
+          <option value="">Selecciona una clase</option>
+          {characterClasses.map((clase, index) => (
+            <option key={index} value={clase}>{clase}</option>
+          ))}
+        </select>
       </div>
+
+      {character.clase && (
+        <>
+          <div className="form-group description-group">
+            <label>Descripción:</label>
+            <div className="description-text">{character.descripcion}</div>
+          </div>
+
+          <div className="form-group details-group">
+            <label>Detalles de la clase:</label>
+            <div className="class-details">
+              <div><strong>Requisitos:</strong> {character.detalles.requisitos}</div>
+              <div><strong>Característica principal:</strong> {character.detalles.caracteristicaPrincipal}</div>
+              <div><strong>Dado de golpe:</strong> {character.detalles.dadoGolpe}</div>
+              <div><strong>Nivel máximo:</strong> {character.detalles.nivelMaximo}</div>
+            </div>
+          </div>
+        </>
+      )}
 
       <div className="stats-section">
         <h3>Características</h3>
         {Object.keys(character.caracteristicas).map((stat) => (
           <div key={stat} className="stat-group">
-            <label>{stat.charAt(0).toUpperCase() + stat.slice(1)}:</label>
+            <label 
+              data-tooltip-id="stat-tooltip" 
+              data-tooltip-content={characteristicsTooltips[stat]}
+            >
+              {stat}
+            </label>
+            <Tooltip id="stat-tooltip" />
             <div className="stat-controls">
               <input
                 type="number"
@@ -150,7 +195,7 @@ const CharacterForm = ({ onSaveCharacter }) => {
               <button
                 type="button"
                 className="dice-button"
-                onClick={() => handleRoll(stat)}
+                onClick={() => handleRoll(stat, modificadores[stat])}
               >
                 🎲
               </button>
@@ -158,9 +203,10 @@ const CharacterForm = ({ onSaveCharacter }) => {
                 type="number"
                 className="modifier-input"
                 placeholder="Mod"
-                onChange={(e) => handleRoll(stat, e.target.value)}
+                value={modificadores[stat]}
+                onChange={(e) => setModificadores({ ...modificadores, [stat]: parseInt(e.target.value) || 0 })}
               />
-              <span className="bonus-value">
+              <span className={`bonus-value ${character.bonificadores[stat] > 0 ? 'positive' : character.bonificadores[stat] < 0 ? 'negative' : ''}`}>
                 Bonificador: {character.bonificadores[stat]}
               </span>
             </div>
@@ -173,16 +219,22 @@ const CharacterForm = ({ onSaveCharacter }) => {
         <div className="editable-list-items">
           {character.habilidades.map((habilidad, index) => (
             <div key={index} className="item-input-group">
-              <input type="text" value={habilidad} readOnly />
+              <input type="text" value={habilidad.nombre} readOnly />
+              <textarea value={habilidad.descripcion} readOnly />
               <button type="button" onClick={() => handleRemoveSkill(index)}>🗑️</button>
             </div>
           ))}
           <div className="item-input-group">
             <input
               type="text"
-              value={newSkill}
-              onChange={(e) => setNewSkill(e.target.value)}
-              placeholder="Nueva habilidad"
+              value={newSkillName}
+              onChange={(e) => setNewSkillName(e.target.value)}
+              placeholder="Nombre de la habilidad"
+            />
+            <textarea
+              value={newSkillDescription}
+              onChange={(e) => setNewSkillDescription(e.target.value)}
+              placeholder="Descripción de la habilidad"
             />
             <button type="button" onClick={handleAddSkill}>+</button>
           </div>
@@ -194,16 +246,22 @@ const CharacterForm = ({ onSaveCharacter }) => {
         <div className="editable-list-items">
           {character.equipo.map((item, index) => (
             <div key={index} className="item-input-group">
-              <input type="text" value={item} readOnly />
+              <input type="text" value={item.nombre} readOnly />
+              <textarea value={item.descripcion} readOnly />
               <button type="button" onClick={() => handleRemoveItem(index)}>🗑️</button>
             </div>
           ))}
           <div className="item-input-group">
             <input
               type="text"
-              value={newItem}
-              onChange={(e) => setNewItem(e.target.value)}
-              placeholder="Nuevo objeto"
+              value={newItemName}
+              onChange={(e) => setNewItemName(e.target.value)}
+              placeholder="Nombre del objeto"
+            />
+            <textarea
+              value={newItemDescription}
+              onChange={(e) => setNewItemDescription(e.target.value)}
+              placeholder="Descripción del objeto"
             />
             <button type="button" onClick={handleAddItem}>+</button>
           </div>

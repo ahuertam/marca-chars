@@ -1,0 +1,27 @@
+{
+  "characteristicsTooltips": {
+    "FUE": "La fuerza mide el poder físico de nuestro aventurero, su musculatura y potencia de ataque. Esta característica es especialmente importante para los guerreros, paladines y enanos, pues les ayudará a prevalecer en el combate y golpear de forma contundente, proporcionando bonificadores a la tirada de ataque y a la tirada de daño subsiguiente.",
+    "DES": "La destreza representa la agilidad...",
+    "CON": "La constitución determina la salud...",
+    "INT": "La inteligencia refleja la capacidad...",
+    "SAB": "La sabiduría representa la percepción...",
+    "CAR": "El carisma mide la personalidad..."
+  },
+  "classDescriptions": {
+    "Clérigo": {
+      "descripcion": "Los clérigos son humanos que...",
+      "detalles": {
+        "requisitos": "SAB 10",
+        "caracteristicaPrincipal": "Sabiduría (SAB)",
+        "dadoGolpe": "1d6",
+        "nivelMaximo": "Ninguno"
+      }
+    }
+  },
+  "characterClasses": [
+    "Ladrón", "Asesino", "Guerrero", "Bárbaro", "Bárbaro Ancestral",
+    "Clérigo", "Paladin", "Elfo", "SemiElfo", "Enano", "Explorador",
+    "Guerrero", "Mediano", "Mago", "Bardo", "Elfo oscuro", "Gnomo",
+    "Semiorco", "Monje"
+  ]
+}
