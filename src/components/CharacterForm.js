@@ -8,6 +8,7 @@ const { characteristicsTooltips, classDescriptions, characterClasses } = charact
 
 const initialCharacter = {
   nombre: '',
+  jugador:'',
   clase: '',
   descripcion: '',
   detalles: {
@@ -75,6 +76,73 @@ const CharacterForm = ({ onSaveCharacter }) => {
   const [newItemDescription, setNewItemDescription] = useState('');
   const [newItemArmorBonus, setNewItemArmorBonus] = useState(0);
   const [newItemAttackBonus, setNewItemAttackBonus] = useState(0);
+  const [requirementsError, setRequirementsError] = useState('');
+  const [failedRequirements, setFailedRequirements] = useState([]);
+
+  // Función para validar requisitos de clase
+  const validateClassRequirements = (className, characteristics) => {
+    if (!className || !classDescriptions[className]) {
+      setRequirementsError('');
+      setFailedRequirements([]);
+      return;
+    }
+
+    const requirements = classDescriptions[className].detalles.requisitos;
+    if (requirements === 'Ninguno') {
+      setRequirementsError('');
+      setFailedRequirements([]);
+      return;
+    }
+
+    const failed = [];
+    const reqParts = requirements.split(',').map(req => req.trim());
+    
+    reqParts.forEach(req => {
+      if (req.includes(' y ')) {
+        // Manejar requisitos múltiples con "y"
+        const multiReqs = req.split(' y ').map(r => r.trim());
+        multiReqs.forEach(singleReq => {
+          const match = singleReq.match(/(\w+)\s+(\d+)/);
+          if (match) {
+            const [, stat, minValue] = match;
+            if (characteristics[stat] < parseInt(minValue)) {
+              failed.push(stat);
+            }
+          }
+        });
+      } else {
+        // Manejar requisito simple
+        const match = req.match(/(\w+)\s+(\d+)/);
+        if (match) {
+          const [, stat, minValue] = match;
+          if (characteristics[stat] < parseInt(minValue)) {
+            failed.push(stat);
+          }
+        }
+      }
+    });
+
+    setFailedRequirements([...new Set(failed)]); // Eliminar duplicados
+    
+    if (failed.length > 0) {
+      setRequirementsError(`No se cumplen los requisitos para la clase ${className}. Características insuficientes: ${failed.join(', ')}`);
+    } else {
+      setRequirementsError('');
+    }
+  };
+
+  // Efecto para validar requisitos cuando cambian las características o la clase
+  useEffect(() => {
+    validateClassRequirements(character.clase, character.caracteristicas);
+  }, [
+    character.clase, 
+    character.caracteristicas.FUE,
+    character.caracteristicas.DES,
+    character.caracteristicas.CON,
+    character.caracteristicas.INT,
+    character.caracteristicas.SAB,
+    character.caracteristicas.CAR
+  ]);
 
   const rollDice = () => {
     const rolls = Array.from({ length: 4 }, () => Math.floor(Math.random() * 6) + 1);
@@ -156,7 +224,15 @@ const CharacterForm = ({ onSaveCharacter }) => {
           required
         />
       </div>
-
+      <div className="form-group">
+        <label>Jugador:</label>
+        <input
+          type="text"
+          value={character.jugador}
+          onChange={(e) => setCharacter({...character, jugador: e.target.value})}
+          required
+        />
+      </div>
       <div className="form-group">
         <label>Clase:</label>
         <select
@@ -172,12 +248,37 @@ const CharacterForm = ({ onSaveCharacter }) => {
                 nivelMaximo: ''
               }
             };
-            setCharacter({
+            
+            let updatedCharacter = {
               ...character,
               clase: selectedClass,
               descripcion: classInfo.descripcion,
               detalles: classInfo.detalles
-            });
+            };
+            
+            // Autocompletar datos específicos si la clase tiene datos predefinidos
+            if (classInfo.tiradasSalvacion) {
+              updatedCharacter = {
+                ...updatedCharacter,
+                venenoOMuerte: classInfo.tiradasSalvacion.venenoOMuerte,
+                varitasYCetros: classInfo.tiradasSalvacion.varitasYCetros,
+                petrificacionOParalisis: classInfo.tiradasSalvacion.petrificacionOParalisis,
+                armasDeAliento: classInfo.tiradasSalvacion.armasDeAliento,
+                conjurosYArmasMagicas: classInfo.tiradasSalvacion.conjurosYArmasMagicas
+              };
+            }
+            
+            if (classInfo.habilidadesPorcentaje) {
+              updatedCharacter = {
+                ...updatedCharacter,
+                habilidadesPorcentaje: {
+                  ...character.habilidadesPorcentaje,
+                  ...classInfo.habilidadesPorcentaje
+                }
+              };
+            }
+            
+            setCharacter(updatedCharacter);
           }}
           required
         >
@@ -203,6 +304,11 @@ const CharacterForm = ({ onSaveCharacter }) => {
               <div><strong>Dado de golpe:</strong> {character.detalles.dadoGolpe}</div>
               <div><strong>Nivel máximo:</strong> {character.detalles.nivelMaximo}</div>
             </div>
+            {requirementsError && (
+              <div className="requirements-error">
+                ⚠️ {requirementsError}
+              </div>
+            )}
           </div>
         </>
       )}
@@ -214,6 +320,7 @@ const CharacterForm = ({ onSaveCharacter }) => {
             <label 
               data-tooltip-id="stat-tooltip" 
               data-tooltip-content={characteristicsTooltips[stat]}
+              className={failedRequirements.includes(stat) ? 'requirement-failed' : ''}
             >
               {stat}
             </label>
@@ -222,7 +329,14 @@ const CharacterForm = ({ onSaveCharacter }) => {
               <input
                 type="number"
                 value={character.caracteristicas[stat]}
-                readOnly
+                onChange={(e) => {
+                  const newCharacter = { ...character };
+                  const value = parseInt(e.target.value) || 0;
+                  newCharacter.caracteristicas[stat] = value;
+                  newCharacter.bonificadores[stat] = calculateBonus(value);
+                  setCharacter(newCharacter);
+                }}
+                className={failedRequirements.includes(stat) ? 'requirement-failed' : ''}
               />
               <button
                 type="button"

@@ -83,6 +83,7 @@ const calculateAttackBonus = () => {
       <div className="top-info">
         <div className="left-info">
           <div><strong>Nombre:</strong> <input type="text" value={editableCharacter.nombre} onChange={(e) => handleChange('nombre', e.target.value)} /></div>
+          <div><strong>Jugador:</strong> <input type="text" value={editableCharacter.jugador} onChange={(e) => handleChange('jugador', e.target.value)} /></div>
           <div><strong>Nivel:</strong> <input type="number" value={editableCharacter.nivel || ''} onChange={(e) => handleChange('nivel', e.target.value)} /></div>
           <div><strong>Experiencia:</strong> <input type="number" value={editableCharacter.experiencia || ''} onChange={(e) => handleChange('experiencia', e.target.value)} /></div>
         </div>

@@ -16,12 +16,173 @@
         "dadoGolpe": "1d6",
         "nivelMaximo": "Ninguno"
       }
+    },
+    "Elfo": {
+      "descripcion": "Los elfos son seres mágicos con gran afinidad por la naturaleza y la magia.",
+      "detalles": {
+        "requisitos": "INT 12 y DES 13",
+        "caracteristicaPrincipal": "Destreza e Inteligencia (DES y INT)",
+        "dadoGolpe": "1d6",
+        "nivelMaximo": "10"
+      }
+    },
+    "Enano": {
+      "descripcion": "Los enanos son guerreros resistentes y hábiles artesanos.",
+      "detalles": {
+        "requisitos": "CON 9",
+        "caracteristicaPrincipal": "Fuerza (FUE)",
+        "dadoGolpe": "1d8",
+        "nivelMaximo": "12"
+      }
+    },
+    "Explorador": {
+      "descripcion": "Los exploradores son maestros de la supervivencia y el rastreo.",
+      "detalles": {
+        "requisitos": "FUE 12, DES 9, SAB 12",
+        "caracteristicaPrincipal": "Fuerza, Sabiduría (FUE y SAB)",
+        "dadoGolpe": "1d8",
+        "nivelMaximo": "Ninguno"
+      }
+    },
+    "Guerrero": {
+      "descripcion": "Los guerreros son combatientes especializados en el arte de la guerra.",
+      "detalles": {
+        "requisitos": "Ninguno",
+        "caracteristicaPrincipal": "Fuerza (FUE)",
+        "dadoGolpe": "1d8",
+        "nivelMaximo": "Ninguno"
+      }
+    },
+    "Mediano": {
+      "descripcion": "Los medianos son pequeños pero valientes aventureros.",
+      "detalles": {
+        "requisitos": "DES 9 y CON 9",
+        "caracteristicaPrincipal": "Fuerza y Destreza (FUE y DES)",
+        "dadoGolpe": "1d6",
+        "nivelMaximo": "8"
+      }
+    },
+    "Ladrón": {
+      "descripcion": "Los ladrones son expertos en sigilo y habilidades furtivas.",
+      "detalles": {
+        "requisitos": "DES 10",
+        "caracteristicaPrincipal": "Destreza (DES)",
+        "dadoGolpe": "1d4",
+        "nivelMaximo": "Ninguno"
+      },
+      "tiradasSalvacion": {
+        "venenoOMuerte": 16,
+        "varitasYCetros": 15,
+        "petrificacionOParalisis": 13,
+        "armasDeAliento": 16,
+        "conjurosYArmasMagicas": 14
+      },
+      "habilidadesPorcentaje": {
+        "abrirCerraduras": 17,
+        "encontrarTrampas": 14,
+        "hurtar": 23,
+        "moverseEnSilencio": 23,
+        "esconderseEnLasSombras": 87,
+        "comprenderLenguajes": 13,
+        "usarPergaminos": 1,
+        "escucharRuidos": 2
+      }
+    },
+    "Mago": {
+      "descripcion": "Los magos son maestros de las artes arcanas y la magia.",
+      "detalles": {
+        "requisitos": "INT 12",
+        "caracteristicaPrincipal": "Inteligencia (INT)",
+        "dadoGolpe": "1d4",
+        "nivelMaximo": "Ninguno"
+      }
+    },
+    "Paladin": {
+      "descripcion": "Los paladines son guerreros sagrados que luchan por la justicia.",
+      "detalles": {
+        "requisitos": "FUE 12, SAB 12, CAR 12",
+        "caracteristicaPrincipal": "Fuerza y Carisma (FUE y CAR)",
+        "dadoGolpe": "1d8",
+        "nivelMaximo": "Ninguno"
+      }
+    },
+    "Asesino": {
+      "descripcion": "Los asesinos son expertos en eliminar objetivos de forma sigilosa.",
+      "detalles": {
+        "requisitos": "FUE 12, DES 12, INT 12",
+        "caracteristicaPrincipal": "Ninguna",
+        "dadoGolpe": "1d4",
+        "nivelMaximo": "15"
+      }
+    },
+    "Bárbaro": {
+      "descripcion": "Los bárbaros son guerreros salvajes con gran fuerza física.",
+      "detalles": {
+        "requisitos": "FUE 14, CON 14, DES 12",
+        "caracteristicaPrincipal": "Fuerza (FUE)",
+        "dadoGolpe": "1d8",
+        "nivelMaximo": "15"
+      }
+    },
+    "Bardo": {
+      "descripcion": "Los bardos son artistas y narradores con habilidades mágicas.",
+      "detalles": {
+        "requisitos": "FUE 12, INT 12, CAR 15",
+        "caracteristicaPrincipal": "Carisma (CAR)",
+        "dadoGolpe": "1d6",
+        "nivelMaximo": "20"
+      }
+    },
+    "Druida": {
+      "descripcion": "Los druidas son guardianes de la naturaleza con poderes mágicos.",
+      "detalles": {
+        "requisitos": "SAB 12, CAR 15",
+        "caracteristicaPrincipal": "Sabiduría y Carisma (SAB y CAR)",
+        "dadoGolpe": "1d6",
+        "nivelMaximo": "14"
+      }
+    },
+    "Elfo Oscuro": {
+      "descripcion": "Los elfos oscuros son seres de las profundidades con habilidades únicas.",
+      "detalles": {
+        "requisitos": "FUE 10, DES 10, INT 10, CAR 10",
+        "caracteristicaPrincipal": "Fuerza, Destreza e Inteligencia (FUE, DES e INT)",
+        "dadoGolpe": "1d6",
+        "nivelMaximo": "10"
+      }
+    },
+    "Gnomo": {
+      "descripcion": "Los gnomos son pequeños seres con gran resistencia y habilidades técnicas.",
+      "detalles": {
+        "requisitos": "CON 9, DES 9",
+        "caracteristicaPrincipal": "Constitución (CON)",
+        "dadoGolpe": "1d6",
+        "nivelMaximo": "10"
+      }
+    },
+    "SemiElfo": {
+      "descripcion": "Los semielfos combinan lo mejor de ambas razas.",
+      "detalles": {
+        "requisitos": "DES 10, INT 10, CAR 10",
+        "caracteristicaPrincipal": "Destreza y Carisma (DES y CAR)",
+        "dadoGolpe": "1d6",
+        "nivelMaximo": "15"
+      }
+    },
+    "SemiOrco": {
+      "descripcion": "Los semiorcos poseen la fuerza de los orcos y la versatilidad humana.",
+      "detalles": {
+        "requisitos": "FUE 12, CON 12",
+        "caracteristicaPrincipal": "Fuerza y Constitución (FUE y CON)",
+        "dadoGolpe": "1d8",
+        "nivelMaximo": "12"
+      }
     }
   },
   "characterClasses": [
     "Ladrón", "Asesino", "Guerrero", "Bárbaro", "Bárbaro Ancestral",
     "Clérigo", "Paladin", "Elfo", "SemiElfo", "Enano", "Explorador",
-    "Guerrero", "Mediano", "Mago", "Bardo", "Elfo oscuro", "Gnomo",
-    "Semiorco", "Monje"
+    "Guerrero", "Mediano", "Mago", "Bardo", "Elfo Oscuro", "Gnomo",
+    "SemiOrco", "Monje", "Druida"
   ]
 }
