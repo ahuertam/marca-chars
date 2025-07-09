@@ -118,6 +118,27 @@ const calculateAttackBonus = () => {
            (parseInt(weapon.magicaFuerza) || 0) + 
            (parseInt(weapon.magiaDano) || 0);
   };
+  // Agregar estas funciones junto con las otras funciones del componente
+
+  const addSpell = () => {
+    const newSpell = {
+      id: Date.now(),
+      nombre: '',
+      nivel: 1,
+      alcance: '',
+      duracion: '',
+      efecto: '',
+      preparado: false
+    };
+    
+    const updatedSpells = [...(editableCharacter.conjuros || []), newSpell];
+    handleChange('conjuros', updatedSpells);
+  };
+
+  const removeSpell = (spellId) => {
+    const updatedSpells = editableCharacter.conjuros.filter(spell => spell.id !== spellId);
+    handleChange('conjuros', updatedSpells);
+  };
   return (
     <div className="character-sheet" ref={sheetRef}>
       <h2>Ficha de Personaje</h2>
@@ -334,10 +355,11 @@ const calculateAttackBonus = () => {
             <div className="initiative-title">Iniciativa</div>
             <div className="initiative-content">
               <div>
-                <span>=</span>
+                <span>Total =</span>
                 <input type="number" value={editableCharacter.iniciativaBase || 0} onChange={(e) => handleChange('iniciativaBase', e.target.value)} />
                 <span>+</span>
                 <input type="number" value={editableCharacter.iniciativaBonus || 0} onChange={(e) => handleChange('iniciativaBonus', e.target.value)} />
+                <span>Des+Misc</span>
               </div>
             </div>
           </div>
@@ -744,6 +766,168 @@ const calculateAttackBonus = () => {
           <textarea value={editableCharacter.equipo || ''} onChange={(e) => handleChange('equipo', e.target.value)} />
         </div>
       </div>
+
+      <div className="treasure-equipment">
+        <div className="treasure">
+          <label>Tesoro</label>
+          <div className="treasure-fields">
+            <div className="treasure-field">
+              <label>Gemas:</label>
+              <input 
+                type="number" 
+                value={editableCharacter.tesoro?.gemas || 0} 
+                onChange={(e) => handleChange('tesoro.gemas', parseInt(e.target.value) || 0)}
+              />
+            </div>
+            <div className="treasure-field">
+              <label>Platino:</label>
+              <input 
+                type="number" 
+                value={editableCharacter.tesoro?.platino || 0} 
+                onChange={(e) => handleChange('tesoro.platino', parseInt(e.target.value) || 0)}
+              />
+            </div>
+            <div className="treasure-field">
+              <label>Oro:</label>
+              <input 
+                type="number" 
+                value={editableCharacter.tesoro?.oro || 0} 
+                onChange={(e) => handleChange('tesoro.oro', parseInt(e.target.value) || 0)}
+              />
+            </div>
+            <div className="treasure-field">
+              <label>Electro:</label>
+              <input 
+                type="number" 
+                value={editableCharacter.tesoro?.electro || 0} 
+                onChange={(e) => handleChange('tesoro.electro', parseInt(e.target.value) || 0)}
+              />
+            </div>
+            <div className="treasure-field">
+              <label>Plata:</label>
+              <input 
+                type="number" 
+                value={editableCharacter.tesoro?.plata || 0} 
+                onChange={(e) => handleChange('tesoro.plata', parseInt(e.target.value) || 0)}
+              />
+            </div>
+            <div className="treasure-field">
+              <label>Cobre:</label>
+              <input 
+                type="number" 
+                value={editableCharacter.tesoro?.cobre || 0} 
+                onChange={(e) => handleChange('tesoro.cobre', parseInt(e.target.value) || 0)}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="spells-section">
+        <div className="spells-header">
+          <h3>LIBRO DE CONJUROS</h3>
+          <button onClick={addSpell} className="add-spell-btn">+</button>
+        </div>
+        
+        <div className="spells-per-level">
+          <h4>CONJUROS POR NIVEL</h4>
+          <div className="level-grid">
+            {[1,2,3,4,5,6,7,8,9].map(level => (
+              <div key={level} className="level-item">
+                <span>{level}</span>
+                <input 
+                  type="number" 
+                  value={editableCharacter.conjurosPorNivel?.[level] || 0} 
+                  onChange={(e) => handleChange(`conjurosPorNivel.${level}`, parseInt(e.target.value) || 0)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {editableCharacter.conjuros && editableCharacter.conjuros.length > 0 && (
+          <div className="spells-table">
+            <div className="spells-table-header">
+              <div className="spell-header-row">
+                <span></span>
+                <span>CONJURO</span>
+                <span>NIVEL</span>
+                <span>ALCANCE</span>
+                <span>DURACIÓN</span>
+                <span>EFECTO</span>
+                <span></span>
+              </div>
+            </div>
+            
+            {editableCharacter.conjuros.map((spell) => (
+              <div key={spell.id} className="spell-row">
+                <input 
+                  type="checkbox" 
+                  checked={spell.preparado || false}
+                  onChange={(e) => handleChange(`conjuros.${editableCharacter.conjuros.indexOf(spell)}.preparado`, e.target.checked)}
+                  className="spell-checkbox"
+                />
+                
+                <input 
+                  type="text" 
+                  value={spell.nombre || ''} 
+                  onChange={(e) => handleChange(`conjuros.${editableCharacter.conjuros.indexOf(spell)}.nombre`, e.target.value)}
+                  placeholder="Nombre del conjuro"
+                  className="spell-name"
+                />
+                
+                <input 
+                  type="number" 
+                  value={spell.nivel || 1} 
+                  onChange={(e) => handleChange(`conjuros.${editableCharacter.conjuros.indexOf(spell)}.nivel`, parseInt(e.target.value) || 1)}
+                  className="spell-level"
+                  min="1"
+                  max="9"
+                />
+                
+                <input 
+                  type="text" 
+                  value={spell.alcance || ''} 
+                  onChange={(e) => handleChange(`conjuros.${editableCharacter.conjuros.indexOf(spell)}.alcance`, e.target.value)}
+                  placeholder="Alcance"
+                  className="spell-range"
+                />
+                
+                <input 
+                  type="text" 
+                  value={spell.duracion || ''} 
+                  onChange={(e) => handleChange(`conjuros.${editableCharacter.conjuros.indexOf(spell)}.duracion`, e.target.value)}
+                  placeholder="Duración"
+                  className="spell-duration"
+                />
+                
+                <input 
+                  type="text" 
+                  value={spell.efecto || ''} 
+                  onChange={(e) => handleChange(`conjuros.${editableCharacter.conjuros.indexOf(spell)}.efecto`, e.target.value)}
+                  placeholder="Efecto"
+                  className="spell-effect"
+                />
+                
+                <button 
+                  onClick={() => removeSpell(spell.id)} 
+                  className="remove-spell-btn"
+                  title="Eliminar conjuro"
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {(!editableCharacter.conjuros || editableCharacter.conjuros.length === 0) && (
+          <div className="no-spells">
+            <p>No hay conjuros agregados. Haz clic en + para agregar uno.</p>
+          </div>
+        )}
+      </div>
+
       <button onClick={handleDownloadImage} className="download-button">Descargar Imagen</button>
     </div>
   );
