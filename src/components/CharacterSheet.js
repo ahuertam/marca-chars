@@ -435,6 +435,75 @@ const calculateAttackBonus = () => {
               </div>
             </div>
           </div>
+                <div className="skills-section">
+        <div className="skills-title">HABILIDADES PORCENTUALES</div>
+        <div className="skills-list">
+          <div className="skill-item">
+            <span>% Abrir cerraduras</span>
+            <input 
+              type="number" 
+              value={editableCharacter.habilidadesPorcentaje?.abrirCerraduras || 0} 
+              onChange={(e) => handleChange('habilidadesPorcentaje.abrirCerraduras', e.target.value)} 
+            />
+          </div>
+          <div className="skill-item">
+            <span>% Encontrar/ Desact. trampas</span>
+            <input 
+              type="number" 
+              value={editableCharacter.habilidadesPorcentaje?.encontrarTrampas || 0} 
+              onChange={(e) => handleChange('habilidadesPorcentaje.encontrarTrampas', e.target.value)} 
+            />
+          </div>
+          <div className="skill-item">
+            <span>% Hurtar</span>
+            <input 
+              type="number" 
+              value={editableCharacter.habilidadesPorcentaje?.hurtar || 0} 
+              onChange={(e) => handleChange('habilidadesPorcentaje.hurtar', e.target.value)} 
+            />
+          </div>
+          <div className="skill-item">
+            <span>% Moverse en silencio</span>
+            <input 
+              type="number" 
+              value={editableCharacter.habilidadesPorcentaje?.moverseEnSilencio || 0} 
+              onChange={(e) => handleChange('habilidadesPorcentaje.moverseEnSilencio', e.target.value)} 
+            />
+          </div>
+          <div className="skill-item">
+            <span>% Escalar muros</span>
+            <input 
+              type="number" 
+              value={editableCharacter.habilidadesPorcentaje?.escalarMuros || 0} 
+              onChange={(e) => handleChange('habilidadesPorcentaje.escalarMuros', e.target.value)} 
+            />
+          </div>
+          <div className="skill-item">
+            <span>% Esconderse en las sombras</span>
+            <input 
+              type="number" 
+              value={editableCharacter.habilidadesPorcentaje?.esconderseEnLasSombras || 0} 
+              onChange={(e) => handleChange('habilidadesPorcentaje.esconderseEnLasSombras', e.target.value)} 
+            />
+          </div>
+          <div className="skill-item">
+            <span>% Comprender lenguajes</span>
+            <input 
+              type="number" 
+              value={editableCharacter.habilidadesPorcentaje?.comprenderLenguajes || 0} 
+              onChange={(e) => handleChange('habilidadesPorcentaje.comprenderLenguajes', e.target.value)} 
+            />
+          </div>
+          <div className="skill-item">
+            <span>% Usar pergaminos</span>
+            <input 
+              type="number" 
+              value={editableCharacter.habilidadesPorcentaje?.usarPergaminos || 0} 
+              onChange={(e) => handleChange('habilidadesPorcentaje.usarPergaminos', e.target.value)} 
+            />
+          </div>
+        </div>
+      </div>
         </div>
       </div>
 
@@ -460,30 +529,7 @@ const calculateAttackBonus = () => {
         </div>
       </div>
 
-      <div className="skills-section">
-        <div className="base-dice">1d6 Base</div>
-        <div className="skills-list">
-          {editableCharacter.habilidadesPorcentaje && Object.entries(editableCharacter.habilidadesPorcentaje).map(([skill, percent]) => (
-            <div key={skill} className="skill-item">
-              <label>
-                <input type="checkbox" checked={editableCharacter.habilidadesPorcentaje[skill] > 0} onChange={(e) => handleChange(`habilidadesPorcentaje.${skill}`, e.target.checked ? 1 : 0)} />
-                {skill}
-              </label>
-              <input type="number" value={percent} onChange={(e) => handleChange(`habilidadesPorcentaje.${skill}`, e.target.value)} />
-            </div>
-          ))}
-        </div>
 
-        <div className="skills-percentage">
-          <label>% Abrir cerraduras <input type="number" value={editableCharacter.abrirCerraduras || 0} onChange={(e) => handleChange('abrirCerraduras', e.target.value)} /></label>
-          <label>% Encontrar / Desactivar trampas <input type="number" value={editableCharacter.encontrarTrampas || 0} onChange={(e) => handleChange('encontrarTrampas', e.target.value)} /></label>
-          <label>% Hurtar <input type="number" value={editableCharacter.hurtar || 0} onChange={(e) => handleChange('hurtar', e.target.value)} /></label>
-          <label>% Moverse en Silencio <input type="number" value={editableCharacter.moverseEnSilencio || 0} onChange={(e) => handleChange('moverseEnSilencio', e.target.value)} /></label>
-          <label>% Esconderse en las Sombras <input type="number" value={editableCharacter.esconderseEnLasSombras || 0} onChange={(e) => handleChange('esconderseEnLasSombras', e.target.value)} /></label>
-          <label>% Comprender Lenguajes <input type="number" value={editableCharacter.comprenderLenguajes || 0} onChange={(e) => handleChange('comprenderLenguajes', e.target.value)} /></label>
-          <label>% Usar Pergaminos <input type="number" value={editableCharacter.usarPergaminos || 0} onChange={(e) => handleChange('usarPergaminos', e.target.value)} /></label>
-        </div>
-      </div>
 
       <div className="class-abilities">
         <label>Habilidades de clase</label>
