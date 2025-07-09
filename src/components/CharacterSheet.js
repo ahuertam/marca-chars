@@ -164,44 +164,141 @@ const calculateAttackBonus = () => {
       </div>
 
       <hr />
-
-      <div className="characteristics-section">
-        <div className="characteristics-list">
-          {Object.entries(editableCharacter.caracteristicas).map(([stat, value]) => (
-            <div key={stat} className="characteristic-item">
-              <label>{stat.charAt(0).toUpperCase() + stat.slice(1)}</label>
-              <div className="modifiers-boxes">
-                <input type="checkbox" />
-                <input type="checkbox" />
-              </div>
-              <input type="number" className="stat-value" value={value} onChange={(e) => handleChange(`caracteristicas.${stat}`, e.target.value)} />
-              <div className="bonus">Bonificador: {editableCharacter.bonificadores[stat]}</div>
+      
+      <div className="main-content">
+        <div className="left-column">
+          <div className="characteristics-section">
+            <h3 className="characteristics-title">CARACTERÍSTICAS</h3>
+            <div className="characteristics-header">
+              <span className="puntuacion-label">Puntuación</span>
+              <span className="modificador-label">Modificador</span>
             </div>
-          ))}
+            
+            <div className="characteristic-row">
+              <div className="characteristic-name">Fuerza</div>
+              <input 
+                type="number" 
+                className="characteristic-score" 
+                value={editableCharacter.caracteristicas.fue} 
+                onChange={(e) => handleChange('caracteristicas.fue', e.target.value)} 
+              />
+              <input 
+                type="number" 
+                className="characteristic-modifier" 
+                value={editableCharacter.bonificadores.fue} 
+                readOnly 
+              />
+              <div className="characteristic-description">
+                Al impacto, daño<br/>y abrir puertas
+              </div>
+            </div>
+            
+            <div className="characteristic-row">
+              <div className="characteristic-name">Destreza</div>
+              <input 
+                type="number" 
+                className="characteristic-score" 
+                value={editableCharacter.caracteristicas.des} 
+                onChange={(e) => handleChange('caracteristicas.des', e.target.value)} 
+              />
+              <input 
+                type="number" 
+                className="characteristic-modifier" 
+                value={editableCharacter.bonificadores.des} 
+                readOnly 
+              />
+              <div className="characteristic-description">
+                CA y ataque<br/>con proyectiles
+              </div>
+            </div>
+            
+            <div className="characteristic-row">
+              <div className="characteristic-name">Constitución</div>
+              <input 
+                type="number" 
+                className="characteristic-score" 
+                value={editableCharacter.caracteristicas.con} 
+                onChange={(e) => handleChange('caracteristicas.con', e.target.value)} 
+              />
+              <input 
+                type="number" 
+                className="characteristic-modifier" 
+                value={editableCharacter.bonificadores.con} 
+                readOnly 
+              />
+              <div className="characteristic-description">
+                A la tirada de<br/>Puntos de Golpe
+              </div>
+            </div>
+            
+            <div className="characteristic-row">
+              <div className="characteristic-name">Inteligencia</div>
+              <input 
+                type="number" 
+                className="characteristic-score" 
+                value={editableCharacter.caracteristicas.int} 
+                onChange={(e) => handleChange('caracteristicas.int', e.target.value)} 
+              />
+              <input 
+                type="number" 
+                className="characteristic-modifier" 
+                value={editableCharacter.bonificadores.int} 
+                readOnly 
+              />
+              <div className="characteristic-description">
+                Para escribir y<br/>leer idiomas
+              </div>
+            </div>
+            
+            <div className="characteristic-row">
+              <div className="characteristic-name">Sabiduría</div>
+              <input 
+                type="number" 
+                className="characteristic-score" 
+                value={editableCharacter.caracteristicas.sab} 
+                onChange={(e) => handleChange('caracteristicas.sab', e.target.value)} 
+              />
+              <input 
+                type="number" 
+                className="characteristic-modifier" 
+                value={editableCharacter.bonificadores.sab} 
+                readOnly 
+              />
+              <div className="characteristic-description">
+                A las TS contra<br/>ataques mágicos
+              </div>
+            </div>
+            
+            <div className="characteristic-row">
+              <div className="characteristic-name">Carisma</div>
+              <input 
+                type="number" 
+                className="characteristic-score" 
+                value={editableCharacter.caracteristicas.car} 
+                onChange={(e) => handleChange('caracteristicas.car', e.target.value)} 
+              />
+              <input 
+                type="number" 
+                className="characteristic-modifier" 
+                value={editableCharacter.bonificadores.car} 
+                readOnly 
+              />
+              <div className="characteristic-description">
+                A la reacción y moral<br/>de los seguidores
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div className="armor-hit-initiative">
+        
+        <div className="middle-column">
           <div className="armor-class">
-            <div><strong>Clase de Armadura</strong></div>
+            <h3>Clase de Armadura</h3>
             <div className="shield-icon">🛡️</div>
             <div><label>Escudo <input type="checkbox" checked={editableCharacter.escudo || false} onChange={(e) => handleChange('escudo', e.target.checked)} /></label></div>
             <div><label>Tipo Armadura <input type="text" value={editableCharacter.tipoArmadura || ''} onChange={(e) => handleChange('tipoArmadura', e.target.value)} /></label></div>
             <div><label>Bonificador Armadura Mágica <input type="number" value={editableCharacter.bonificadorArmaduraMagica || 0} onChange={(e) => handleChange('bonificadorArmaduraMagica', e.target.value)} /></label></div>
             <div><label>Armadura Natural <input type="number" value={editableCharacter.armaduraNatural || 0} onChange={(e) => handleChange('armaduraNatural', e.target.value)} /></label></div>
             <div><strong>CA Final: {calculateArmorClass()}</strong></div>
-          </div>
-
-          <div className="attack-section">
-            <div>
-              <label>Ataque Cuerpo a Cuerpo <input type="checkbox" checked={editableCharacter.ataqueCuerpoACuerpo || false} onChange={(e) => handleChange('ataqueCuerpoACuerpo', e.target.checked)} /></label>
-            </div>
-            <div>
-              <label>Ataque Proyectiles <input type="checkbox" checked={editableCharacter.ataqueProyectiles || false} onChange={(e) => handleChange('ataqueProyectiles', e.target.checked)} /></label>
-            </div>
-            <div>
-              <label>Bonificador de Ataque Base <input type="number" value={editableCharacter.bonificadorAtaqueBase || 0} onChange={(e) => handleChange('bonificadorAtaqueBase', e.target.value)} /></label>
-            </div>
-            <div><strong>BA Final: {calculateAttackBonus()}</strong></div>
           </div>
 
           <div className="hit-points">
@@ -217,111 +314,118 @@ const calculateAttackBonus = () => {
               = <input type="number" value={editableCharacter.iniciativaBase || 0} onChange={(e) => handleChange('iniciativaBase', e.target.value)} /> + <input type="number" value={editableCharacter.iniciativaBonus || 0} onChange={(e) => handleChange('iniciativaBonus', e.target.value)} />
             </div>
           </div>
+
+          <div className="attack-section">
+            <div>
+              <label>Ataque Cuerpo a Cuerpo <input type="checkbox" checked={editableCharacter.ataqueCuerpoACuerpo || false} onChange={(e) => handleChange('ataqueCuerpoACuerpo', e.target.checked)} /></label>
+            </div>
+            <div>
+              <label>Ataque Proyectiles <input type="checkbox" checked={editableCharacter.ataqueProyectiles || false} onChange={(e) => handleChange('ataqueProyectiles', e.target.checked)} /></label>
+            </div>
+            <div>
+              <label>Bonificador de Ataque Base <input type="number" value={editableCharacter.bonificadorAtaqueBase || 0} onChange={(e) => handleChange('bonificadorAtaqueBase', e.target.value)} /></label>
+            </div>
+            <div><strong>BA Final: {calculateAttackBonus()}</strong></div>
+          </div>
         </div>
 
-        <div className="attack-section">
-          <div>
-            <label>Ataque Cuerpo a Cuerpo <input type="checkbox" checked={editableCharacter.ataqueCuerpoACuerpo || false} onChange={(e) => handleChange('ataqueCuerpoACuerpo', e.target.checked)} /></label>
-          </div>
-          <div>
-            <label>Ataque Proyectiles <input type="checkbox" checked={editableCharacter.ataqueProyectiles || false} onChange={(e) => handleChange('ataqueProyectiles', e.target.checked)} /></label>
-          </div>
-        </div>
-        <div className="saving-throws-section">
-          <div className="saving-throws-header">
-            <h3>TIRADAS DE SALVACIÓN</h3>
-            <div className="d20-indicator">D20 superior</div>
-          </div>
-          <div className="saving-throws-list">
-            <div className="saving-throw-item">
-              <input 
-                type="number" 
-                className="saving-throw-circle" 
-                value={editableCharacter.tiradasSalvacion?.venenoOMuerte || 0} 
-                onChange={(e) => handleChange('tiradasSalvacion.venenoOMuerte', e.target.value)} 
-              />
-              <span className="saving-throw-label">Veneno<br/>o muerte</span>
-              <div className="saving-throw-line"></div>
-              <div className="saving-throw-modifier-container">
-                <input 
-                  type="number" 
-                  className="saving-throw-modifier" 
-                  value={editableCharacter.modificadoresSalvacion?.venenoOMuerte || 0} 
-                  onChange={(e) => handleChange('modificadoresSalvacion.venenoOMuerte', e.target.value)} 
-                />
-                <span className="modificador-label">Modificador</span>
-              </div>
+        <div className="right-column">
+          <div className="saving-throws-section">
+            <div className="saving-throws-header">
+              <h3>TIRADAS DE SALVACIÓN</h3>
+              <div className="d20-indicator">D20 superior</div>
             </div>
-            <div className="saving-throw-item">
-              <input 
-                type="number" 
-                className="saving-throw-circle" 
-                value={editableCharacter.tiradasSalvacion?.varitasMagicas || 0} 
-                onChange={(e) => handleChange('tiradasSalvacion.varitasMagicas', e.target.value)} 
-              />
-              <span className="saving-throw-label">Varitas<br/>mágicas</span>
-              <div className="saving-throw-line"></div>
-              <div className="saving-throw-modifier-container">
+            <div className="saving-throws-list">
+              <div className="saving-throw-item">
                 <input 
                   type="number" 
-                  className="saving-throw-modifier" 
-                  value={editableCharacter.modificadoresSalvacion?.varitasMagicas || 0} 
-                  onChange={(e) => handleChange('modificadoresSalvacion.varitasMagicas', e.target.value)} 
+                  className="saving-throw-circle" 
+                  value={editableCharacter.tiradasSalvacion?.venenoOMuerte || 0} 
+                  onChange={(e) => handleChange('tiradasSalvacion.venenoOMuerte', e.target.value)} 
                 />
+                <span className="saving-throw-label">Veneno<br/>o muerte</span>
+                <div className="saving-throw-line"></div>
+                <div className="saving-throw-modifier-container">
+                  <input 
+                    type="number" 
+                    className="saving-throw-modifier" 
+                    value={editableCharacter.modificadoresSalvacion?.venenoOMuerte || 0} 
+                    onChange={(e) => handleChange('modificadoresSalvacion.venenoOMuerte', e.target.value)} 
+                  />
+                  <span className="modificador-label">Modificador</span>
+                </div>
               </div>
-            </div>
-            <div className="saving-throw-item">
-              <input 
-                type="number" 
-                className="saving-throw-circle" 
-                value={editableCharacter.tiradasSalvacion?.petrificacionOParalisis || 0} 
-                onChange={(e) => handleChange('tiradasSalvacion.petrificacionOParalisis', e.target.value)} 
-              />
-              <span className="saving-throw-label">Petrificación<br/>o parálisis</span>
-              <div className="saving-throw-line"></div>
-              <div className="saving-throw-modifier-container">
+              <div className="saving-throw-item">
                 <input 
                   type="number" 
-                  className="saving-throw-modifier" 
-                  value={editableCharacter.modificadoresSalvacion?.petrificacionOParalisis || 0} 
-                  onChange={(e) => handleChange('modificadoresSalvacion.petrificacionOParalisis', e.target.value)} 
+                  className="saving-throw-circle" 
+                  value={editableCharacter.tiradasSalvacion?.varitasMagicas || 0} 
+                  onChange={(e) => handleChange('tiradasSalvacion.varitasMagicas', e.target.value)} 
                 />
+                <span className="saving-throw-label">Varitas<br/>mágicas</span>
+                <div className="saving-throw-line"></div>
+                <div className="saving-throw-modifier-container">
+                  <input 
+                    type="number" 
+                    className="saving-throw-modifier" 
+                    value={editableCharacter.modificadoresSalvacion?.varitasMagicas || 0} 
+                    onChange={(e) => handleChange('modificadoresSalvacion.varitasMagicas', e.target.value)} 
+                  />
+                </div>
               </div>
-            </div>
-            <div className="saving-throw-item">
-              <input 
-                type="number" 
-                className="saving-throw-circle" 
-                value={editableCharacter.tiradasSalvacion?.alientoDedragon || 0} 
-                onChange={(e) => handleChange('tiradasSalvacion.alientoDedragon', e.target.value)} 
-              />
-              <span className="saving-throw-label">Aliento<br/>de dragón</span>
-              <div className="saving-throw-line"></div>
-              <div className="saving-throw-modifier-container">
+              <div className="saving-throw-item">
                 <input 
                   type="number" 
-                  className="saving-throw-modifier" 
-                  value={editableCharacter.modificadoresSalvacion?.alientoDedragon || 0} 
-                  onChange={(e) => handleChange('modificadoresSalvacion.alientoDedragon', e.target.value)} 
+                  className="saving-throw-circle" 
+                  value={editableCharacter.tiradasSalvacion?.petrificacionOParalisis || 0} 
+                  onChange={(e) => handleChange('tiradasSalvacion.petrificacionOParalisis', e.target.value)} 
                 />
+                <span className="saving-throw-label">Petrificación<br/>o parálisis</span>
+                <div className="saving-throw-line"></div>
+                <div className="saving-throw-modifier-container">
+                  <input 
+                    type="number" 
+                    className="saving-throw-modifier" 
+                    value={editableCharacter.modificadoresSalvacion?.petrificacionOParalisis || 0} 
+                    onChange={(e) => handleChange('modificadoresSalvacion.petrificacionOParalisis', e.target.value)} 
+                  />
+                </div>
               </div>
-            </div>
-            <div className="saving-throw-item">
-              <input 
-                type="number" 
-                className="saving-throw-circle" 
-                value={editableCharacter.tiradasSalvacion?.sortilegiosVarasYBaculos || 0} 
-                onChange={(e) => handleChange('tiradasSalvacion.sortilegiosVarasYBaculos', e.target.value)} 
-              />
-              <span className="saving-throw-label">Sortilegios,<br/>varas y<br/>báculos</span>
-              <div className="saving-throw-line"></div>
-              <div className="saving-throw-modifier-container">
+              <div className="saving-throw-item">
                 <input 
                   type="number" 
-                  className="saving-throw-modifier" 
-                  value={editableCharacter.modificadoresSalvacion?.sortilegiosVarasYBaculos || 0} 
-                  onChange={(e) => handleChange('modificadoresSalvacion.sortilegiosVarasYBaculos', e.target.value)} 
+                  className="saving-throw-circle" 
+                  value={editableCharacter.tiradasSalvacion?.alientoDedragon || 0} 
+                  onChange={(e) => handleChange('tiradasSalvacion.alientoDedragon', e.target.value)} 
                 />
+                <span className="saving-throw-label">Aliento<br/>de dragón</span>
+                <div className="saving-throw-line"></div>
+                <div className="saving-throw-modifier-container">
+                  <input 
+                    type="number" 
+                    className="saving-throw-modifier" 
+                    value={editableCharacter.modificadoresSalvacion?.alientoDedragon || 0} 
+                    onChange={(e) => handleChange('modificadoresSalvacion.alientoDedragon', e.target.value)} 
+                  />
+                </div>
+              </div>
+              <div className="saving-throw-item">
+                <input 
+                  type="number" 
+                  className="saving-throw-circle" 
+                  value={editableCharacter.tiradasSalvacion?.sortilegiosVarasYBaculos || 0} 
+                  onChange={(e) => handleChange('tiradasSalvacion.sortilegiosVarasYBaculos', e.target.value)} 
+                />
+                <span className="saving-throw-label">Sortilegios,<br/>varas y<br/>báculos</span>
+                <div className="saving-throw-line"></div>
+                <div className="saving-throw-modifier-container">
+                  <input 
+                    type="number" 
+                    className="saving-throw-modifier" 
+                    value={editableCharacter.modificadoresSalvacion?.sortilegiosVarasYBaculos || 0} 
+                    onChange={(e) => handleChange('modificadoresSalvacion.sortilegiosVarasYBaculos', e.target.value)} 
+                  />
+                </div>
               </div>
             </div>
           </div>
