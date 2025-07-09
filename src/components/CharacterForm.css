@@ -248,3 +248,294 @@ button:hover {
   color: #c62828;
   font-weight: bold;
 }
+
+
+/* Estilos para el indicador de pasos */
+.step-indicator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.step {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  background-color: #ccc;
+}
+
+.step.active {
+  background-color: #4CAF50;
+}
+
+.step.completed {
+  background-color: #2196F3;
+}
+
+/* Estilos para la navegación de pasos */
+.step-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.next-button, .previous-button, .submit-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.next-button, .submit-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.next-button:hover, .submit-button:hover {
+  background-color: #45a049;
+}
+
+.previous-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.previous-button:hover {
+  background-color: #da190b;
+}
+
+/* Estilos para la sección de características */
+.characteristics-section {
+  border: 2px solid #000;
+  background: #fff;
+  margin: 20px 0;
+  border-radius: 0;
+}
+
+.characteristics-section h3 {
+  background: #000;
+  color: #fff;
+  padding: 8px 12px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.characteristics-grid {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.characteristic-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 15px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.characteristic-item:last-child {
+  border-bottom: none;
+}
+
+.characteristic-item label {
+  font-weight: bold;
+  font-size: 12px;
+  color: #2c3e50;
+  margin: 0;
+  cursor: help;
+}
+
+.characteristic-controls {
+  display: grid;
+  grid-template-columns: 60px 50px 120px;
+  gap: 10px;
+  align-items: center;
+}
+
+.characteristic-controls input[type="number"] {
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #000;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.characteristic-controls input[type="number"].failed-requirement {
+  border: 2px solid #ff0000;
+  background-color: #ffe6e6;
+}
+
+.roll-button {
+  width: 40px;
+  height: 30px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.roll-button:hover {
+  background-color: #2980b9;
+}
+
+.modifier {
+  background: #f0f0f0;
+  padding: 6px 8px;
+  border: 1px solid #000;
+  text-align: center;
+  font-weight: bold;
+  font-size: 11px;
+  border-radius: 2px;
+  min-width: 100px;
+  box-sizing: border-box;
+}
+
+/* Estilos para los botones de navegación */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  gap: 15px;
+}
+
+.next-button, .prev-button, .submit-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: auto;
+  margin: 0;
+}
+
+.next-button, .submit-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.next-button:hover, .submit-button:hover {
+  background-color: #45a049;
+}
+
+.prev-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.prev-button:hover {
+  background-color: #da190b;
+}
+
+/* Estilos para las secciones de habilidades y equipo */
+.skills-section, .equipment-section {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.skills-section h3, .equipment-section h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.skill-item, .equipment-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.skill-item input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.skill-item button, .equipment-item button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  width: auto;
+  margin: 0;
+}
+
+.skill-item button:hover, .equipment-item button:hover {
+  background-color: #c0392b;
+}
+
+.add-skill, .add-equipment {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.add-skill input, .add-equipment input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.add-skill button, .add-equipment button {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  width: auto;
+  margin: 0;
+}
+
+.add-skill button:hover, .add-equipment button:hover {
+  background-color: #229954;
+}
+
+.equipment-item span {
+  flex: 1;
+  padding: 8px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
