@@ -139,6 +139,24 @@ const calculateAttackBonus = () => {
     const updatedSpells = editableCharacter.conjuros.filter(spell => spell.id !== spellId);
     handleChange('conjuros', updatedSpells);
   };
+
+  // Funciones para gestionar habilidades personalizadas
+  const addCustomSkill = () => {
+    const newSkill = {
+      id: Date.now(),
+      nombre: '',
+      descripcion: ''
+    };
+    
+    const updatedSkills = [...(editableCharacter.habilidades || []), newSkill];
+    handleChange('habilidades', updatedSkills);
+  };
+
+  const removeCustomSkill = (skillId) => {
+    const updatedSkills = editableCharacter.habilidades.filter(skill => skill.id !== skillId);
+    handleChange('habilidades', updatedSkills);
+  };
+
   return (
     <div className="character-sheet" ref={sheetRef}>
       <h2>Ficha de Personaje</h2>
@@ -751,10 +769,59 @@ const calculateAttackBonus = () => {
 
 
 
-      <div className="class-abilities">
-        <label>Habilidades de clase</label>
-        <textarea value={editableCharacter.habilidadesDeClase || ''} onChange={(e) => handleChange('habilidadesDeClase', e.target.value)} />
+     <div className="custom-skills-section">
+        <div className="skills-header">
+          <h3>HABILIDADES</h3>
+          <button onClick={addCustomSkill} className="add-skill-btn">+</button>
+        </div>
+        
+        {editableCharacter.habilidades && editableCharacter.habilidades.length > 0 && (
+          <div className="skills-table">
+            <div className="skills-table-header">
+              <div className="skill-header-row">
+                <span>NOMBRE</span>
+                <span>DESCRIPCIÓN</span>
+                <span></span>
+              </div>
+            </div>
+            
+            {editableCharacter.habilidades.map((skill) => (
+              <div key={skill.id || skill.nombre} className="skill-row">
+                <input 
+                  type="text" 
+                  value={skill.nombre || ''} 
+                  onChange={(e) => handleChange(`habilidades.${editableCharacter.habilidades.indexOf(skill)}.nombre`, e.target.value)}
+                  placeholder="Nombre de la habilidad"
+                  className="skill-name"
+                />
+                
+                <textarea 
+                  value={skill.descripcion || ''} 
+                  onChange={(e) => handleChange(`habilidades.${editableCharacter.habilidades.indexOf(skill)}.descripcion`, e.target.value)}
+                  placeholder="Descripción de la habilidad"
+                  className="skill-description"
+                  rows="2"
+                />
+                
+                <button 
+                  onClick={() => removeCustomSkill(skill.id || editableCharacter.habilidades.indexOf(skill))} 
+                  className="remove-skill-btn"
+                  title="Eliminar habilidad"
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {(!editableCharacter.habilidades || editableCharacter.habilidades.length === 0) && (
+          <div className="no-skills">
+            <p>No hay habilidades agregadas. Haz clic en + para agregar una.</p>
+          </div>
+        )}
       </div>
+
 
       <div className="objects-equipment">
         <div className="objects">
@@ -934,3 +1001,6 @@ const calculateAttackBonus = () => {
 };
 
 export default CharacterSheet;
+
+
+      
