@@ -76,7 +76,48 @@ const calculateAttackBonus = () => {
 
   return finalBA;
 };
+  // Función para agregar una nueva arma
+  const addWeapon = () => {
+    const newWeapon = {
+      id: Date.now(),
+      nombre: '',
+      totalAtaque: 0,
+      fuerzaDestreza: 0,
+      magiaAtaque: 0,
+      ataqueBase: 0,
+      totalDano: 0,
+      magicaFuerza: 0,
+      magiaDano: 0,
+      especial: ''
+    };
+    
+    const updatedWeapons = [...(editableCharacter.armas || []), newWeapon];
+    const updatedCharacter = { ...editableCharacter, armas: updatedWeapons };
+    setEditableCharacter(updatedCharacter);
+    onUpdateCharacter(updatedCharacter);
+  };
 
+  // Función para eliminar un arma
+  const removeWeapon = (weaponId) => {
+    const updatedWeapons = editableCharacter.armas.filter(weapon => weapon.id !== weaponId);
+    const updatedCharacter = { ...editableCharacter, armas: updatedWeapons };
+    setEditableCharacter(updatedCharacter);
+    onUpdateCharacter(updatedCharacter);
+  };
+
+  // Función para calcular el total de ataque
+  const calculateAttackTotal = (weapon) => {
+    return (parseInt(weapon.ataqueBase) || 0) + 
+           (parseInt(weapon.fuerzaDestreza) || 0) + 
+           (parseInt(weapon.magiaAtaque) || 0);
+  };
+
+  // Función para calcular el total de daño
+  const calculateDamageTotal = (weapon) => {
+    return (parseInt(weapon.totalDano) || 0) + 
+           (parseInt(weapon.magicaFuerza) || 0) + 
+           (parseInt(weapon.magiaDano) || 0);
+  };
   return (
     <div className="character-sheet" ref={sheetRef}>
       <h2>Ficha de Personaje</h2>
@@ -288,6 +329,67 @@ const calculateAttackBonus = () => {
               </div>
             </div>
           </div>
+          
+          <div className="initiative">
+            <div className="initiative-title">Iniciativa</div>
+            <div className="initiative-content">
+              <div>
+                <span>=</span>
+                <input type="number" value={editableCharacter.iniciativaBase || 0} onChange={(e) => handleChange('iniciativaBase', e.target.value)} />
+                <span>+</span>
+                <input type="number" value={editableCharacter.iniciativaBonus || 0} onChange={(e) => handleChange('iniciativaBonus', e.target.value)} />
+              </div>
+            </div>
+          </div>
+
+                <div className="movement-section">
+        <div className="movement-title">MOVIMIENTO</div>
+        <div className="movement-content">
+          <div className="movement-item">
+            <label>Base:</label>
+            <input 
+              type="number" 
+              value={editableCharacter.movimiento?.base || 0} 
+              onChange={(e) => handleChange('movimiento.base', e.target.value)} 
+            />
+          </div>
+          <div className="movement-item">
+            <label>Combate:</label>
+            <input 
+              type="number" 
+              value={editableCharacter.movimiento?.combate || 0} 
+              onChange={(e) => handleChange('movimiento.combate', e.target.value)} 
+            />
+          </div>
+          <div className="movement-item">
+            <label>Carrera:</label>
+            <input 
+              type="number" 
+              value={editableCharacter.movimiento?.carrera || 0} 
+              onChange={(e) => handleChange('movimiento.carrera', e.target.value)} 
+            />
+          </div>
+          <div className="movement-item">
+            <label>Cargado:</label>
+            <input 
+              type="number" 
+              value={editableCharacter.movimiento?.cargado || 0} 
+              onChange={(e) => handleChange('movimiento.cargado', e.target.value)} 
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="languages-section">
+        <div className="languages-title">IDIOMAS</div>
+        <div className="languages-content">
+          <textarea 
+            value={editableCharacter.idiomas || ''} 
+            onChange={(e) => handleChange('idiomas', e.target.value)} 
+            placeholder="Idiomas conocidos..."
+          />
+        </div>
+      </div>
         </div>
         
         <div className="middle-column">
@@ -309,18 +411,6 @@ const calculateAttackBonus = () => {
               <div className="heart-icon">❤️</div>
               <div><label>Dado golpe:</label><input type="text" value={editableCharacter.dadoGolpe || ''} onChange={(e) => handleChange('dadoGolpe', e.target.value)} /></div>
               <div><label>Gac0:</label><input type="text" value={editableCharacter.gac0 || ''} onChange={(e) => handleChange('gac0', e.target.value)} /></div>
-            </div>
-          </div>
-
-          <div className="initiative">
-            <div className="initiative-title">Iniciativa</div>
-            <div className="initiative-content">
-              <div>
-                <span>=</span>
-                <input type="number" value={editableCharacter.iniciativaBase || 0} onChange={(e) => handleChange('iniciativaBase', e.target.value)} />
-                <span>+</span>
-                <input type="number" value={editableCharacter.iniciativaBonus || 0} onChange={(e) => handleChange('iniciativaBonus', e.target.value)} />
-              </div>
             </div>
           </div>
 
@@ -507,27 +597,135 @@ const calculateAttackBonus = () => {
         </div>
       </div>
 
-      <div className="main-weapons">
-        <label>Armas Principales</label>
-        <textarea value={editableCharacter.armasPrincipales || ''} onChange={(e) => handleChange('armasPrincipales', e.target.value)} />
-      </div>
-
-      <div className="movement-languages">
-        <div className="movement">
-          <label>Movimiento</label>
-          <div>
-            <label>Base <input type="number" value={editableCharacter.movimiento?.base || 0} onChange={(e) => handleChange('movimiento.base', e.target.value)} /></label>
-            <label>Combate <input type="number" value={editableCharacter.movimiento?.combate || 0} onChange={(e) => handleChange('movimiento.combate', e.target.value)} /></label>
-            <label>Carrera <input type="number" value={editableCharacter.movimiento?.carrera || 0} onChange={(e) => handleChange('movimiento.carrera', e.target.value)} /></label>
-            <label>Cargado <input type="number" value={editableCharacter.movimiento?.cargado || 0} onChange={(e) => handleChange('movimiento.cargado', e.target.value)} /></label>
+    <div className="weapons-section">
+        <div className="weapons-header">
+          <h3>ARMAS</h3>
+          <button onClick={addWeapon} className="add-weapon-btn">+</button>
+        </div>
+        
+        {editableCharacter.armas && editableCharacter.armas.length > 0 && (
+          <div className="weapons-table">
+            <div className="weapons-table-header">
+              <div className="weapon-header-row">
+                <span>Arma</span>
+                <span>Total</span>
+                <span>Fue/Des</span>
+                <span>Magia</span>
+                <span>Ataque</span>
+                <span></span>
+              </div>
+            </div>
+            
+            {editableCharacter.armas.map((weapon) => (
+              <div key={weapon.id} className="weapon-group">
+                <div className="weapon-row">
+                  <input 
+                    type="text" 
+                    value={weapon.nombre || ''} 
+                    onChange={(e) => handleChange(`armas.${editableCharacter.armas.indexOf(weapon)}.nombre`, e.target.value)}
+                    placeholder="Nombre del arma"
+                    className="weapon-name"
+                  />
+                  
+                  <input 
+                    type="number" 
+                    value={calculateAttackTotal(weapon)}
+                    readOnly
+                    className="weapon-total readonly"
+                  />
+                  
+                  <input 
+                    type="number" 
+                    value={weapon.fuerzaDestreza || 0} 
+                    onChange={(e) => handleChange(`armas.${editableCharacter.armas.indexOf(weapon)}.fuerzaDestreza`, e.target.value)}
+                    className="weapon-stat"
+                  />
+                  
+                  <input 
+                    type="number" 
+                    value={weapon.magiaAtaque || 0} 
+                    onChange={(e) => handleChange(`armas.${editableCharacter.armas.indexOf(weapon)}.magiaAtaque`, e.target.value)}
+                    className="weapon-stat"
+                  />
+                  
+                  <input 
+                    type="number" 
+                    value={weapon.ataqueBase || 0} 
+                    onChange={(e) => handleChange(`armas.${editableCharacter.armas.indexOf(weapon)}.ataqueBase`, e.target.value)}
+                    className="weapon-stat"
+                  />
+                  
+                  <button 
+                    onClick={() => removeWeapon(weapon.id)} 
+                    className="remove-weapon-btn"
+                    title="Eliminar arma"
+                  >
+                    ×
+                  </button>
+                </div>
+                
+                <div className="damage-header-row">
+                  <span>Daño</span>
+                  <span>Total</span>
+                  <span>M.Fuerza</span>
+                  <span>Magia</span>
+                  <span>Especial</span>
+                  <span></span>
+                </div>
+                
+                <div className="damage-row">
+                  <input 
+                    type="text" 
+                    value={weapon.totalDano || ''} 
+                    onChange={(e) => handleChange(`armas.${editableCharacter.armas.indexOf(weapon)}.totalDano`, e.target.value)}
+                    placeholder="1d6+2"
+                    className="weapon-damage"
+                  />
+                  
+                  <input 
+                    type="number" 
+                    value={calculateDamageTotal(weapon)}
+                    readOnly
+                    className="weapon-total readonly"
+                  />
+                  
+                  <input 
+                    type="number" 
+                    value={weapon.magicaFuerza || 0} 
+                    onChange={(e) => handleChange(`armas.${editableCharacter.armas.indexOf(weapon)}.magicaFuerza`, e.target.value)}
+                    className="weapon-stat"
+                  />
+                  
+                  <input 
+                    type="number" 
+                    value={weapon.magiaDano || 0} 
+                    onChange={(e) => handleChange(`armas.${editableCharacter.armas.indexOf(weapon)}.magiaDano`, e.target.value)}
+                    className="weapon-stat"
+                  />
+                  
+                  <input 
+                    type="text" 
+                    value={weapon.especial || ''} 
+                    onChange={(e) => handleChange(`armas.${editableCharacter.armas.indexOf(weapon)}.especial`, e.target.value)}
+                    placeholder="Especial"
+                    className="weapon-special"
+                  />
+                  
+                  <div className="empty-cell"></div>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-
-        <div className="languages">
-          <label>Idiomas</label>
-          <textarea value={editableCharacter.idiomas || ''} onChange={(e) => handleChange('idiomas', e.target.value)} />
-        </div>
+        )}
+        
+        {(!editableCharacter.armas || editableCharacter.armas.length === 0) && (
+          <div className="no-weapons">
+            <p>No hay armas agregadas. Haz clic en + para agregar una.</p>
+          </div>
+        )}
       </div>
+
+
 
 
 
