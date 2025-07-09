@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import html2canvas from 'html2canvas';
 import './CharacterSheet.css';
 
 const CharacterSheet = ({ character, onUpdateCharacter }) => {
   const [editableCharacter, setEditableCharacter] = useState(character);
+  const sheetRef = useRef(null);
 
   const handleChange = (field, value) => {
     const updatedCharacter = { ...editableCharacter };
@@ -27,10 +29,56 @@ const CharacterSheet = ({ character, onUpdateCharacter }) => {
     onUpdateCharacter(updatedCharacter);
   };
 
+  const handleDownloadImage = () => {
+    if (sheetRef.current) {
+      html2canvas(sheetRef.current).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `${editableCharacter.nombre || 'character'}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+  };
+
   if (!character) return null;
 
+// Función para calcular modificador
+const getModifier = (value) => Math.floor((value - 10) / 2);
+        
+// Cálculo de Clase de Armadura
+const calculateArmorClass = () => {
+  const baseArmor = parseInt(editableCharacter.claseArmadura) || 0;
+  const dexModifier = getModifier(parseInt(editableCharacter.caracteristicas?.DES) || 10);
+  const shieldBonus = editableCharacter.escudo ? 1 : 0;
+  const magicArmorBonus = parseInt(editableCharacter.bonificadorArmaduraMagica) || 0;
+  const naturalArmor = parseInt(editableCharacter.armaduraNatural) || 0;
+
+  let finalCA = baseArmor - dexModifier - magicArmorBonus - shieldBonus - naturalArmor;
+  if (finalCA < 0) finalCA = 0;
+  return finalCA;
+};
+
+// Cálculo de Bonificador de Ataque
+const calculateAttackBonus = () => {
+  const baseAttackBonus = parseInt(editableCharacter.bonificadorAtaqueBase) || 0;
+  const strengthModifier = getModifier(parseInt(editableCharacter.caracteristicas?.FUE) || 10);
+  const dexterityModifier = getModifier(parseInt(editableCharacter.caracteristicas?.DES) || 10);
+
+  const isMelee = editableCharacter.ataqueCuerpoACuerpo;
+  const isRanged = editableCharacter.ataqueProyectiles;
+
+  let finalBA = baseAttackBonus;
+  if (isMelee) {
+    finalBA += strengthModifier;
+  } else if (isRanged) {
+    finalBA += dexterityModifier;
+  }
+
+  return finalBA;
+};
+
   return (
-    <div className="character-sheet">
+    <div className="character-sheet" ref={sheetRef}>
       <h2>Ficha de Personaje</h2>
       <div className="top-info">
         <div className="left-info">
@@ -68,6 +116,22 @@ const CharacterSheet = ({ character, onUpdateCharacter }) => {
             <div className="shield-icon">🛡️</div>
             <div><label>Escudo <input type="checkbox" checked={editableCharacter.escudo || false} onChange={(e) => handleChange('escudo', e.target.checked)} /></label></div>
             <div><label>Tipo Armadura <input type="text" value={editableCharacter.tipoArmadura || ''} onChange={(e) => handleChange('tipoArmadura', e.target.value)} /></label></div>
+            <div><label>Bonificador Armadura Mágica <input type="number" value={editableCharacter.bonificadorArmaduraMagica || 0} onChange={(e) => handleChange('bonificadorArmaduraMagica', e.target.value)} /></label></div>
+            <div><label>Armadura Natural <input type="number" value={editableCharacter.armaduraNatural || 0} onChange={(e) => handleChange('armaduraNatural', e.target.value)} /></label></div>
+            <div><strong>CA Final: {calculateArmorClass()}</strong></div>
+          </div>
+
+          <div className="attack-section">
+            <div>
+              <label>Ataque Cuerpo a Cuerpo <input type="checkbox" checked={editableCharacter.ataqueCuerpoACuerpo || false} onChange={(e) => handleChange('ataqueCuerpoACuerpo', e.target.checked)} /></label>
+            </div>
+            <div>
+              <label>Ataque Proyectiles <input type="checkbox" checked={editableCharacter.ataqueProyectiles || false} onChange={(e) => handleChange('ataqueProyectiles', e.target.checked)} /></label>
+            </div>
+            <div>
+              <label>Bonificador de Ataque Base <input type="number" value={editableCharacter.bonificadorAtaqueBase || 0} onChange={(e) => handleChange('bonificadorAtaqueBase', e.target.value)} /></label>
+            </div>
+            <div><strong>BA Final: {calculateAttackBonus()}</strong></div>
           </div>
 
           <div className="hit-points">
@@ -165,6 +229,7 @@ const CharacterSheet = ({ character, onUpdateCharacter }) => {
           <textarea value={editableCharacter.equipo || ''} onChange={(e) => handleChange('equipo', e.target.value)} />
         </div>
       </div>
+      <button onClick={handleDownloadImage} className="download-button">Descargar Imagen</button>
     </div>
   );
 };

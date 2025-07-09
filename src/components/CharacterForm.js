@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 import './CharacterForm.css';
@@ -56,7 +56,8 @@ const initialCharacter = {
     moverseEnSilencio: 0,
     esconderseEnLasSombras: 0,
     comprenderLenguajes: 0,
-    usarPergaminos: 0
+    usarPergaminos: 0,
+    escucharRuidos: 0,
   },
   habilidadesDeClase: '',
   habilidades: [],
@@ -72,6 +73,9 @@ const CharacterForm = ({ onSaveCharacter }) => {
   const [modificadores, setModificadores] = useState({ FUE: 0, DES: 0, CON: 0, INT: 0, SAB: 0, CAR: 0 });
   const [newItemName, setNewItemName] = useState('');
   const [newItemDescription, setNewItemDescription] = useState('');
+  const [newItemArmorBonus, setNewItemArmorBonus] = useState(0);
+  const [newItemAttackBonus, setNewItemAttackBonus] = useState(0);
+
   const rollDice = () => {
     const rolls = Array.from({ length: 4 }, () => Math.floor(Math.random() * 6) + 1);
     rolls.sort((a, b) => b - a);
@@ -266,10 +270,7 @@ const CharacterForm = ({ onSaveCharacter }) => {
                 }}
                 placeholder="Descripción de la habilidad"
               />
-              <button type="button" onClick={() => {
-                const newHabilidades = character.habilidades.filter((_, i) => i !== index);
-                setCharacter({ ...character, habilidades: newHabilidades });
-              }}>🗑️</button>
+              <button type="button" onClick={() => handleRemoveSkill(index)}>🗑️</button>
             </div>
           ))}
           <div className="item-input-group">
@@ -288,131 +289,93 @@ const CharacterForm = ({ onSaveCharacter }) => {
           </div>
         </div>
       </div>
-
     <div className="form-group">
-      <label>Clase de Armadura:</label>
-      <input
+      <table className="tabla-salvaciones">
+        <thead>
+          <tr>
+            <th>Clase de Armadura</th>
+            <th>Puntos de Golpe:</th>
+            <th>Iniciativa:</th>
+            <th>Ataque Cuerpo a Cuerpo:</th>
+            <th>Ataque Proyectiles:</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> <input
         type="number"
         value={character.claseArmadura}
         onChange={(e) => setCharacter({ ...character, claseArmadura: parseInt(e.target.value) || 0 })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Puntos de Golpe:</label>
-      <input
+      /></td>
+            <td> <input
         type="number"
         value={character.puntosGolpe}
         onChange={(e) => setCharacter({ ...character, puntosGolpe: parseInt(e.target.value) || 0 })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Iniciativa:</label>
-      <input
+      /></td>
+            <td><input
         type="number"
         value={character.iniciativa}
         onChange={(e) => setCharacter({ ...character, iniciativa: parseInt(e.target.value) || 0 })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Ataque Cuerpo a Cuerpo:</label>
-      <input
+      /></td>
+            <td><input
         type="number"
         value={character.ataqueCuerpoACuerpo}
         onChange={(e) => setCharacter({ ...character, ataqueCuerpoACuerpo: parseInt(e.target.value) || 0 })}
-      />
+      /></td>
+            <td> <input
+        type="number"
+        value={character.ataqueCuerpoACuerpo}
+        onChange={(e) => setCharacter({ ...character, ataqueCuerpoACuerpo: parseInt(e.target.value) || 0 })}
+      /></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div className="form-group">
-      <label>Ataque Proyectiles:</label>
-      <input
-        type="number"
-        value={character.ataqueProyectiles}
-        onChange={(e) => setCharacter({ ...character, ataqueProyectiles: parseInt(e.target.value) || 0 })}
-      />
+      <label>Tabla de Tiradas de Salvación</label>
+      <table className="tabla-salvaciones">
+        <thead>
+          <tr>
+            <th>Venenos y Muerte</th>
+            <th>Varitas Mágicas y Cetros</th>
+            <th>Petrificación o Parálisis</th>
+            <th>Armas de Aliento</th>
+            <th>Conjuros y Armas Mágicas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="number" value={character.venenoOMuerte} onChange={(e) => setCharacter({ ...character, venenoOMuerte: parseInt(e.target.value) || 0 })} /></td>
+            <td><input type="number" value={character.varitasYCetros} onChange={(e) => setCharacter({ ...character, varitasYCetros: parseInt(e.target.value) || 0 })} /></td>
+            <td><input type="number" value={character.petrificacionOParalisis} onChange={(e) => setCharacter({ ...character, petrificacionOParalisis: parseInt(e.target.value) || 0 })} /></td>
+            <td><input type="number" value={character.armasDeAliento} onChange={(e) => setCharacter({ ...character, armasDeAliento: parseInt(e.target.value) || 0 })} /></td>
+            <td><input type="number" value={character.conjurosYArmasMagicas} onChange={(e) => setCharacter({ ...character, conjurosYArmasMagicas: parseInt(e.target.value) || 0 })} /></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div className="form-group">
-      <label>Veneno o Muerte:</label>
-      <input
-        type="number"
-        value={character.venenoOMuerte}
-        onChange={(e) => setCharacter({ ...character, venenoOMuerte: parseInt(e.target.value) || 0 })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Varitas y Cetros:</label>
-      <input
-        type="number"
-        value={character.varitasYCetros}
-        onChange={(e) => setCharacter({ ...character, varitasYCetros: parseInt(e.target.value) || 0 })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Petrificación o Parálisis:</label>
-      <input
-        type="number"
-        value={character.petrificacionOParalisis}
-        onChange={(e) => setCharacter({ ...character, petrificacionOParalisis: parseInt(e.target.value) || 0 })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Armas de Aliento:</label>
-      <input
-        type="number"
-        value={character.armasDeAliento}
-        onChange={(e) => setCharacter({ ...character, armasDeAliento: parseInt(e.target.value) || 0 })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Conjuros y Armas Mágicas:</label>
-      <input
-        type="number"
-        value={character.conjurosYArmasMagicas}
-        onChange={(e) => setCharacter({ ...character, conjurosYArmasMagicas: parseInt(e.target.value) || 0 })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Movimiento Base:</label>
-      <input
-        type="number"
-        value={character.movimiento.base}
-        onChange={(e) => setCharacter({ ...character, movimiento: { ...character.movimiento, base: parseInt(e.target.value) || 0 } })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Movimiento Combate:</label>
-      <input
-        type="number"
-        value={character.movimiento.combate}
-        onChange={(e) => setCharacter({ ...character, movimiento: { ...character.movimiento, combate: parseInt(e.target.value) || 0 } })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Movimiento Carrera:</label>
-      <input
-        type="number"
-        value={character.movimiento.carrera}
-        onChange={(e) => setCharacter({ ...character, movimiento: { ...character.movimiento, carrera: parseInt(e.target.value) || 0 } })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Movimiento Cargado:</label>
-      <input
-        type="number"
-        value={character.movimiento.cargado}
-        onChange={(e) => setCharacter({ ...character, movimiento: { ...character.movimiento, cargado: parseInt(e.target.value) || 0 } })}
-      />
+      <label>Movimiento</label>
+      <table className="movimiento-table">
+        <thead>
+          <tr>
+            <th>Base</th>
+            <th>Combate</th>
+            <th>Carrera</th>
+            <th>Cargado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="number" value={character.movimiento.base} onChange={(e) => setCharacter({ ...character, movimiento: { ...character.movimiento, base: parseInt(e.target.value) || 0 } })} /></td>
+            <td><input type="number" value={character.movimiento.combate} onChange={(e) => setCharacter({ ...character, movimiento: { ...character.movimiento, combate: parseInt(e.target.value) || 0 } })} /></td>
+            <td><input type="number" value={character.movimiento.carrera} onChange={(e) => setCharacter({ ...character, movimiento: { ...character.movimiento, carrera: parseInt(e.target.value) || 0 } })} /></td>
+            <td><input type="number" value={character.movimiento.cargado} onChange={(e) => setCharacter({ ...character, movimiento: { ...character.movimiento, cargado: parseInt(e.target.value) || 0 } })} /></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div className="form-group">
@@ -424,68 +387,34 @@ const CharacterForm = ({ onSaveCharacter }) => {
       />
     </div>
 
-    <h4>Habilidades con Porcentaje</h4>
     <div className="form-group">
-      <label>Abrir Cerraduras (%):</label>
-      <input
-        type="number"
-        value={character.habilidadesPorcentaje.abrirCerraduras}
-        onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, abrirCerraduras: parseInt(e.target.value) || 0 } })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Encontrar / Desactivar Trampas (%):</label>
-      <input
-        type="number"
-        value={character.habilidadesPorcentaje.encontrarTrampas}
-        onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, encontrarTrampas: parseInt(e.target.value) || 0 } })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Hurtar (%):</label>
-      <input
-        type="number"
-        value={character.habilidadesPorcentaje.hurtar}
-        onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, hurtar: parseInt(e.target.value) || 0 } })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Moverse en Silencio (%):</label>
-      <input
-        type="number"
-        value={character.habilidadesPorcentaje.moverseEnSilencio}
-        onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, moverseEnSilencio: parseInt(e.target.value) || 0 } })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Esconderse en las Sombras (%):</label>
-      <input
-        type="number"
-        value={character.habilidadesPorcentaje.esconderseEnLasSombras}
-        onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, esconderseEnLasSombras: parseInt(e.target.value) || 0 } })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Comprender Lenguajes (%):</label>
-      <input
-        type="number"
-        value={character.habilidadesPorcentaje.comprenderLenguajes}
-        onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, comprenderLenguajes: parseInt(e.target.value) || 0 } })}
-      />
-    </div>
-
-    <div className="form-group">
-      <label>Usar Pergaminos (%):</label>
-      <input
-        type="number"
-        value={character.habilidadesPorcentaje.usarPergaminos}
-        onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, usarPergaminos: parseInt(e.target.value) || 0 } })}
-      />
+      <label>Habilidades con Porcentaje</label>
+      <table className="habilidades-porcentaje-table">
+        <thead>
+          <tr>
+            <th>Abrir Cerraduras</th>
+            <th>Encontrar / Desactivar Trampas</th>
+            <th>Hurtar</th>
+            <th>Moverse en Silencio</th>
+            <th>Esconderse en las Sombras</th>
+            <th>Comprender Lenguajes</th>
+            <th>Usar Pergaminos</th>
+            <th>Escuchar ruidos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="number" value={character.habilidadesPorcentaje.abrirCerraduras} onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, abrirCerraduras: parseInt(e.target.value) || 0 } })} /></td>
+            <td><input type="number" value={character.habilidadesPorcentaje.encontrarTrampas} onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, encontrarTrampas: parseInt(e.target.value) || 0 } })} /></td>
+            <td><input type="number" value={character.habilidadesPorcentaje.hurtar} onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, hurtar: parseInt(e.target.value) || 0 } })} /></td>
+            <td><input type="number" value={character.habilidadesPorcentaje.moverseEnSilencio} onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, moverseEnSilencio: parseInt(e.target.value) || 0 } })} /></td>
+            <td><input type="number" value={character.habilidadesPorcentaje.esconderseEnLasSombras} onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, esconderseEnLasSombras: parseInt(e.target.value) || 0 } })} /></td>
+            <td><input type="number" value={character.habilidadesPorcentaje.comprenderLenguajes} onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, comprenderLenguajes: parseInt(e.target.value) || 0 } })} /></td>
+            <td><input type="number" value={character.habilidadesPorcentaje.usarPergaminos} onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, usarPergaminos: parseInt(e.target.value) || 0 } })} /></td>
+            <td><input type="number" value={character.habilidadesPorcentaje.usarPergaminos} onChange={(e) => setCharacter({ ...character, habilidadesPorcentaje: { ...character.habilidadesPorcentaje, escucharRuidos: parseInt(e.target.value) || 0 } })} /></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div className="form-group">
@@ -502,8 +431,49 @@ const CharacterForm = ({ onSaveCharacter }) => {
         <div className="editable-list-items">
           {character.equipo.map((item, index) => (
             <div key={index} className="item-input-group">
-              <input type="text" value={item.nombre} readOnly />
-              <textarea value={item.descripcion} readOnly />
+              <input
+                type="text"
+                value={item.nombre}
+                onChange={(e) => {
+                  const newEquipo = [...character.equipo];
+                  newEquipo[index].nombre = e.target.value;
+                  setCharacter({ ...character, equipo: newEquipo });
+                }}
+                placeholder="Nombre del objeto"
+              />
+              <textarea
+                value={item.descripcion}
+                onChange={(e) => {
+                  const newEquipo = [...character.equipo];
+                  newEquipo[index].descripcion = e.target.value;
+                  setCharacter({ ...character, equipo: newEquipo });
+                }}
+                placeholder="Descripción del objeto"
+              />
+              <input
+                type="number"
+                value={item.bonificadorArmadura || 0}
+                onChange={(e) => {
+                  const newEquipo = [...character.equipo];
+                  newEquipo[index].bonificadorArmadura = parseInt(e.target.value) || 0;
+                  setCharacter({ ...character, equipo: newEquipo });
+                }}
+                placeholder="Bonificador de Armadura"
+                aria-label="Bonificador de Armadura del objeto"
+              />
+              <small>Bonificación que este objeto otorga a la Clase de Armadura.</small>
+              <input
+                type="number"
+                value={item.bonificadorAtaque || 0}
+                onChange={(e) => {
+                  const newEquipo = [...character.equipo];
+                  newEquipo[index].bonificadorAtaque = parseInt(e.target.value) || 0;
+                  setCharacter({ ...character, equipo: newEquipo });
+                }}
+                placeholder="Bonificador de Ataque"
+                aria-label="Bonificador de Ataque del objeto"
+              />
+              <small>Bonificación que este objeto otorga al Ataque del personaje.</small>
               <button type="button" onClick={() => handleRemoveItem(index)}>🗑️</button>
             </div>
           ))}
@@ -518,6 +488,18 @@ const CharacterForm = ({ onSaveCharacter }) => {
               value={newItemDescription}
               onChange={(e) => setNewItemDescription(e.target.value)}
               placeholder="Descripción del objeto"
+            />
+            <input
+              type="number"
+              value={newItemArmorBonus}
+              onChange={(e) => setNewItemArmorBonus(parseInt(e.target.value) || 0)}
+              placeholder="Bonificador de Armadura"
+            />
+            <input
+              type="number"
+              value={newItemAttackBonus}
+              onChange={(e) => setNewItemAttackBonus(parseInt(e.target.value) || 0)}
+              placeholder="Bonificador de Ataque"
             />
             <button type="button" onClick={handleAddItem}>+</button>
           </div>
