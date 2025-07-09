@@ -147,24 +147,177 @@ hr {
   padding-left: 5px;
 }
 
-/* Middle column sections */
+/* Middle column sections - ajustados para contener el contenido */
 .armor-class,
 .hit-points,
 .initiative,
 .attack-section {
-  border: 1px solid #000;
-  padding: 10px;
+  border: 2px solid #000;
+  background: #fff;
   margin-bottom: 12px;
-  font-size: 11px;
-  text-align: center;
+  padding: 0;
+  width: 100%;
+  max-width: 280px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .armor-class h3,
-.hit-points strong,
-.initiative strong {
+.hit-points .hit-points-title,
+.initiative .initiative-title,
+.attack-section .attack-section-title {
+  background: #000;
+  color: #fff;
+  padding: 6px 10px;
+  margin: 0;
   font-size: 12px;
-  margin-bottom: 8px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.armor-class-content,
+.hit-points-content,
+.initiative-content,
+.attack-section-content {
+  padding: 8px;
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+.armor-class .shield-icon,
+.hit-points .heart-icon {
+  font-size: 20px;
+  margin: 3px 0;
+  text-align: center;
   display: block;
+}
+
+.armor-class div,
+.hit-points div,
+.initiative div,
+.attack-section div {
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.armor-class label,
+.hit-points label,
+.initiative label,
+.attack-section label {
+  font-size: 9px;
+  font-weight: bold;
+  min-width: 60px;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.armor-class input,
+.hit-points input,
+.initiative input,
+.attack-section input {
+  font-size: 9px;
+  padding: 2px;
+  border: 1px solid #000;
+  width: 50px;
+  max-width: 50px;
+  text-align: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.armor-class input[type="checkbox"],
+.hit-points input[type="checkbox"],
+.initiative input[type="checkbox"],
+.attack-section input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+}
+
+.armor-class input[type="text"] {
+  width: 80px;
+  max-width: 80px;
+}
+
+.armor-class .final-result,
+.hit-points .final-result,
+.initiative .final-result,
+.attack-section .final-result {
+  background: #f0f0f0;
+  padding: 4px;
+  border: 1px solid #000;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 5px;
+  font-size: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ajustes específicos para iniciativa */
+.initiative-content div {
+  justify-content: center;
+  gap: 8px;
+}
+
+.initiative-content span {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Ajustes para la columna del medio */
+.middle-column {
+  flex: 1;
+  max-width: 300px;
+  min-width: 280px;
+}
+
+/* Ajustes para labels más largos */
+.attack-section label {
+  min-width: 80px;
+  max-width: 120px;
+  font-size: 8px;
+  line-height: 1.1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .armor-class,
+  .hit-points,
+  .initiative,
+  .attack-section {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .armor-class label,
+  .hit-points label,
+  .initiative label,
+  .attack-section label {
+    min-width: 50px;
+    max-width: 80px;
+    font-size: 8px;
+  }
+  
+  .armor-class input,
+  .hit-points input,
+  .initiative input,
+  .attack-section input {
+    width: 40px;
+    max-width: 40px;
+  }
 }
 
 .shield-icon,

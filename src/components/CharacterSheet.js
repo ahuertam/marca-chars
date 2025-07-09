@@ -293,39 +293,45 @@ const calculateAttackBonus = () => {
         <div className="middle-column">
           <div className="armor-class">
             <h3>Clase de Armadura</h3>
-            <div className="shield-icon">🛡️</div>
-            <div><label>Escudo <input type="checkbox" checked={editableCharacter.escudo || false} onChange={(e) => handleChange('escudo', e.target.checked)} /></label></div>
-            <div><label>Tipo Armadura <input type="text" value={editableCharacter.tipoArmadura || ''} onChange={(e) => handleChange('tipoArmadura', e.target.value)} /></label></div>
-            <div><label>Bonificador Armadura Mágica <input type="number" value={editableCharacter.bonificadorArmaduraMagica || 0} onChange={(e) => handleChange('bonificadorArmaduraMagica', e.target.value)} /></label></div>
-            <div><label>Armadura Natural <input type="number" value={editableCharacter.armaduraNatural || 0} onChange={(e) => handleChange('armaduraNatural', e.target.value)} /></label></div>
-            <div><strong>CA Final: {calculateArmorClass()}</strong></div>
+            <div className="armor-class-content">
+              <div className="shield-icon">🛡️</div>
+              <div><label>Escudo:</label><input type="checkbox" checked={editableCharacter.escudo || false} onChange={(e) => handleChange('escudo', e.target.checked)} /></div>
+              <div><label>Tipo Armadura:</label><input type="text" value={editableCharacter.tipoArmadura || ''} onChange={(e) => handleChange('tipoArmadura', e.target.value)} /></div>
+              <div><label>Bonif. Arm. Mágica:</label><input type="number" value={editableCharacter.bonificadorArmaduraMagica || 0} onChange={(e) => handleChange('bonificadorArmaduraMagica', e.target.value)} /></div>
+              <div><label>Armadura Natural:</label><input type="number" value={editableCharacter.armaduraNatural || 0} onChange={(e) => handleChange('armaduraNatural', e.target.value)} /></div>
+              <div className="final-result">CA Final: {calculateArmorClass()}</div>
+            </div>
           </div>
 
           <div className="hit-points">
-            <div><strong>Puntos de Golpe</strong></div>
-            <div className="heart-icon">❤️</div>
-            <div><label>Dado golpe <input type="text" value={editableCharacter.dadoGolpe || ''} onChange={(e) => handleChange('dadoGolpe', e.target.value)} /></label></div>
-            <div><label>Gac0 <input type="text" value={editableCharacter.gac0 || ''} onChange={(e) => handleChange('gac0', e.target.value)} /></label></div>
+            <div className="hit-points-title">Puntos de Golpe</div>
+            <div className="hit-points-content">
+              <div className="heart-icon">❤️</div>
+              <div><label>Dado golpe:</label><input type="text" value={editableCharacter.dadoGolpe || ''} onChange={(e) => handleChange('dadoGolpe', e.target.value)} /></div>
+              <div><label>Gac0:</label><input type="text" value={editableCharacter.gac0 || ''} onChange={(e) => handleChange('gac0', e.target.value)} /></div>
+            </div>
           </div>
 
           <div className="initiative">
-            <div><strong>Iniciativa</strong></div>
-            <div>
-              = <input type="number" value={editableCharacter.iniciativaBase || 0} onChange={(e) => handleChange('iniciativaBase', e.target.value)} /> + <input type="number" value={editableCharacter.iniciativaBonus || 0} onChange={(e) => handleChange('iniciativaBonus', e.target.value)} />
+            <div className="initiative-title">Iniciativa</div>
+            <div className="initiative-content">
+              <div>
+                <span>=</span>
+                <input type="number" value={editableCharacter.iniciativaBase || 0} onChange={(e) => handleChange('iniciativaBase', e.target.value)} />
+                <span>+</span>
+                <input type="number" value={editableCharacter.iniciativaBonus || 0} onChange={(e) => handleChange('iniciativaBonus', e.target.value)} />
+              </div>
             </div>
           </div>
 
           <div className="attack-section">
-            <div>
-              <label>Ataque Cuerpo a Cuerpo <input type="checkbox" checked={editableCharacter.ataqueCuerpoACuerpo || false} onChange={(e) => handleChange('ataqueCuerpoACuerpo', e.target.checked)} /></label>
+            <div className="attack-section-title">Ataques</div>
+            <div className="attack-section-content">
+              <div><label>Ataque Cuerpo a Cuerpo:</label><input type="checkbox" checked={editableCharacter.ataqueCuerpoACuerpo || false} onChange={(e) => handleChange('ataqueCuerpoACuerpo', e.target.checked)} /></div>
+              <div><label>Ataque Proyectiles:</label><input type="checkbox" checked={editableCharacter.ataqueProyectiles || false} onChange={(e) => handleChange('ataqueProyectiles', e.target.checked)} /></div>
+              <div><label>Bonif. Ataque Base:</label><input type="number" value={editableCharacter.bonificadorAtaqueBase || 0} onChange={(e) => handleChange('bonificadorAtaqueBase', e.target.value)} /></div>
+              <div className="final-result">BA Final: {calculateAttackBonus()}</div>
             </div>
-            <div>
-              <label>Ataque Proyectiles <input type="checkbox" checked={editableCharacter.ataqueProyectiles || false} onChange={(e) => handleChange('ataqueProyectiles', e.target.checked)} /></label>
-            </div>
-            <div>
-              <label>Bonificador de Ataque Base <input type="number" value={editableCharacter.bonificadorAtaqueBase || 0} onChange={(e) => handleChange('bonificadorAtaqueBase', e.target.value)} /></label>
-            </div>
-            <div><strong>BA Final: {calculateAttackBonus()}</strong></div>
           </div>
         </div>
 
