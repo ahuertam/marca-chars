@@ -47,15 +47,13 @@ const getModifier = (value) => Math.floor((value - 10) / 2);
         
 // Cálculo de Clase de Armadura
 const calculateArmorClass = () => {
-  const baseArmor = parseInt(editableCharacter.claseArmadura) || 0;
+  const baseArmor = parseInt(editableCharacter.claseArmadura) || 10;
   const dexModifier = getModifier(parseInt(editableCharacter.caracteristicas?.DES) || 10);
   const shieldBonus = editableCharacter.escudo ? 1 : 0;
   const magicArmorBonus = parseInt(editableCharacter.bonificadorArmaduraMagica) || 0;
   const naturalArmor = parseInt(editableCharacter.armaduraNatural) || 0;
 
-  let finalCA = baseArmor - dexModifier - magicArmorBonus - shieldBonus - naturalArmor;
-  if (finalCA < 0) finalCA = 0;
-  return finalCA;
+  return baseArmor; // Usar directamente el valor calculado del formulario
 };
 
 // Cálculo de Bonificador de Ataque
@@ -433,15 +431,49 @@ const calculateAttackBonus = () => {
         </div>
         
         <div className="middle-column">
-          <div className="armor-class">
+          <div className="armor-class-section">
             <h3>Clase de Armadura</h3>
             <div className="armor-class-content">
-              <div className="shield-icon">🛡️</div>
-              <div><label>Escudo:</label><input type="checkbox" checked={editableCharacter.escudo || false} onChange={(e) => handleChange('escudo', e.target.checked)} /></div>
-              <div><label>Tipo Armadura:</label><input type="text" value={editableCharacter.tipoArmadura || ''} onChange={(e) => handleChange('tipoArmadura', e.target.value)} /></div>
-              <div><label>Bonif. Arm. Mágica:</label><input type="number" value={editableCharacter.bonificadorArmaduraMagica || 0} onChange={(e) => handleChange('bonificadorArmaduraMagica', e.target.value)} /></div>
-              <div><label>Armadura Natural:</label><input type="number" value={editableCharacter.armaduraNatural || 0} onChange={(e) => handleChange('armaduraNatural', e.target.value)} /></div>
-              <div className="final-result">CA Final: {calculateArmorClass()}</div>
+              <div>
+                <label>CA Total:</label>
+                <input 
+                  type="number" 
+                  value={editableCharacter.claseArmadura || 10} 
+                  onChange={(e) => handleChange('claseArmadura', e.target.value)} 
+                />
+              </div>
+              <div>
+                <label>Tipo Armadura:</label>
+                <input 
+                  type="text" 
+                  value={editableCharacter.armadura || 'Sin armadura'} 
+                  onChange={(e) => handleChange('armadura', e.target.value)} 
+                />
+              </div>
+              <div>
+                <label>Escudo:</label>
+                <input 
+                  type="checkbox" 
+                  checked={editableCharacter.escudo || false} 
+                  onChange={(e) => handleChange('escudo', e.target.checked)} 
+                />
+              </div>
+              <div>
+                <label>Bonif. Arm. Mágica:</label>
+                <input 
+                  type="number" 
+                  value={editableCharacter.bonificadorArmaduraMagica || 0} 
+                  onChange={(e) => handleChange('bonificadorArmaduraMagica', e.target.value)} 
+                />
+              </div>
+              <div>
+                <label>Armadura Natural:</label>
+                <input 
+                  type="number" 
+                  value={editableCharacter.armaduraNatural || 0} 
+                  onChange={(e) => handleChange('armaduraNatural', e.target.value)} 
+                />
+              </div>
             </div>
           </div>
 
@@ -828,9 +860,49 @@ const calculateAttackBonus = () => {
           <label>Objetos</label>
           <textarea value={editableCharacter.objetos || ''} onChange={(e) => handleChange('objetos', e.target.value)} />
         </div>
-        <div className="equipment">
-          <label>Equipo</label>
-          <textarea value={editableCharacter.equipo || ''} onChange={(e) => handleChange('equipo', e.target.value)} />
+        <div className="equipment-section">
+          <h3>EQUIPO</h3>
+          
+          {/* Equipo predefinido */}
+          {editableCharacter.equipoSeleccionado && editableCharacter.equipoSeleccionado.length > 0 && (
+            <div className="equipment-subsection">
+              <h4>Equipo Predefinido:</h4>
+              <div className="equipment-list">
+                {editableCharacter.equipoSeleccionado.map((item, index) => (
+                  <div key={index} className="equipment-item">
+                    <span className="equipment-name">{item.nombre}</span>
+                    <span className="equipment-details">({item.coste}, {item.peso})</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Equipo personalizado */}
+          {editableCharacter.equipoPersonalizado && editableCharacter.equipoPersonalizado.length > 0 && (
+            <div className="equipment-subsection">
+              <h4>Equipo Personalizado:</h4>
+              <div className="equipment-list">
+                {editableCharacter.equipoPersonalizado.map((item, index) => (
+                  <div key={index} className="equipment-item">
+                    <span className="equipment-name">{item.nombre}</span>
+                    <span className="equipment-details">({item.coste}, {item.peso})</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Equipo adicional (texto libre) */}
+          <div className="equipment-subsection">
+            <h4>Equipo Adicional:</h4>
+            <textarea 
+              value={editableCharacter.equipo || ''} 
+              onChange={(e) => handleChange('equipo', e.target.value)}
+              placeholder="Equipo adicional..."
+              rows="4"
+            />
+          </div>
         </div>
       </div>
 
