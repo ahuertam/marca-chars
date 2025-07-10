@@ -481,8 +481,30 @@ const calculateAttackBonus = () => {
             <div className="hit-points-title">Puntos de Golpe</div>
             <div className="hit-points-content">
               <div className="heart-icon">❤️</div>
-              <div><label>Dado golpe:</label><input type="text" value={editableCharacter.dadoGolpe || ''} onChange={(e) => handleChange('dadoGolpe', e.target.value)} /></div>
-              <div><label>Gac0:</label><input type="text" value={editableCharacter.gac0 || ''} onChange={(e) => handleChange('gac0', e.target.value)} /></div>
+              <div>
+                <label>Puntos de Golpe:</label>
+                <input 
+                  type="number" 
+                  value={editableCharacter.puntosGolpe || 0} 
+                  onChange={(e) => handleChange('puntosGolpe', e.target.value)} 
+                />
+              </div>
+              <div>
+                <label>Dado golpe:</label>
+                <input 
+                  type="text" 
+                  value={editableCharacter.dadoGolpe || ''} 
+                  onChange={(e) => handleChange('dadoGolpe', e.target.value)} 
+                />
+              </div>
+              <div>
+                <label>Gac0:</label>
+                <input 
+                  type="text" 
+                  value={editableCharacter.gac0 || ''} 
+                  onChange={(e) => handleChange('gac0', e.target.value)} 
+                />
+              </div>
             </div>
           </div>
 
