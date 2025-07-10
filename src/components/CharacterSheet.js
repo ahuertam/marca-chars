@@ -257,13 +257,13 @@ const calculateAttackBonus = () => {
               <input 
                 type="number" 
                 className="characteristic-score" 
-                value={editableCharacter.caracteristicas.fue} 
-                onChange={(e) => handleChange('caracteristicas.fue', e.target.value)} 
+                value={editableCharacter.caracteristicas?.FUE || 0} 
+                onChange={(e) => handleChange('caracteristicas.FUE', e.target.value)} 
               />
               <input 
                 type="number" 
                 className="characteristic-modifier" 
-                value={editableCharacter.bonificadores.fue} 
+                value={editableCharacter.bonificadores?.FUE || 0} 
                 readOnly 
               />
               <div className="characteristic-description">
@@ -276,13 +276,13 @@ const calculateAttackBonus = () => {
               <input 
                 type="number" 
                 className="characteristic-score" 
-                value={editableCharacter.caracteristicas.des} 
-                onChange={(e) => handleChange('caracteristicas.des', e.target.value)} 
+                value={editableCharacter.caracteristicas?.DES || 0} 
+                onChange={(e) => handleChange('caracteristicas.DES', e.target.value)} 
               />
               <input 
                 type="number" 
                 className="characteristic-modifier" 
-                value={editableCharacter.bonificadores.des} 
+                value={editableCharacter.bonificadores?.DES || 0} 
                 readOnly 
               />
               <div className="characteristic-description">
@@ -295,13 +295,13 @@ const calculateAttackBonus = () => {
               <input 
                 type="number" 
                 className="characteristic-score" 
-                value={editableCharacter.caracteristicas.con} 
-                onChange={(e) => handleChange('caracteristicas.con', e.target.value)} 
+                value={editableCharacter.caracteristicas?.CON || 0} 
+                onChange={(e) => handleChange('caracteristicas.CON', e.target.value)} 
               />
               <input 
                 type="number" 
                 className="characteristic-modifier" 
-                value={editableCharacter.bonificadores.con} 
+                value={editableCharacter.bonificadores?.CON || 0} 
                 readOnly 
               />
               <div className="characteristic-description">
@@ -314,13 +314,13 @@ const calculateAttackBonus = () => {
               <input 
                 type="number" 
                 className="characteristic-score" 
-                value={editableCharacter.caracteristicas.int} 
-                onChange={(e) => handleChange('caracteristicas.int', e.target.value)} 
+                value={editableCharacter.caracteristicas?.INT || 0} 
+                onChange={(e) => handleChange('caracteristicas.INT', e.target.value)} 
               />
               <input 
                 type="number" 
                 className="characteristic-modifier" 
-                value={editableCharacter.bonificadores.int} 
+                value={editableCharacter.bonificadores?.INT || 0} 
                 readOnly 
               />
               <div className="characteristic-description">
@@ -333,13 +333,13 @@ const calculateAttackBonus = () => {
               <input 
                 type="number" 
                 className="characteristic-score" 
-                value={editableCharacter.caracteristicas.sab} 
-                onChange={(e) => handleChange('caracteristicas.sab', e.target.value)} 
+                value={editableCharacter.caracteristicas?.SAB || 0} 
+                onChange={(e) => handleChange('caracteristicas.SAB', e.target.value)} 
               />
               <input 
                 type="number" 
                 className="characteristic-modifier" 
-                value={editableCharacter.bonificadores.sab} 
+                value={editableCharacter.bonificadores?.SAB || 0} 
                 readOnly 
               />
               <div className="characteristic-description">
@@ -352,13 +352,13 @@ const calculateAttackBonus = () => {
               <input 
                 type="number" 
                 className="characteristic-score" 
-                value={editableCharacter.caracteristicas.car} 
-                onChange={(e) => handleChange('caracteristicas.car', e.target.value)} 
+                value={editableCharacter.caracteristicas?.CAR || 0} 
+                onChange={(e) => handleChange('caracteristicas.CAR', e.target.value)} 
               />
               <input 
                 type="number" 
                 className="characteristic-modifier" 
-                value={editableCharacter.bonificadores.car} 
+                value={editableCharacter.bonificadores?.CAR || 0} 
                 readOnly 
               />
               <div className="characteristic-description">
