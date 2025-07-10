@@ -1207,3 +1207,96 @@ button:hover {
 .ca-breakdown small {
   font-size: 12px;
 }
+
+/* Estilos para la sección de equipo */
+.equipment-selector {
+  margin-bottom: 15px;
+}
+
+.custom-equipment-controls {
+  margin-bottom: 15px;
+}
+
+.custom-equipment-form {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #dee2e6;
+}
+
+.custom-equipment-form .form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.custom-equipment-form .form-group {
+  margin-bottom: 0;
+}
+
+.equipment-list {
+  margin-top: 20px;
+}
+
+.equipment-section {
+  margin-bottom: 20px;
+}
+
+.equipment-section h5 {
+  color: #495057;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.equipment-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.equipment-name {
+  font-weight: 500;
+  color: #212529;
+}
+
+.equipment-details {
+  color: #6c757d;
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+
+.equipment-item .btn {
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-equipment {
+  color: #6c757d;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}

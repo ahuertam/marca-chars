@@ -64,6 +64,8 @@ const initialCharacter = {
   },
   habilidadesDeClase: '',
   habilidades: [],
+    equipoSeleccionado: [],
+  equipoPersonalizado: [],
   objetos: [],
   equipo: []
 };
@@ -74,14 +76,56 @@ const CharacterForm = ({ onSaveCharacter }) => {
   const [newItem, setNewItem] = useState('');
   const [newSkillName, setNewSkillName] = useState('');
   const [newSkillDescription, setNewSkillDescription] = useState('');
-  const [modificadores, setModificadores] = useState({ FUE: 0, DES: 0, CON: 0, INT: 0, SAB: 0, CAR: 0 });
-  const [newItemName, setNewItemName] = useState('');
-  const [newItemDescription, setNewItemDescription] = useState('');
-  const [newItemArmorBonus, setNewItemArmorBonus] = useState(0);
-  const [newItemAttackBonus, setNewItemAttackBonus] = useState(0);
   const [requirementsError, setRequirementsError] = useState('');
   const [failedRequirements, setFailedRequirements] = useState([]);
   const [suggestedClasses, setSuggestedClasses] = useState([]);
+  const [nuevoEquipo, setNuevoEquipo] = useState({
+  nombre: '',
+  coste: '',
+  peso: ''
+});
+const [mostrarFormularioEquipo, setMostrarFormularioEquipo] = useState(false);
+const handleAgregarEquipoPredefinido = (nombreEquipo) => {
+  const equipo = characterData.equipo[nombreEquipo];
+  if (equipo && !character.equipoSeleccionado.find(item => item.nombre === nombreEquipo)) {
+    setCharacter({
+      ...character,
+      equipoSeleccionado: [...character.equipoSeleccionado, equipo]
+    });
+  }
+};
+
+const handleAgregarEquipoPersonalizado = () => {
+  if (nuevoEquipo.nombre.trim()) {
+    const equipoCompleto = {
+      nombre: nuevoEquipo.nombre,
+      coste: nuevoEquipo.coste || '0 mo',
+      peso: nuevoEquipo.peso || '0 Kg'
+    };
+    
+    setCharacter({
+      ...character,
+      equipoPersonalizado: [...character.equipoPersonalizado, equipoCompleto]
+    });
+    
+    setNuevoEquipo({ nombre: '', coste: '', peso: '' });
+    setMostrarFormularioEquipo(false);
+  }
+};
+
+const handleEliminarEquipo = (index, tipo) => {
+  if (tipo === 'predefinido') {
+    setCharacter({
+      ...character,
+      equipoSeleccionado: character.equipoSeleccionado.filter((_, i) => i !== index)
+    });
+  } else {
+    setCharacter({
+      ...character,
+      equipoPersonalizado: character.equipoPersonalizado.filter((_, i) => i !== index)
+    });
+  }
+};
 
   // Función para verificar si todas las características han sido tiradas
   const allCharacteristicsRolled = () => {
@@ -740,6 +784,132 @@ const CharacterForm = ({ onSaveCharacter }) => {
               Agregar Objeto
             </button>
           </div>
+          <div className="form-group">
+  <label>Equipo Adicional:</label>
+  
+  {/* Selector de equipo predefinido */}
+  <div className="equipment-selector">
+    <select 
+      onChange={(e) => {
+        if (e.target.value) {
+          handleAgregarEquipoPredefinido(e.target.value);
+          e.target.value = '';
+        }
+      }}
+      className="form-control"
+    >
+      <option value="">Seleccionar equipo predefinido...</option>
+      {Object.keys(characterData.equipo).map(nombreEquipo => (
+        <option key={nombreEquipo} value={nombreEquipo}>
+          {nombreEquipo} ({characterData.equipo[nombreEquipo].coste}, {characterData.equipo[nombreEquipo].peso})
+        </option>
+      ))}
+    </select>
+  </div>
+
+  {/* Botón para agregar equipo personalizado */}
+  <div className="custom-equipment-controls">
+    <button 
+      type="button" 
+      onClick={() => setMostrarFormularioEquipo(!mostrarFormularioEquipo)}
+      className="btn btn-secondary"
+    >
+      {mostrarFormularioEquipo ? 'Cancelar' : 'Agregar Equipo Personalizado'}
+    </button>
+  </div>
+
+  {/* Formulario para equipo personalizado */}
+  {mostrarFormularioEquipo && (
+    <div className="custom-equipment-form">
+      <div className="form-row">
+        <div className="form-group col-md-6">
+          <input
+            type="text"
+            placeholder="Nombre del equipo"
+            value={nuevoEquipo.nombre}
+            onChange={(e) => setNuevoEquipo({...nuevoEquipo, nombre: e.target.value})}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group col-md-3">
+          <input
+            type="text"
+            placeholder="Coste (ej: 5 mo)"
+            value={nuevoEquipo.coste}
+            onChange={(e) => setNuevoEquipo({...nuevoEquipo, coste: e.target.value})}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group col-md-3">
+          <input
+            type="text"
+            placeholder="Peso (ej: 2 Kg)"
+            value={nuevoEquipo.peso}
+            onChange={(e) => setNuevoEquipo({...nuevoEquipo, peso: e.target.value})}
+            className="form-control"
+          />
+        </div>
+      </div>
+      <button 
+        type="button" 
+        onClick={handleAgregarEquipoPersonalizado}
+        className="btn btn-primary"
+        disabled={!nuevoEquipo.nombre.trim()}
+      >
+        Agregar Equipo
+      </button>
+    </div>
+  )}
+
+  {/* Lista de equipo seleccionado */}
+  <div className="equipment-list">
+    <h4>Equipo Seleccionado:</h4>
+    
+    {/* Equipo predefinido */}
+    {character.equipoSeleccionado.length > 0 && (
+      <div className="equipment-section">
+        <h5>Equipo Predefinido:</h5>
+        {character.equipoSeleccionado.map((equipo, index) => (
+          <div key={index} className="equipment-item">
+            <span className="equipment-name">{equipo.nombre}</span>
+            <span className="equipment-details">({equipo.coste}, {equipo.peso})</span>
+            <button 
+              type="button" 
+              onClick={() => handleEliminarEquipo(index, 'predefinido')}
+              className="btn btn-sm btn-danger"
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
+    )}
+    
+    {/* Equipo personalizado */}
+    {character.equipoPersonalizado.length > 0 && (
+      <div className="equipment-section">
+        <h5>Equipo Personalizado:</h5>
+        {character.equipoPersonalizado.map((equipo, index) => (
+          <div key={index} className="equipment-item">
+            <span className="equipment-name">{equipo.nombre}</span>
+            <span className="equipment-details">({equipo.coste}, {equipo.peso})</span>
+            <button 
+              type="button" 
+              onClick={() => handleEliminarEquipo(index, 'personalizado')}
+              className="btn btn-sm btn-danger"
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
+    )}
+    
+    {character.equipoSeleccionado.length === 0 && character.equipoPersonalizado.length === 0 && (
+      <p className="no-equipment">No hay equipo seleccionado</p>
+    )}
+  </div>
+</div>
         </div>
 
         <div className="navigation-buttons">

@@ -246,5 +246,232 @@
       "ca": -1,
       "peso": "5 Kg"
     }
+  },
+  "equipo": {
+    "Aceite (frasco)": {
+      "nombre": "Aceite (frasco)",
+      "coste": "1 mp",
+      "peso": "1/2 Kg"
+    },
+    "Ajo (3 cabezas)": {
+      "nombre": "Ajo (3 cabezas)",
+      "coste": "5 mo",
+      "peso": "0 Kg"
+    },
+    "Agua bendita (frasco)": {
+      "nombre": "Agua bendita (frasco)",
+      "coste": "25 mo",
+      "peso": "1/2 Kg"
+    },
+    "Alforjas": {
+      "nombre": "Alforjas",
+      "coste": "1 mp",
+      "peso": "0 Kg"
+    },
+    "Antorchas (6)": {
+      "nombre": "Antorchas (6)",
+      "coste": "3 mp",
+      "peso": "4 Kg"
+    },
+    "Arnica": {
+      "nombre": "Arnica",
+      "coste": "10 mo",
+      "peso": "0 Kg"
+    },
+    "Barra": {
+      "nombre": "Barra",
+      "coste": "2 mo",
+      "peso": "2 Kg"
+    },
+    "Botella, vino, cristal": {
+      "nombre": "Botella, vino, cristal",
+      "coste": "2 mo",
+      "peso": "1/2 Kg"
+    },
+    "Cadena (3 m)": {
+      "nombre": "Cadena (3 m)",
+      "coste": "30 mo",
+      "peso": "2 Kg"
+    },
+    "Candado": {
+      "nombre": "Candado",
+      "coste": "100 mo",
+      "peso": "1/2 Kg"
+    },
+    "Cerrojo": {
+      "nombre": "Cerrojo",
+      "coste": "20 mo",
+      "peso": "1/2 Kg"
+    },
+    "Cuerda (15 m)": {
+      "nombre": "Cuerda (15 m)",
+      "coste": "1 mo",
+      "peso": "5 Kg"
+    },
+    "Escala (3 m)": {
+      "nombre": "Escala (3 m)",
+      "coste": "1 mo",
+      "peso": "2 Kg"
+    },
+    "Escarpia": {
+      "nombre": "Escarpia",
+      "coste": "1 mo",
+      "peso": "1/4 Kg"
+    },
+    "Espejo": {
+      "nombre": "Espejo",
+      "coste": "5 mo",
+      "peso": "1/4 Kg"
+    },
+    "Foca (3)": {
+      "nombre": "Foca (3)",
+      "coste": "5 mc",
+      "peso": "1/2 Kg"
+    },
+    "Estuche (mapa, pergamino)": {
+      "nombre": "Estuche (mapa, pergamino)",
+      "coste": "1 mo",
+      "peso": "1/4 Kg"
+    },
+    "Farol de aceite": {
+      "nombre": "Farol de aceite",
+      "coste": "9 mo",
+      "peso": "1 Kg"
+    },
+    "Frasco (vacío)": {
+      "nombre": "Frasco (vacío)",
+      "coste": "3 mc",
+      "peso": "0 Kg"
+    },
+    "Grilletes": {
+      "nombre": "Grilletes",
+      "coste": "15 mo",
+      "peso": "1 Kg"
+    },
+    "Herramientas de ladrón": {
+      "nombre": "Herramientas de ladrón",
+      "coste": "30 mo",
+      "peso": "1 Kg"
+    },
+    "Libro de conjuros": {
+      "nombre": "Libro de conjuros",
+      "coste": "15 mo",
+      "peso": "1 Kg"
+    },
+    "Manta": {
+      "nombre": "Manta",
+      "coste": "5 mc",
+      "peso": "1 Kg"
+    },
+    "Martillo": {
+      "nombre": "Martillo",
+      "coste": "5 mp",
+      "peso": "1 Kg"
+    },
+    "Mochila (vacía)": {
+      "nombre": "Mochila (vacía)",
+      "coste": "1 mo",
+      "peso": "1 Kg"
+    },
+    "Silla de montar": {
+      "nombre": "Silla de montar",
+      "coste": "25 mo",
+      "peso": "15 Kg"
+    },
+    "Odre": {
+      "nombre": "Odre",
+      "coste": "1 mo",
+      "peso": "2 Kg"
+    },
+    "Pala": {
+      "nombre": "Pala",
+      "coste": "2 mo",
+      "peso": "4 Kg"
+    },
+    "Pergamino": {
+      "nombre": "Pergamino",
+      "coste": "4 mp",
+      "peso": "0 Kg"
+    },
+    "Pértiga (3 m)": {
+      "nombre": "Pértiga (3 m)",
+      "coste": "2 mp",
+      "peso": "4 Kg"
+    },
+    "Petate": {
+      "nombre": "Petate",
+      "coste": "1 mp",
+      "peso": "2 Kg"
+    },
+    "Pico (escalada)": {
+      "nombre": "Pico (escalada)",
+      "coste": "3 mo",
+      "peso": "5 Kg"
+    },
+    "Pluma": {
+      "nombre": "Pluma",
+      "coste": "1 mp",
+      "peso": "0 Kg"
+    },
+    "Polea": {
+      "nombre": "Polea",
+      "coste": "5 mo",
+      "peso": "2 Kg"
+    },
+    "Puñal/Daga (12 piezas)": {
+      "nombre": "Puñal/Daga (12 piezas)",
+      "coste": "1 mo",
+      "peso": "3 Kg"
+    },
+    "Ración de comida": {
+      "nombre": "Ración de comida",
+      "coste": "4 mp",
+      "peso": "1/2 Kg"
+    },
+    "Saco grande": {
+      "nombre": "Saco grande",
+      "coste": "2 mp",
+      "peso": "1/4 Kg"
+    },
+    "Saco pequeño": {
+      "nombre": "Saco pequeño",
+      "coste": "1 mp",
+      "peso": "1/4 Kg"
+    },
+    "Símbolo sagrado, madera": {
+      "nombre": "Símbolo sagrado, madera",
+      "coste": "1 mo",
+      "peso": "0 Kg"
+    },
+    "Símbolo sagrado, plata": {
+      "nombre": "Símbolo sagrado, plata",
+      "coste": "25 mo",
+      "peso": "1/2 Kg"
+    },
+    "Tinta (vial)": {
+      "nombre": "Tinta (vial)",
+      "coste": "8 mo",
+      "peso": "0 Kg"
+    },
+    "Velas (10)": {
+      "nombre": "Velas (10)",
+      "coste": "10 mc",
+      "peso": "0 Kg"
+    },
+    "Vial (vacío)": {
+      "nombre": "Vial (vacío)",
+      "coste": "1 mo",
+      "peso": "1/4 Kg"
+    },
+    "Vino (2 pintas)": {
+      "nombre": "Vino (2 pintas)",
+      "coste": "1 mo",
+      "peso": "1/2 Kg"
+    },
+    "Yesca y pedernal": {
+      "nombre": "Yesca y pedernal",
+      "coste": "1 mo",
+      "peso": "0 Kg"
+    }
   }
 }
