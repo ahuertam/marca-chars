@@ -79,6 +79,88 @@ const CharacterForm = ({ onSaveCharacter }) => {
   const [newItemAttackBonus, setNewItemAttackBonus] = useState(0);
   const [requirementsError, setRequirementsError] = useState('');
   const [failedRequirements, setFailedRequirements] = useState([]);
+  const [suggestedClasses, setSuggestedClasses] = useState([]);
+
+  // Función para verificar si todas las características han sido tiradas
+  const allCharacteristicsRolled = () => {
+    return Object.values(character.caracteristicas).every(value => value > 0);
+  };
+
+  // Función para calcular puntuación de una clase basada en las características
+  const calculateClassScore = (className, characteristics) => {
+    const classData = classDescriptions[className];
+    if (!classData) return 0;
+
+    let score = 0;
+    const requirements = classData.detalles.requisitos;
+    const primaryStats = classData.detalles.caracteristicaPrincipal;
+
+    // Verificar si cumple los requisitos mínimos
+    if (requirements !== 'Ninguno') {
+      const reqParts = requirements.split(',').map(req => req.trim());
+      let meetsRequirements = true;
+      
+      reqParts.forEach(req => {
+        if (req.includes(' y ')) {
+          const multiReqs = req.split(' y ').map(r => r.trim());
+          multiReqs.forEach(singleReq => {
+            const match = singleReq.match(/(\w+)\s+(\d+)/);
+            if (match) {
+              const [, stat, minValue] = match;
+              if (characteristics[stat] < parseInt(minValue)) {
+                meetsRequirements = false;
+              }
+            }
+          });
+        } else {
+          const match = req.match(/(\w+)\s+(\d+)/);
+          if (match) {
+            const [, stat, minValue] = match;
+            if (characteristics[stat] < parseInt(minValue)) {
+              meetsRequirements = false;
+            }
+          }
+        }
+      });
+      
+      if (!meetsRequirements) return 0; // No cumple requisitos
+    }
+
+    // Bonificar por características principales
+    if (primaryStats.includes('Fuerza')) score += characteristics.FUE * 2;
+    if (primaryStats.includes('Destreza')) score += characteristics.DES * 2;
+    if (primaryStats.includes('Constitución')) score += characteristics.CON * 2;
+    if (primaryStats.includes('Inteligencia')) score += characteristics.INT * 2;
+    if (primaryStats.includes('Sabiduría')) score += characteristics.SAB * 2;
+    if (primaryStats.includes('Carisma')) score += characteristics.CAR * 2;
+
+    // Bonificar por características altas en general
+    score += Object.values(characteristics).reduce((sum, value) => sum + value, 0);
+
+    return score;
+  };
+
+  // Función para obtener clases sugeridas
+  const getSuggestedClasses = (characteristics) => {
+    const classScores = characterClasses.map(className => ({
+      name: className,
+      score: calculateClassScore(className, characteristics)
+    }));
+
+    // Filtrar clases que cumplen requisitos y ordenar por puntuación
+    const validClasses = classScores
+      .filter(classItem => classItem.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3); // Top 3 clases sugeridas
+
+    return validClasses;
+  };
+
+  // Función para seleccionar una clase sugerida
+  const selectSuggestedClass = (className) => {
+    setCharacter({ ...character, clase: className });
+    setSuggestedClasses([]);
+  };
 
   // Función para validar requisitos de clase
   const validateClassRequirements = (className, characteristics) => {
@@ -143,6 +225,24 @@ const CharacterForm = ({ onSaveCharacter }) => {
     character.caracteristicas.INT,
     character.caracteristicas.SAB,
     character.caracteristicas.CAR
+  ]);
+
+  // Efecto para actualizar sugerencias cuando cambian las características
+  useEffect(() => {
+    if (allCharacteristicsRolled() && !character.clase) {
+      const suggestions = getSuggestedClasses(character.caracteristicas);
+      setSuggestedClasses(suggestions);
+    } else {
+      setSuggestedClasses([]);
+    }
+  }, [
+    character.caracteristicas.FUE,
+    character.caracteristicas.DES,
+    character.caracteristicas.CON,
+    character.caracteristicas.INT,
+    character.caracteristicas.SAB,
+    character.caracteristicas.CAR,
+    character.clase
   ]);
 
   const rollDice = () => {
@@ -292,6 +392,36 @@ const CharacterForm = ({ onSaveCharacter }) => {
             ))}
           </select>
         </div>
+
+        {/* Sección de clases sugeridas */}
+        {suggestedClasses.length > 0 && (
+          <div className="suggested-classes">
+            <h3>🎯 Clases Recomendadas</h3>
+            <p>Basado en tus características, estas clases serían ideales para tu personaje:</p>
+            <div className="suggestions-grid">
+              {suggestedClasses.map((classItem, index) => (
+                <div key={classItem.name} className="suggestion-card">
+                  <div className="suggestion-rank">#{index + 1}</div>
+                  <h4>{classItem.name}</h4>
+                  <p>{classDescriptions[classItem.name]?.descripcion}</p>
+                  <div className="suggestion-details">
+                    <small>
+                      <strong>Requisitos:</strong> {classDescriptions[classItem.name]?.detalles.requisitos}<br/>
+                      <strong>Característica Principal:</strong> {classDescriptions[classItem.name]?.detalles.caracteristicaPrincipal}
+                    </small>
+                  </div>
+                  <button 
+                    type="button" 
+                    onClick={() => selectSuggestedClass(classItem.name)}
+                    className="select-suggestion-btn"
+                  >
+                    Seleccionar esta clase
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {character.clase && classDescriptions[character.clase] && (
           <div className="class-details">
