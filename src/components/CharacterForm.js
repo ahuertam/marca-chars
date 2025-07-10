@@ -4,7 +4,7 @@ import 'react-tooltip/dist/react-tooltip.css';
 import './CharacterForm.css';
 import characterData from '../data/characterData.json';
 
-const { characteristicsTooltips, classDescriptions, characterClasses } = characterData;
+const { characteristicsTooltips, classDescriptions, characterClasses, armaduras } = characterData;
 
 const initialCharacter = {
   nombre: '',
@@ -34,6 +34,8 @@ const initialCharacter = {
     CAR: 0
   },
   puntosGolpe: 0,
+  armadura: 'Sin armadura',
+  escudo: false,
   claseArmadura: 0,
   iniciativa: 0,
   ataqueCuerpoACuerpo: 0,
@@ -170,6 +172,7 @@ const CharacterForm = ({ onSaveCharacter }) => {
       return;
     }
 
+
     const requirements = classDescriptions[className].detalles.requisitos;
     if (requirements === 'Ninguno') {
       setRequirementsError('');
@@ -226,6 +229,40 @@ const CharacterForm = ({ onSaveCharacter }) => {
     character.caracteristicas.SAB,
     character.caracteristicas.CAR
   ]);
+
+  // Función para calcular la clase de armadura
+  const calculateArmorClass = (armadura, escudo, dexModifier) => {
+    const armorData = armaduras[armadura];
+    if (!armorData) return 10;
+    
+    let ca = armorData.ca;
+    
+    // Restar el modificador de destreza (porque es negativo en el sistema)
+    ca = ca - dexModifier;
+    
+    // Si tiene escudo, restar 1 adicional
+    if (escudo) {
+      ca = ca - 1;
+    }
+    
+    return ca;
+  };
+
+  // useEffect para recalcular CA cuando cambie armadura, escudo o destreza
+  useEffect(() => {
+    const newCA = calculateArmorClass(
+      character.armadura,
+      character.escudo,
+      character.bonificadores.DES
+    );
+    
+    if (newCA !== character.claseArmadura) {
+      setCharacter(prev => ({
+        ...prev,
+        claseArmadura: newCA
+      }));
+    }
+  }, [character.armadura, character.escudo, character.bonificadores.DES]);
 
   // Efecto para actualizar sugerencias cuando cambian las características
   useEffect(() => {
@@ -345,6 +382,29 @@ const CharacterForm = ({ onSaveCharacter }) => {
     const newHabilidades = character.habilidades.filter((_, i) => i !== index);
     setCharacter({ ...character, habilidades: newHabilidades });
   };
+  const rollHitPoints = () => {
+    if (!character.clase || !classDescriptions[character.clase]) {
+      alert('Primero debes seleccionar una clase');
+      return;
+    }
+
+    const hitDie = classDescriptions[character.clase].detalles.dadoGolpe;
+    let diceSize = 4; // Por defecto d4
+    
+    // Extraer el tamaño del dado del string (ej: "1d6" -> 6)
+    const match = hitDie.match(/1d(\d+)/);
+    if (match) {
+      diceSize = parseInt(match[1]);
+    }
+    
+    // Tirar el dado y sumar 1
+    const roll = Math.floor(Math.random() * diceSize) + 1;
+    const hitPoints = roll + 1;
+    
+    setCharacter({ ...character, puntosGolpe: hitPoints });
+  };
+
+
 
   const renderStep1 = () => {
     return (
@@ -496,24 +556,97 @@ const CharacterForm = ({ onSaveCharacter }) => {
         
         <div className="form-group">
           <label htmlFor="puntosGolpe">Puntos de Golpe:</label>
-          <input
-            type="number"
-            id="puntosGolpe"
-            name="puntosGolpe"
-            value={character.puntosGolpe}
-            onChange={handleChange}
-          />
+          <div className="hit-points-controls">
+            <input
+              type="number"
+              id="puntosGolpe"
+              name="puntosGolpe"
+              value={character.puntosGolpe}
+              onChange={handleChange}
+            />
+            <button
+              type="button"
+              onClick={rollHitPoints}
+              className="roll-button"
+              disabled={!character.clase}
+              title={character.clase ? `Tirar ${classDescriptions[character.clase]?.detalles.dadoGolpe} + 1` : 'Selecciona una clase primero'}
+            >
+              🎲
+            </button>
+            {character.clase && (
+              <span className="hit-die-info">
+                {classDescriptions[character.clase]?.detalles.dadoGolpe} + 1
+              </span>
+            )}
+          </div>
         </div>
 
-        <div className="form-group">
-          <label htmlFor="claseArmadura">Clase de Armadura:</label>
-          <input
-            type="number"
-            id="claseArmadura"
-            name="claseArmadura"
-            value={character.claseArmadura}
-            onChange={handleChange}
-          />
+        <div className="armor-section">
+          <h3>Armadura y Protección</h3>
+          
+          <div className="form-group">
+            <label htmlFor="armadura">Tipo de Armadura:</label>
+            <select
+              id="armadura"
+              name="armadura"
+              value={character.armadura}
+              onChange={handleChange}
+              className="armor-selector"
+            >
+              {Object.keys(armaduras).map(armorName => (
+                <option key={armorName} value={armorName}>
+                  {armorName} (CA: {armaduras[armorName].ca}, {armaduras[armorName].coste})
+                </option>
+              ))}
+            </select>
+            {character.armadura && character.armadura !== 'Sin armadura' && (
+              <div className="armor-details">
+                <small>
+                  Peso: {armaduras[character.armadura].peso} | 
+                  Coste: {armaduras[character.armadura].coste}
+                </small>
+              </div>
+            )}
+          </div>
+
+          <div className="form-group">
+    <label className="checkbox-label">
+    <input
+      type="checkbox"
+      name="escudo"
+      checked={character.escudo}
+      onChange={(e) => {
+        setCharacter({
+          ...character,
+          escudo: e.target.checked
+        });
+      }}
+    />
+    <span>             Escudo (+1 CA, 10 mo, 5 Kg)</span>
+  </label>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="claseArmadura">Clase de Armadura (Calculada):</label>
+            <div className="armor-class-display">
+              <input
+                type="number"
+                id="claseArmadura"
+                name="claseArmadura"
+                value={character.claseArmadura}
+                readOnly
+                className="calculated-field"
+              />
+              <div className="ca-breakdown">
+                <small>
+                  CA Base: {armaduras[character.armadura]?.ca || 10} - 
+                  Mod DES: {character.bonificadores.DES} 
+                  {character.escudo ? '- Escudo: 1' : ''} = 
+                  {character.claseArmadura}
+                </small>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="form-group">
@@ -634,5 +767,3 @@ const CharacterForm = ({ onSaveCharacter }) => {
 };
 
 export default CharacterForm;
-
-

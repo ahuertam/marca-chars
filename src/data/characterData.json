@@ -184,5 +184,67 @@
     "Clérigo", "Paladin", "Elfo", "SemiElfo", "Enano", "Explorador",
     "Guerrero", "Mediano", "Mago", "Bardo", "Elfo Oscuro", "Gnomo",
     "SemiOrco", "Monje", "Druida"
-  ]
+  ],
+  "armaduras": {
+    "Sin armadura": {
+      "nombre": "Sin armadura",
+      "coste": "0 mo",
+      "ca": 10,
+      "peso": "0 Kg"
+    },
+    "Armadura de cuero": {
+      "nombre": "Armadura de cuero",
+      "coste": "20 mo",
+      "ca": 7,
+      "peso": "8 Kg"
+    },
+    "Armadura de escamas": {
+      "nombre": "Armadura de escamas",
+      "coste": "65 mo",
+      "ca": 5,
+      "peso": "20 Kg"
+    },
+    "Armadura de hueso": {
+      "nombre": "Armadura de hueso",
+      "coste": "75 mo",
+      "ca": 6,
+      "peso": "15 Kg"
+    },
+    "Armadura de placas": {
+      "nombre": "Armadura de placas",
+      "coste": "600 mo",
+      "ca": 3,
+      "peso": "25 Kg"
+    },
+    "Armadura de varillas": {
+      "nombre": "Armadura de varillas",
+      "coste": "200 mo",
+      "ca": 4,
+      "peso": "20 Kg"
+    },
+    "Banda para montura": {
+      "nombre": "Banda para montura",
+      "coste": "150 mo",
+      "ca": 5,
+      "peso": "30 Kg"
+    },
+    "Cota de mallas": {
+      "nombre": "Cota de mallas",
+      "coste": "150 mo",
+      "ca": 5,
+      "peso": "15 Kg"
+    },
+    "Cuero tachonado": {
+      "nombre": "Cuero tachonado",
+      "coste": "30 mo",
+      "ca": 6,
+      "peso": "10 Kg"
+    },
+    "Escudo": {
+      "nombre": "Escudo",
+      "coste": "10 mo",
+      "ca": -1,
+      "peso": "5 Kg"
+    }
+  }
 }

@@ -639,3 +639,571 @@ button:hover {
 .select-suggestion-btn:hover {
   background: #218838;
 }
+
+/* Estilos para los controles de puntos de golpe */
+.hit-points-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hit-points-controls input {
+  flex: 1;
+  max-width: 100px;
+}
+
+.hit-points-controls .roll-button {
+  padding: 8px 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.hit-points-controls .roll-button:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.hit-points-controls .roll-button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.hit-die-info {
+  font-size: 12px;
+  color: #6c757d;
+  font-weight: bold;
+}
+
+.suggestions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.suggestion-card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.suggestion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.suggestion-rank {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #28a745;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.suggestion-card h4 {
+  color: #495057;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.suggestion-card p {
+  color: #6c757d;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.suggestion-details {
+  margin-bottom: 15px;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.suggestion-details small {
+  color: #495057;
+  line-height: 1.4;
+}
+
+.select-suggestion-btn {
+  width: 100%;
+  padding: 8px 16px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.select-suggestion-btn:hover {
+  background: #218838;
+}
+
+/* Estilos para la sección de armadura */
+.armor-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.armor-section h3 {
+  margin-top: 0;
+  color: #495057;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.armor-selector {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+}
+
+.armor-details {
+  margin-top: 5px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Estilos mejorados para el checkbox del escudo */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: normal;
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  margin: 8px 0;
+}
+
+.checkbox-label:hover {
+  background: #f8f9fa;
+  border-color: #007bff;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.1);
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin: 0;
+  width: 18px;
+  height: 18px;
+  accent-color: #007bff;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+  background-color: #007bff;
+}
+
+.checkbox-label input[type="checkbox"]:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.checkbox-label span {
+  font-size: 14px;
+  color: #495057;
+  font-weight: 500;
+  user-select: none;
+}
+
+.checkbox-label:has(input:checked) {
+  background: #e7f3ff;
+  border-color: #007bff;
+}
+
+.checkbox-label:has(input:checked) span {
+  color: #0056b3;
+  font-weight: 600;
+}
+
+.characteristic-item:last-child {
+  border-bottom: none;
+}
+
+.characteristic-item label {
+  font-weight: bold;
+  font-size: 12px;
+  color: #2c3e50;
+  margin: 0;
+  cursor: help;
+}
+
+.characteristic-controls {
+  display: grid;
+  grid-template-columns: 60px 50px 120px;
+  gap: 10px;
+  align-items: center;
+}
+
+.characteristic-controls input[type="number"] {
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #000;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.characteristic-controls input[type="number"].failed-requirement {
+  border: 2px solid #ff0000;
+  background-color: #ffe6e6;
+}
+
+.roll-button {
+  width: 40px;
+  height: 30px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.roll-button:hover {
+  background-color: #2980b9;
+}
+
+.modifier {
+  background: #f0f0f0;
+  padding: 6px 8px;
+  border: 1px solid #000;
+  text-align: center;
+  font-weight: bold;
+  font-size: 11px;
+  border-radius: 2px;
+  min-width: 100px;
+  box-sizing: border-box;
+}
+
+/* Estilos para los botones de navegación */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  gap: 15px;
+}
+
+.next-button, .prev-button, .submit-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: auto;
+  margin: 0;
+}
+
+.next-button, .submit-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.next-button:hover, .submit-button:hover {
+  background-color: #45a049;
+}
+
+.prev-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.prev-button:hover {
+  background-color: #da190b;
+}
+
+/* Estilos para las secciones de habilidades y equipo */
+.skills-section, .equipment-section {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.skills-section h3, .equipment-section h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.skill-item, .equipment-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.skill-item input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.skill-item button, .equipment-item button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  width: auto;
+  margin: 0;
+}
+
+.skill-item button:hover, .equipment-item button:hover {
+  background-color: #c0392b;
+}
+
+.add-skill, .add-equipment {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.add-skill input, .add-equipment input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.add-skill button, .add-equipment button {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  width: auto;
+  margin: 0;
+}
+
+.add-skill button:hover, .add-equipment button:hover {
+  background-color: #229954;
+}
+
+.equipment-item span {
+  flex: 1;
+  padding: 8px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Estilos para las clases sugeridas */
+.suggested-classes {
+  margin: 20px 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 10px;
+  border: 2px solid #28a745;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggested-classes h3 {
+  color: #28a745;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.suggested-classes p {
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+.suggestions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.suggestion-card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.suggestion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.suggestion-rank {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #28a745;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.suggestion-card h4 {
+  color: #495057;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.suggestion-card p {
+  color: #6c757d;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.suggestion-details {
+  margin-bottom: 15px;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.suggestion-details small {
+  color: #495057;
+  line-height: 1.4;
+}
+
+.select-suggestion-btn {
+  width: 100%;
+  padding: 8px 16px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.select-suggestion-btn:hover {
+  background: #218838;
+}
+
+/* Estilos para la sección de armadura */
+.armor-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.armor-section h3 {
+  margin-top: 0;
+  color: #495057;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.armor-selector {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+}
+
+.armor-details {
+  margin-top: 5px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin: 0;
+  transform: scale(1.2);
+}
+
+.armor-class-display {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.calculated-field {
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-weight: bold;
+  color: #495057;
+}
+
+.ca-breakdown {
+  color: #6c757d;
+  font-style: italic;
+  padding: 5px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+}
+
+.ca-breakdown small {
+  font-size: 12px;
+}
