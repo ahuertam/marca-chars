@@ -479,71 +479,6 @@ const handleEliminarEquipo = (index, tipo) => {
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="clase">Clase:</label>
-          <select
-            id="clase"
-            name="clase"
-            value={character.clase}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Selecciona una clase</option>
-            {characterClasses.map((className) => (
-              <option key={className} value={className}>
-                {className}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Sección de clases sugeridas */}
-        {suggestedClasses.length > 0 && (
-          <div className="suggested-classes">
-            <h3>🎯 Clases Recomendadas</h3>
-            <p>Basado en tus características, estas clases serían ideales para tu personaje:</p>
-            <div className="suggestions-grid">
-              {suggestedClasses.map((classItem, index) => (
-                <div key={classItem.name} className="suggestion-card">
-                  <div className="suggestion-rank">#{index + 1}</div>
-                  <h4>{classItem.name}</h4>
-                  <p>{classDescriptions[classItem.name]?.descripcion}</p>
-                  <div className="suggestion-details">
-                    <small>
-                      <strong>Requisitos:</strong> {classDescriptions[classItem.name]?.detalles.requisitos}<br/>
-                      <strong>Característica Principal:</strong> {classDescriptions[classItem.name]?.detalles.caracteristicaPrincipal}
-                    </small>
-                  </div>
-                  <button 
-                    type="button" 
-                    onClick={() => selectSuggestedClass(classItem.name)}
-                    className="select-suggestion-btn"
-                  >
-                    Seleccionar esta clase
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {character.clase && classDescriptions[character.clase] && (
-          <div className="class-details">
-            <h3>Detalles de la Clase</h3>
-            <p><strong>Descripción:</strong> {classDescriptions[character.clase].descripcion}</p>
-            <p><strong>Requisitos:</strong> {classDescriptions[character.clase].detalles.requisitos}</p>
-            <p><strong>Característica Principal:</strong> {classDescriptions[character.clase].detalles.caracteristicaPrincipal}</p>
-            <p><strong>Dado de Golpe:</strong> {classDescriptions[character.clase].detalles.dadoGolpe}</p>
-            <p><strong>Nivel Máximo:</strong> {classDescriptions[character.clase].detalles.nivelMaximo}</p>
-          </div>
-        )}
-
-        {requirementsError && (
-          <div className="requirements-error">
-            {requirementsError}
-          </div>
-        )}
-
         <div className="characteristics-section">
           <h3>Características</h3>
           <div className="characteristics-grid">
@@ -583,6 +518,71 @@ const handleEliminarEquipo = (index, tipo) => {
             ))}
           </div>
         </div>
+
+        {/* Sección de clases sugeridas - ahora aparece después de las características */}
+        {suggestedClasses.length > 0 && (
+          <div className="suggested-classes">
+            <h3>🎯 Clases Recomendadas</h3>
+            <p>Basado en tus características, estas clases serían ideales para tu personaje:</p>
+            <div className="suggestions-grid">
+              {suggestedClasses.map((classItem, index) => (
+                <div key={classItem.name} className="suggestion-card">
+                  <div className="suggestion-rank">#{index + 1}</div>
+                  <h4>{classItem.name}</h4>
+                  <p>{classDescriptions[classItem.name]?.descripcion}</p>
+                  <div className="suggestion-details">
+                    <small>
+                      <strong>Requisitos:</strong> {classDescriptions[classItem.name]?.detalles.requisitos}<br/>
+                      <strong>Característica Principal:</strong> {classDescriptions[classItem.name]?.detalles.caracteristicaPrincipal}
+                    </small>
+                  </div>
+                  <button 
+                    type="button" 
+                    onClick={() => selectSuggestedClass(classItem.name)}
+                    className="select-suggestion-btn"
+                  >
+                    Seleccionar esta clase
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="form-group">
+          <label htmlFor="clase">Clase:</label>
+          <select
+            id="clase"
+            name="clase"
+            value={character.clase}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Selecciona una clase</option>
+            {characterClasses.map((className) => (
+              <option key={className} value={className}>
+                {className}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {character.clase && classDescriptions[character.clase] && (
+          <div className="class-details">
+            <h3>Detalles de la Clase</h3>
+            <p><strong>Descripción:</strong> {classDescriptions[character.clase].descripcion}</p>
+            <p><strong>Requisitos:</strong> {classDescriptions[character.clase].detalles.requisitos}</p>
+            <p><strong>Característica Principal:</strong> {classDescriptions[character.clase].detalles.caracteristicaPrincipal}</p>
+            <p><strong>Dado de Golpe:</strong> {classDescriptions[character.clase].detalles.dadoGolpe}</p>
+            <p><strong>Nivel Máximo:</strong> {classDescriptions[character.clase].detalles.nivelMaximo}</p>
+          </div>
+        )}
+
+        {requirementsError && (
+          <div className="requirements-error">
+            {requirementsError}
+          </div>
+        )}
 
         <div className="navigation-buttons">
           <button type="button" onClick={handleNextStep} className="next-button">
