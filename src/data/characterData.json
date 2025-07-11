@@ -15,6 +15,43 @@
         "caracteristicaPrincipal": "Sabiduría (SAB)",
         "dadoGolpe": "1d6",
         "nivelMaximo": "Ninguno"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-4": {
+          "venenoOMuerte": 11,
+          "varitasYCetros": 12,
+          "petrificacionOParalisis": 14,
+          "armasDeAliento": 16,
+          "conjurosYArmasMagicas": 15
+        },
+        "5-8": {
+          "venenoOMuerte": 9,
+          "varitasYCetros": 10,
+          "petrificacionOParalisis": 12,
+          "armasDeAliento": 14,
+          "conjurosYArmasMagicas": 12
+        },
+        "9-12": {
+          "venenoOMuerte": 7,
+          "varitasYCetros": 8,
+          "petrificacionOParalisis": 10,
+          "armasDeAliento": 12,
+          "conjurosYArmasMagicas": 9
+        },
+        "13-16": {
+          "venenoOMuerte": 3,
+          "varitasYCetros": 4,
+          "petrificacionOParalisis": 8,
+          "armasDeAliento": 8,
+          "conjurosYArmasMagicas": 6
+        },
+        "17+": {
+          "venenoOMuerte": 2,
+          "varitasYCetros": 4,
+          "petrificacionOParalisis": 6,
+          "armasDeAliento": 6,
+          "conjurosYArmasMagicas": 5
+        }
       }
     },
     "Elfo": {
@@ -24,6 +61,36 @@
         "caracteristicaPrincipal": "Destreza e Inteligencia (DES y INT)",
         "dadoGolpe": "1d6",
         "nivelMaximo": "10"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-3": {
+          "venenoOMuerte": 12,
+          "varitasYCetros": 13,
+          "petrificacionOParalisis": 13,
+          "armasDeAliento": 15,
+          "conjurosYArmasMagicas": 15
+        },
+        "4-6": {
+          "venenoOMuerte": 10,
+          "varitasYCetros": 11,
+          "petrificacionOParalisis": 11,
+          "armasDeAliento": 13,
+          "conjurosYArmasMagicas": 13
+        },
+        "7-9": {
+          "venenoOMuerte": 8,
+          "varitasYCetros": 9,
+          "petrificacionOParalisis": 9,
+          "armasDeAliento": 9,
+          "conjurosYArmasMagicas": 11
+        },
+        "10": {
+          "venenoOMuerte": 6,
+          "varitasYCetros": 7,
+          "petrificacionOParalisis": 7,
+          "armasDeAliento": 7,
+          "conjurosYArmasMagicas": 9
+        }
       }
     },
     "Enano": {
@@ -60,6 +127,29 @@
         "caracteristicaPrincipal": "Fuerza y Destreza (FUE y DES)",
         "dadoGolpe": "1d6",
         "nivelMaximo": "8"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-3": {
+          "venenoOMuerte": 8,
+          "varitasYCetros": 9,
+          "petrificacionOParalisis": 10,
+          "armasDeAliento": 13,
+          "conjurosYArmasMagicas": 12
+        },
+        "4-6": {
+          "venenoOMuerte": 6,
+          "varitasYCetros": 7,
+          "petrificacionOParalisis": 8,
+          "armasDeAliento": 10,
+          "conjurosYArmasMagicas": 10
+        },
+        "7-8": {
+          "venenoOMuerte": 4,
+          "varitasYCetros": 5,
+          "petrificacionOParalisis": 6,
+          "armasDeAliento": 7,
+          "conjurosYArmasMagicas": 8
+        }
       }
     },
     "Ladrón": {
@@ -70,12 +160,42 @@
         "dadoGolpe": "1d4",
         "nivelMaximo": "Ninguno"
       },
-      "tiradasSalvacion": {
-        "venenoOMuerte": 16,
-        "varitasYCetros": 15,
-        "petrificacionOParalisis": 13,
-        "armasDeAliento": 16,
-        "conjurosYArmasMagicas": 14
+      "tiradasSalvacionPorNivel": {
+        "1-4": {
+          "venenoOMuerte": 16,
+          "varitasYCetros": 15,
+          "petrificacionOParalisis": 13,
+          "armasDeAliento": 16,
+          "conjurosYArmasMagicas": 14
+        },
+        "5-8": {
+          "venenoOMuerte": 14,
+          "varitasYCetros": 13,
+          "petrificacionOParalisis": 11,
+          "armasDeAliento": 14,
+          "conjurosYArmasMagicas": 12
+        },
+        "9-12": {
+          "venenoOMuerte": 12,
+          "varitasYCetros": 11,
+          "petrificacionOParalisis": 9,
+          "armasDeAliento": 12,
+          "conjurosYArmasMagicas": 10
+        },
+        "13-16": {
+          "venenoOMuerte": 10,
+          "varitasYCetros": 9,
+          "petrificacionOParalisis": 7,
+          "armasDeAliento": 10,
+          "conjurosYArmasMagicas": 8
+        },
+        "17+": {
+          "venenoOMuerte": 8,
+          "varitasYCetros": 7,
+          "petrificacionOParalisis": 5,
+          "armasDeAliento": 8,
+          "conjurosYArmasMagicas": 6
+        }
       },
       "habilidadesPorcentaje": {
         "abrirCerraduras": 17,
@@ -95,6 +215,43 @@
         "caracteristicaPrincipal": "Inteligencia (INT)",
         "dadoGolpe": "1d4",
         "nivelMaximo": "Ninguno"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-5": {
+          "venenoOMuerte": 13,
+          "varitasYCetros": 13,
+          "petrificacionOParalisis": 13,
+          "armasDeAliento": 16,
+          "conjurosYArmasMagicas": 14
+        },
+        "6-10": {
+          "venenoOMuerte": 11,
+          "varitasYCetros": 11,
+          "petrificacionOParalisis": 11,
+          "armasDeAliento": 14,
+          "conjurosYArmasMagicas": 12
+        },
+        "11-15": {
+          "venenoOMuerte": 9,
+          "varitasYCetros": 9,
+          "petrificacionOParalisis": 9,
+          "armasDeAliento": 12,
+          "conjurosYArmasMagicas": 8
+        },
+        "16-18": {
+          "venenoOMuerte": 7,
+          "varitasYCetros": 5,
+          "petrificacionOParalisis": 6,
+          "armasDeAliento": 8,
+          "conjurosYArmasMagicas": 6
+        },
+        "19+": {
+          "venenoOMuerte": 6,
+          "varitasYCetros": 4,
+          "petrificacionOParalisis": 5,
+          "armasDeAliento": 7,
+          "conjurosYArmasMagicas": 4
+        }
       }
     },
     "Paladin": {
@@ -104,6 +261,57 @@
         "caracteristicaPrincipal": "Fuerza y Carisma (FUE y CAR)",
         "dadoGolpe": "1d8",
         "nivelMaximo": "Ninguno"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-3": {
+          "venenoOMuerte": 12,
+          "varitasYCetros": 13,
+          "petrificacionOParalisis": 14,
+          "armasDeAliento": 15,
+          "conjurosYArmasMagicas": 16
+        },
+        "4-6": {
+          "venenoOMuerte": 10,
+          "varitasYCetros": 11,
+          "petrificacionOParalisis": 12,
+          "armasDeAliento": 13,
+          "conjurosYArmasMagicas": 14
+        },
+        "7-9": {
+          "venenoOMuerte": 8,
+          "varitasYCetros": 9,
+          "petrificacionOParalisis": 10,
+          "armasDeAliento": 9,
+          "conjurosYArmasMagicas": 12
+        },
+        "10-12": {
+          "venenoOMuerte": 6,
+          "varitasYCetros": 7,
+          "petrificacionOParalisis": 8,
+          "armasDeAliento": 7,
+          "conjurosYArmasMagicas": 10
+        },
+        "13-15": {
+          "venenoOMuerte": 4,
+          "varitasYCetros": 5,
+          "petrificacionOParalisis": 6,
+          "armasDeAliento": 5,
+          "conjurosYArmasMagicas": 8
+        },
+        "16-18": {
+          "venenoOMuerte": 4,
+          "varitasYCetros": 4,
+          "petrificacionOParalisis": 5,
+          "armasDeAliento": 4,
+          "conjurosYArmasMagicas": 7
+        },
+        "19+": {
+          "venenoOMuerte": 3,
+          "varitasYCetros": 3,
+          "petrificacionOParalisis": 4,
+          "armasDeAliento": 4,
+          "conjurosYArmasMagicas": 6
+        }
       }
     },
     "Asesino": {
@@ -113,6 +321,43 @@
         "caracteristicaPrincipal": "Ninguna",
         "dadoGolpe": "1d4",
         "nivelMaximo": "15"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-4": {
+          "venenoOMuerte": 16,
+          "varitasYCetros": 15,
+          "petrificacionOParalisis": 13,
+          "armasDeAliento": 16,
+          "conjurosYArmasMagicas": 14
+        },
+        "5-8": {
+          "venenoOMuerte": 14,
+          "varitasYCetros": 13,
+          "petrificacionOParalisis": 11,
+          "armasDeAliento": 14,
+          "conjurosYArmasMagicas": 12
+        },
+        "9-12": {
+          "venenoOMuerte": 12,
+          "varitasYCetros": 11,
+          "petrificacionOParalisis": 9,
+          "armasDeAliento": 12,
+          "conjurosYArmasMagicas": 10
+        },
+        "13-16": {
+          "venenoOMuerte": 10,
+          "varitasYCetros": 9,
+          "petrificacionOParalisis": 7,
+          "armasDeAliento": 10,
+          "conjurosYArmasMagicas": 8
+        },
+        "17+": {
+          "venenoOMuerte": 8,
+          "varitasYCetros": 7,
+          "petrificacionOParalisis": 5,
+          "armasDeAliento": 8,
+          "conjurosYArmasMagicas": 6
+        }
       }
     },
     "Bárbaro": {
@@ -122,6 +367,43 @@
         "caracteristicaPrincipal": "Fuerza (FUE)",
         "dadoGolpe": "1d8",
         "nivelMaximo": "15"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-4": {
+          "venenoOMuerte": 8,
+          "varitasYCetros": 10,
+          "petrificacionOParalisis": 8,
+          "armasDeAliento": 15,
+          "conjurosYArmasMagicas": 14
+        },
+        "5-8": {
+          "venenoOMuerte": 6,
+          "varitasYCetros": 8,
+          "petrificacionOParalisis": 10,
+          "armasDeAliento": 12,
+          "conjurosYArmasMagicas": 12
+        },
+        "9-12": {
+          "venenoOMuerte": 4,
+          "varitasYCetros": 6,
+          "petrificacionOParalisis": 8,
+          "armasDeAliento": 10,
+          "conjurosYArmasMagicas": 10
+        },
+        "13-16": {
+          "venenoOMuerte": 2,
+          "varitasYCetros": 4,
+          "petrificacionOParalisis": 6,
+          "armasDeAliento": 8,
+          "conjurosYArmasMagicas": 8
+        },
+        "17+": {
+          "venenoOMuerte": 1,
+          "varitasYCetros": 2,
+          "petrificacionOParalisis": 4,
+          "armasDeAliento": 6,
+          "conjurosYArmasMagicas": 7
+        }
       }
     },
     "Bardo": {
@@ -131,6 +413,43 @@
         "caracteristicaPrincipal": "Carisma (CAR)",
         "dadoGolpe": "1d6",
         "nivelMaximo": "20"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-4": {
+          "venenoOMuerte": 14,
+          "varitasYCetros": 15,
+          "petrificacionOParalisis": 13,
+          "armasDeAliento": 16,
+          "conjurosYArmasMagicas": 14
+        },
+        "5-8": {
+          "venenoOMuerte": 12,
+          "varitasYCetros": 13,
+          "petrificacionOParalisis": 11,
+          "armasDeAliento": 14,
+          "conjurosYArmasMagicas": 12
+        },
+        "9-12": {
+          "venenoOMuerte": 10,
+          "varitasYCetros": 11,
+          "petrificacionOParalisis": 9,
+          "armasDeAliento": 12,
+          "conjurosYArmasMagicas": 10
+        },
+        "13-16": {
+          "venenoOMuerte": 8,
+          "varitasYCetros": 9,
+          "petrificacionOParalisis": 7,
+          "armasDeAliento": 10,
+          "conjurosYArmasMagicas": 8
+        },
+        "17+": {
+          "venenoOMuerte": 6,
+          "varitasYCetros": 7,
+          "petrificacionOParalisis": 5,
+          "armasDeAliento": 8,
+          "conjurosYArmasMagicas": 6
+        }
       }
     },
     "Druida": {
@@ -140,6 +459,43 @@
         "caracteristicaPrincipal": "Sabiduría y Carisma (SAB y CAR)",
         "dadoGolpe": "1d6",
         "nivelMaximo": "14"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-4": {
+          "venenoOMuerte": 11,
+          "varitasYCetros": 12,
+          "petrificacionOParalisis": 14,
+          "armasDeAliento": 16,
+          "conjurosYArmasMagicas": 15
+        },
+        "5-8": {
+          "venenoOMuerte": 9,
+          "varitasYCetros": 10,
+          "petrificacionOParalisis": 12,
+          "armasDeAliento": 14,
+          "conjurosYArmasMagicas": 12
+        },
+        "9-12": {
+          "venenoOMuerte": 7,
+          "varitasYCetros": 8,
+          "petrificacionOParalisis": 10,
+          "armasDeAliento": 12,
+          "conjurosYArmasMagicas": 9
+        },
+        "13-16": {
+          "venenoOMuerte": 3,
+          "varitasYCetros": 4,
+          "petrificacionOParalisis": 8,
+          "armasDeAliento": 8,
+          "conjurosYArmasMagicas": 6
+        },
+        "17+": {
+          "venenoOMuerte": 2,
+          "varitasYCetros": 4,
+          "petrificacionOParalisis": 6,
+          "armasDeAliento": 6,
+          "conjurosYArmasMagicas": 5
+        }
       }
     },
     "Elfo Oscuro": {
@@ -149,6 +505,36 @@
         "caracteristicaPrincipal": "Fuerza, Destreza e Inteligencia (FUE, DES e INT)",
         "dadoGolpe": "1d6",
         "nivelMaximo": "10"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-3": {
+          "venenoOMuerte": 12,
+          "varitasYCetros": 13,
+          "petrificacionOParalisis": 13,
+          "armasDeAliento": 15,
+          "conjurosYArmasMagicas": 15
+        },
+        "4-6": {
+          "venenoOMuerte": 10,
+          "varitasYCetros": 11,
+          "petrificacionOParalisis": 11,
+          "armasDeAliento": 13,
+          "conjurosYArmasMagicas": 13
+        },
+        "7-9": {
+          "venenoOMuerte": 8,
+          "varitasYCetros": 9,
+          "petrificacionOParalisis": 9,
+          "armasDeAliento": 9,
+          "conjurosYArmasMagicas": 11
+        },
+        "10": {
+          "venenoOMuerte": 6,
+          "varitasYCetros": 7,
+          "petrificacionOParalisis": 7,
+          "armasDeAliento": 7,
+          "conjurosYArmasMagicas": 9
+        }
       }
     },
     "Gnomo": {
@@ -158,6 +544,29 @@
         "caracteristicaPrincipal": "Constitución (CON)",
         "dadoGolpe": "1d6",
         "nivelMaximo": "10"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-3": {
+          "venenoOMuerte": 8,
+          "varitasYCetros": 9,
+          "petrificacionOParalisis": 10,
+          "armasDeAliento": 13,
+          "conjurosYArmasMagicas": 12
+        },
+        "4-6": {
+          "venenoOMuerte": 6,
+          "varitasYCetros": 7,
+          "petrificacionOParalisis": 8,
+          "armasDeAliento": 10,
+          "conjurosYArmasMagicas": 10
+        },
+        "7-10": {
+          "venenoOMuerte": 4,
+          "varitasYCetros": 5,
+          "petrificacionOParalisis": 6,
+          "armasDeAliento": 7,
+          "conjurosYArmasMagicas": 8
+        }
       }
     },
     "SemiElfo": {
@@ -167,6 +576,36 @@
         "caracteristicaPrincipal": "Destreza y Carisma (DES y CAR)",
         "dadoGolpe": "1d6",
         "nivelMaximo": "15"
+      },
+      "tiradasSalvacionPorNivel": {
+        "1-3": {
+          "venenoOMuerte": 12,
+          "varitasYCetros": 13,
+          "petrificacionOParalisis": 13,
+          "armasDeAliento": 15,
+          "conjurosYArmasMagicas": 15
+        },
+        "4-6": {
+          "venenoOMuerte": 10,
+          "varitasYCetros": 11,
+          "petrificacionOParalisis": 11,
+          "armasDeAliento": 13,
+          "conjurosYArmasMagicas": 13
+        },
+        "7-9": {
+          "venenoOMuerte": 8,
+          "varitasYCetros": 9,
+          "petrificacionOParalisis": 9,
+          "armasDeAliento": 9,
+          "conjurosYArmasMagicas": 11
+        },
+        "10": {
+          "venenoOMuerte": 6,
+          "varitasYCetros": 7,
+          "petrificacionOParalisis": 7,
+          "armasDeAliento": 7,
+          "conjurosYArmasMagicas": 9
+        }
       }
     },
     "SemiOrco": {
