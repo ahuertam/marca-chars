@@ -780,6 +780,16 @@ button:hover {
   border-radius: 4px;
   font-size: 14px;
   background-color: white;
+  min-width: 300px; /* Asegurar ancho mínimo */
+  white-space: nowrap; /* Evitar que el texto se corte */
+  overflow: visible; /* Permitir que el dropdown se expanda */
+}
+
+/* Estilos para las opciones del selector */
+.armor-selector option {
+  padding: 8px;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .armor-details {
@@ -1159,6 +1169,16 @@ button:hover {
   border-radius: 4px;
   font-size: 14px;
   background-color: white;
+  min-width: 300px; /* Asegurar ancho mínimo */
+  white-space: nowrap; /* Evitar que el texto se corte */
+  overflow: visible; /* Permitir que el dropdown se expanda */
+}
+
+/* Estilos para las opciones del selector */
+.armor-selector option {
+  padding: 8px;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .armor-details {

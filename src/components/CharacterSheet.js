@@ -31,13 +31,51 @@ const CharacterSheet = ({ character, onUpdateCharacter }) => {
 
   const handleDownloadImage = () => {
     if (sheetRef.current) {
+      // Ocultar ambos botones de descarga antes de capturar la imagen
+      const downloadButtons = sheetRef.current.querySelectorAll('.download-button, .download-json-button');
+      const originalDisplays = Array.from(downloadButtons).map(button => button.style.display);
+      
+      downloadButtons.forEach(button => {
+        button.style.display = 'none';
+      });
+      
       html2canvas(sheetRef.current).then(canvas => {
+        // Restaurar la visibilidad de ambos botones después de capturar
+        downloadButtons.forEach((button, index) => {
+          button.style.display = originalDisplays[index];
+        });
+        
         const link = document.createElement('a');
         link.download = `${editableCharacter.nombre || 'character'}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
+      }).catch(error => {
+        // En caso de error, también restaurar la visibilidad de ambos botones
+        downloadButtons.forEach((button, index) => {
+          button.style.display = originalDisplays[index];
+        });
+        console.error('Error al generar la imagen:', error);
       });
     }
+  };
+
+  const handleDownloadJSON = () => {
+    const characterData = {
+      ...editableCharacter,
+      fechaCreacion: new Date().toISOString(),
+      version: '1.0'
+    };
+    
+    const dataStr = JSON.stringify(characterData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    
+    const link = document.createElement('a');
+    link.download = `${editableCharacter.nombre || 'character'}.json`;
+    link.href = URL.createObjectURL(dataBlob);
+    link.click();
+    
+    // Limpiar el objeto URL después de la descarga
+    URL.revokeObjectURL(link.href);
   };
 
   if (!character) return null;
@@ -1089,7 +1127,10 @@ const calculateAttackBonus = () => {
         )}
       </div>
 
-      <button onClick={handleDownloadImage} className="download-button">Descargar Imagen</button>
+      <div className="download-buttons">
+        <button onClick={handleDownloadImage} className="download-button">Descargar Imagen</button>
+        <button onClick={handleDownloadJSON} className="download-json-button">Descargar JSON</button>
+      </div>
     </div>
   );
 };

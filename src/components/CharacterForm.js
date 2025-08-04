@@ -639,7 +639,7 @@ const handleEliminarEquipo = (index, tipo) => {
             >
               {Object.keys(armaduras).map(armorName => (
                 <option key={armorName} value={armorName}>
-                  {armorName} (CA: {armaduras[armorName].ca}, {armaduras[armorName].coste})
+                  {armorName}
                 </option>
               ))}
             </select>
@@ -647,7 +647,8 @@ const handleEliminarEquipo = (index, tipo) => {
               <div className="armor-details">
                 <small>
                   Peso: {armaduras[character.armadura].peso} | 
-                  Coste: {armaduras[character.armadura].coste}
+                  Coste: {armaduras[character.armadura].coste}|
+                  CA: {armaduras[character.armadura].ca}
                 </small>
               </div>
             )}
