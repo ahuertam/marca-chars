@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
+import characterData from '../data/characterData.json';
 import './CharacterSheet.css';
 
 const CharacterSheet = ({ character, onUpdateCharacter }) => {
@@ -76,6 +77,33 @@ const CharacterSheet = ({ character, onUpdateCharacter }) => {
     
     // Limpiar el objeto URL después de la descarga
     URL.revokeObjectURL(link.href);
+  };
+
+  const handleRemoveEquipment = (index, type) => {
+    const updatedCharacter = { ...editableCharacter };
+    
+    if (type === 'predefinido') {
+      updatedCharacter.equipoSeleccionado = updatedCharacter.equipoSeleccionado.filter((_, i) => i !== index);
+    } else if (type === 'personalizado') {
+      updatedCharacter.equipoPersonalizado = updatedCharacter.equipoPersonalizado.filter((_, i) => i !== index);
+    }
+    
+    setEditableCharacter(updatedCharacter);
+    onUpdateCharacter(updatedCharacter);
+  };
+
+  const handleAddEquipment = (equipmentName, type = 'predefinido') => {
+    const updatedCharacter = { ...editableCharacter };
+    
+    if (type === 'predefinido') {
+      const equipment = characterData.equipo[equipmentName];
+      if (equipment && !updatedCharacter.equipoSeleccionado?.find(item => item.nombre === equipmentName)) {
+        updatedCharacter.equipoSeleccionado = [...(updatedCharacter.equipoSeleccionado || []), equipment];
+      }
+    }
+    
+    setEditableCharacter(updatedCharacter);
+    onUpdateCharacter(updatedCharacter);
   };
 
   if (!character) return null;
@@ -932,6 +960,13 @@ const calculateAttackBonus = () => {
                   <div key={index} className="equipment-item">
                     <span className="equipment-name">{item.nombre}</span>
                     <span className="equipment-details">({item.coste}, {item.peso})</span>
+                    <button 
+                      className="remove-equipment-btn"
+                      onClick={() => handleRemoveEquipment(index, 'predefinido')}
+                      title="Eliminar equipo"
+                    >
+                      ×
+                    </button>
                   </div>
                 ))}
               </div>
@@ -947,6 +982,13 @@ const calculateAttackBonus = () => {
                   <div key={index} className="equipment-item">
                     <span className="equipment-name">{item.nombre}</span>
                     <span className="equipment-details">({item.coste}, {item.peso})</span>
+                    <button 
+                      className="remove-equipment-btn"
+                      onClick={() => handleRemoveEquipment(index, 'personalizado')}
+                      title="Eliminar equipo"
+                    >
+                      ×
+                    </button>
                   </div>
                 ))}
               </div>

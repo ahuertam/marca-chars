@@ -89,6 +89,7 @@ hr {
   border: 2px solid #000;
   background: #fff;
   margin-bottom: 15px;
+  min-width: 280px; /* Asegurar ancho mínimo */
 }
 
 .characteristics-title {
@@ -107,17 +108,19 @@ hr {
   font-size: 10px;
   font-weight: bold;
   margin: 10px 0 8px 0;
-  padding: 0 50px 0 70px;
+  padding: 0 45px 0 70px;
+  white-space: nowrap; /* Evitar que se corte */
 }
 
 .characteristic-row {
   display: grid;
-  grid-template-columns: 70px 35px 35px 1fr;
+  grid-template-columns: 70px 40px 40px 1fr;
   gap: 8px;
   align-items: center;
   margin-bottom: 8px;
   padding: 0 10px;
   font-size: 11px;
+  min-height: 30px; /* Asegurar altura mínima */
 }
 
 .characteristic-name {
@@ -127,7 +130,7 @@ hr {
 
 .characteristic-score,
 .characteristic-modifier {
-  width: 30px;
+  width: 35px;
   height: 22px;
   text-align: center;
   border: 1px solid #000;
@@ -145,6 +148,9 @@ hr {
   line-height: 1.2;
   color: #333;
   padding-left: 5px;
+  word-wrap: break-word; /* Permitir salto de línea */
+  overflow-wrap: break-word;
+  white-space: normal; /* Permitir múltiples líneas */
 }
 
 /* Middle column sections - ajustados para contener el contenido */
@@ -357,8 +363,8 @@ hr {
   padding: 8px;
   background: #fff;
   width: fit-content;
-  min-width: 200px;
-  max-width: 220px;
+  min-width: 240px;
+  max-width: 260px;
   height: fit-content;
 }
 
@@ -392,7 +398,8 @@ hr {
   display: flex;
   align-items: center;
   gap: 8px;
-  min-height: 24px;
+  min-height: 28px;
+  margin-bottom: 4px;
 }
 
 .saving-throw-circle {
@@ -441,11 +448,12 @@ hr {
   flex-direction: column;
   align-items: center;
   gap: 2px;
+  min-width: 50px;
 }
 
 .saving-throw-modifier {
-  width: 20px;
-  height: 16px;
+  width: 24px;
+  height: 18px;
   border: 1px solid #000;
   text-align: center;
   font-size: 9px;
@@ -456,6 +464,8 @@ hr {
 .modificador-label {
   font-size: 7px;
   text-align: center;
+  white-space: nowrap;
+  word-wrap: normal;
 }
 
 /* Other sections */
@@ -785,6 +795,33 @@ hr {
   .treasure-fields {
     grid-template-columns: 1fr;
     gap: 10px;
+  }
+  
+  .characteristics-section {
+    min-width: 100%;
+  }
+  
+  .characteristic-row {
+    grid-template-columns: 60px 30px 30px 1fr;
+    gap: 6px;
+    font-size: 10px;
+  }
+  
+  .characteristic-description {
+    font-size: 8px;
+  }
+  
+  .saving-throws-section {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  
+  .saving-throw-item {
+    gap: 6px;
+  }
+  
+  .modificador-label {
+    font-size: 6px;
   }
 }
 
@@ -1416,8 +1453,28 @@ hr {
 .equipment-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2px;
-  padding: 1px 0;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.remove-equipment-btn {
+  background: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.remove-equipment-btn:hover {
+  background: #cc0000;
 }
 
 .equipment-name {
@@ -1499,8 +1556,8 @@ hr {
 }
 
 .armor-class-content input[type="text"] {
-  width: 80px;
-  max-width: 80px;
+  width: 160px;
+  max-width: 160px;
 }
 
 .download-buttons {
