@@ -1,0 +1,262 @@
+{
+  "hechizos": {
+    "clerigo": {
+      "nivel1": {
+        "curar_heridas_leves": {
+          "nombre": "Curar Heridas Leves",
+          "nivel": 1,
+          "alcance": "Toque",
+          "duracion": "Instantáneo",
+          "descripcion": "Cura 1d4+1 puntos de daño",
+          "componentes": "V, S"
+        },
+        "detectar_mal": {
+          "nombre": "Detectar Mal",
+          "nivel": 1,
+          "alcance": "120 pies",
+          "duracion": "2 turnos",
+          "descripcion": "Detecta criaturas malignas en un radio de 120 pies",
+          "componentes": "V, S"
+        },
+        "luz": {
+          "nombre": "Luz",
+          "nivel": 1,
+          "alcance": "120 pies",
+          "duracion": "12 turnos",
+          "descripcion": "Crea una luz brillante en un radio de 30 pies",
+          "componentes": "V, S"
+        },
+        "proteccion_contra_mal": {
+          "nombre": "Protección contra el Mal",
+          "nivel": 1,
+          "alcance": "Toque",
+          "duracion": "12 turnos",
+          "descripcion": "Otorga +1 a CA y tiradas de salvación contra criaturas malignas",
+          "componentes": "V, S, M"
+        },
+        "purificar_comida_y_agua": {
+          "nombre": "Purificar Comida y Agua",
+          "nivel": 1,
+          "alcance": "10 pies",
+          "duracion": "Permanente",
+          "descripcion": "Purifica comida y agua para 12 personas durante un día",
+          "componentes": "V, S"
+        },
+        "resistir_frio": {
+          "nombre": "Resistir Frío",
+          "nivel": 1,
+          "alcance": "Toque",
+          "duracion": "6 turnos",
+          "descripcion": "Protege contra temperaturas frías normales",
+          "componentes": "V, S"
+        },
+        "quitar_miedo": {
+          "nombre": "Quitar Miedo",
+          "nivel": 1,
+          "alcance": "Toque",
+          "duracion": "2 turnos",
+          "descripcion": "Elimina el miedo de una criatura",
+          "componentes": "V, S"
+        },
+        "bendicion": {
+          "nombre": "Bendición",
+          "nivel": 1,
+          "alcance": "60 pies",
+          "duracion": "6 turnos",
+          "descripcion": "Otorga +1 a tiradas de ataque y moral a aliados",
+          "componentes": "V, S"
+        }
+      }
+    },
+    "mago": {
+      "nivel1": {
+        "detectar_magia": {
+          "nombre": "Detectar Magia",
+          "nivel": 1,
+          "alcance": "60 pies",
+          "duracion": "2 turnos",
+          "descripcion": "Detecta objetos mágicos en un radio de 60 pies",
+          "componentes": "V, S"
+        },
+        "disco_flotante": {
+          "nombre": "Disco Flotante",
+          "nivel": 1,
+          "alcance": "20 pies",
+          "duracion": "6 turnos",
+          "descripcion": "Crea un disco invisible que puede cargar 500 monedas de peso",
+          "componentes": "V, S, M"
+        },
+        "leer_idiomas": {
+          "nombre": "Leer Idiomas",
+          "nivel": 1,
+          "alcance": "Personal",
+          "duracion": "2 turnos",
+          "descripcion": "Permite leer cualquier idioma escrito",
+          "componentes": "V, S, M"
+        },
+        "leer_magia": {
+          "nombre": "Leer Magia",
+          "nivel": 1,
+          "alcance": "Personal",
+          "duracion": "2 turnos",
+          "descripcion": "Permite leer escritos mágicos y pergaminos",
+          "componentes": "V, S, M"
+        },
+        "luz_magica": {
+          "nombre": "Luz Mágica",
+          "nivel": 1,
+          "alcance": "120 pies",
+          "duracion": "12 turnos",
+          "descripcion": "Crea luz brillante o ceguera temporal",
+          "componentes": "V, M"
+        },
+        "proyectil_magico": {
+          "nombre": "Proyectil Mágico",
+          "nivel": 1,
+          "alcance": "150 pies",
+          "duracion": "Instantáneo",
+          "descripcion": "Dispara 1d4+1 proyectiles que causan 1d4+1 de daño cada uno",
+          "componentes": "V, S"
+        },
+        "proteccion_contra_mal_mago": {
+          "nombre": "Protección contra el Mal",
+          "nivel": 1,
+          "alcance": "Personal",
+          "duracion": "12 turnos",
+          "descripcion": "Otorga +1 a CA y tiradas de salvación contra criaturas malignas",
+          "componentes": "V, S, M"
+        },
+        "escudo": {
+          "nombre": "Escudo",
+          "nivel": 1,
+          "alcance": "Personal",
+          "duracion": "2 turnos",
+          "descripcion": "Mejora la CA en 2 puntos y bloquea proyectiles mágicos",
+          "componentes": "V, S"
+        },
+        "dormir": {
+          "nombre": "Dormir",
+          "nivel": 1,
+          "alcance": "240 pies",
+          "duracion": "4d4 turnos",
+          "descripcion": "Hace dormir a criaturas con 4d4 dados de golpe",
+          "componentes": "V, S, M"
+        },
+        "ventriloquismo": {
+          "nombre": "Ventriloquismo",
+          "nivel": 1,
+          "alcance": "60 pies",
+          "duracion": "2 turnos",
+          "descripcion": "Hace que la voz parezca venir de otro lugar",
+          "componentes": "V, M"
+        },
+        "armadura": {
+          "nombre": "Armadura",
+          "nivel": 1,
+          "alcance": "Personal",
+          "duracion": "8 horas",
+          "descripcion": "Otorga CA 6 [13] al lanzador",
+          "componentes": "V, S, M"
+        },
+        "encantar_persona": {
+          "nombre": "Encantar Persona",
+          "nivel": 1,
+          "alcance": "120 pies",
+          "duracion": "Especial",
+          "descripcion": "Encanta a una persona haciéndola amigable",
+          "componentes": "V, S"
+        }
+      },
+      "nivel2": {
+        "detectar_invisibilidad": {
+          "nombre": "Detectar Invisibilidad",
+          "nivel": 2,
+          "alcance": "10 pies por nivel",
+          "duracion": "6 turnos",
+          "descripcion": "Permite ver criaturas y objetos invisibles",
+          "componentes": "V, S, M"
+        },
+        "levitar": {
+          "nombre": "Levitar",
+          "nivel": 2,
+          "alcance": "20 pies por nivel",
+          "duracion": "1 turno por nivel",
+          "descripcion": "Permite flotar verticalmente",
+          "componentes": "V, S, M"
+        },
+        "localizar_objeto": {
+          "nombre": "Localizar Objeto",
+          "nivel": 2,
+          "alcance": "60 pies + 10 pies por nivel",
+          "duracion": "2 turnos",
+          "descripcion": "Localiza un objeto conocido",
+          "componentes": "V, S, M"
+        },
+        "imagen_espejo": {
+          "nombre": "Imagen Espejo",
+          "nivel": 2,
+          "alcance": "Personal",
+          "duracion": "12 turnos",
+          "descripcion": "Crea 1d4 imágenes duplicadas del lanzador",
+          "componentes": "V, S"
+        },
+        "fuerza_fantasmal": {
+          "nombre": "Fuerza Fantasmal",
+          "nivel": 2,
+          "alcance": "240 pies",
+          "duracion": "Concentración",
+          "descripcion": "Crea una ilusión visual",
+          "componentes": "V, S, M"
+        },
+        "invisibilidad": {
+          "nombre": "Invisibilidad",
+          "nivel": 2,
+          "alcance": "240 pies",
+          "duracion": "Permanente hasta que se rompa",
+          "descripcion": "Hace invisible a una criatura",
+          "componentes": "V, S, M"
+        },
+        "golpe_certero": {
+          "nombre": "Golpe Certero",
+          "nivel": 2,
+          "alcance": "60 pies",
+          "duracion": "1 turno + 1 por nivel",
+          "descripcion": "Otorga +1 a tiradas de ataque",
+          "componentes": "V, S, M"
+        },
+        "cerrar": {
+          "nombre": "Cerrar",
+          "nivel": 2,
+          "alcance": "10 pies",
+          "duracion": "2d6 turnos",
+          "descripcion": "Cierra mágicamente una puerta, cofre, etc.",
+          "componentes": "V, S, M"
+        },
+        "telarana": {
+          "nombre": "Telaraña",
+          "nivel": 2,
+          "alcance": "10 pies",
+          "duracion": "8 turnos",
+          "descripcion": "Crea telarañas pegajosas que atrapan criaturas",
+          "componentes": "V, S, M"
+        },
+        "detectar_pensamientos": {
+          "nombre": "Detectar Pensamientos",
+          "nivel": 2,
+          "alcance": "60 pies",
+          "duracion": "12 turnos",
+          "descripcion": "Lee los pensamientos superficiales de una criatura",
+          "componentes": "V, S, M"
+        },
+        "continual_light": {
+          "nombre": "Luz Continua",
+          "nivel": 2,
+          "alcance": "120 pies",
+          "duracion": "Permanente",
+          "descripcion": "Crea luz permanente o ceguera permanente",
+          "componentes": "V, S"
+        }
+      }
+    }
+  }
+}

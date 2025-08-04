@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import characterData from '../data/characterData.json';
+import spellsData from '../data/spells.json';
 import './CharacterSheet.css';
 
 const CharacterSheet = ({ character, onUpdateCharacter }) => {
   const [editableCharacter, setEditableCharacter] = useState(character);
+  const [showSpellModal, setShowSpellModal] = useState(false);
   const sheetRef = useRef(null);
 
   const handleChange = (field, value) => {
@@ -197,6 +199,22 @@ const calculateAttackBonus = () => {
     
     const updatedSpells = [...(editableCharacter.conjuros || []), newSpell];
     handleChange('conjuros', updatedSpells);
+  };
+
+  const addSpellFromList = (spellData) => {
+    const newSpell = {
+      id: Date.now(),
+      nombre: spellData.nombre,
+      nivel: spellData.nivel,
+      alcance: spellData.alcance,
+      duracion: spellData.duracion,
+      efecto: spellData.descripcion,
+      preparado: false
+    };
+    
+    const updatedSpells = [...(editableCharacter.conjuros || []), newSpell];
+    handleChange('conjuros', updatedSpells);
+    setShowSpellModal(false);
   };
 
   const removeSpell = (spellId) => {
@@ -1067,7 +1085,10 @@ const calculateAttackBonus = () => {
       <div className="spells-section">
         <div className="spells-header">
           <h3>LIBRO DE CONJUROS</h3>
-          <button onClick={addSpell} className="add-spell-btn">+</button>
+          <div className="spells-buttons">
+            <button onClick={addSpell} className="add-spell-btn">+</button>
+            <button onClick={() => setShowSpellModal(true)} className="select-spell-btn">Seleccionar de Lista</button>
+          </div>
         </div>
         
         <div className="spells-per-level">
@@ -1168,6 +1189,64 @@ const calculateAttackBonus = () => {
           </div>
         )}
       </div>
+
+      {/* Modal para seleccionar hechizos */}
+      {showSpellModal && (
+        <div className="spell-modal-overlay">
+          <div className="spell-modal">
+            <div className="spell-modal-header">
+              <h3>Seleccionar Hechizo</h3>
+              <button onClick={() => setShowSpellModal(false)} className="close-modal-btn">×</button>
+            </div>
+            <div className="spell-modal-content">
+              <div className="spell-categories">
+                <h4>Hechizos de Clérigo</h4>
+                <div className="spell-level-group">
+                  <h5>Nivel 1</h5>
+                  <div className="spell-list">
+                    {Object.entries(spellsData.hechizos.clerigo.nivel1).map(([key, spell]) => (
+                      <div key={key} className="spell-item" onClick={() => addSpellFromList(spell)}>
+                        <strong>{spell.nombre}</strong>
+                        <span className="spell-details">{spell.alcance} | {spell.duracion}</span>
+                        <p className="spell-description">{spell.descripcion}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <h4>Hechizos de Mago</h4>
+                <div className="spell-level-group">
+                  <h5>Nivel 1</h5>
+                  <div className="spell-list">
+                    {Object.entries(spellsData.hechizos.mago.nivel1).map(([key, spell]) => (
+                      <div key={key} className="spell-item" onClick={() => addSpellFromList(spell)}>
+                        <strong>{spell.nombre}</strong>
+                        <span className="spell-details">{spell.alcance} | {spell.duracion}</span>
+                        <p className="spell-description">{spell.descripcion}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                {spellsData.hechizos.mago.nivel2 && (
+                  <div className="spell-level-group">
+                    <h5>Nivel 2</h5>
+                    <div className="spell-list">
+                      {Object.entries(spellsData.hechizos.mago.nivel2).map(([key, spell]) => (
+                        <div key={key} className="spell-item" onClick={() => addSpellFromList(spell)}>
+                          <strong>{spell.nombre}</strong>
+                          <span className="spell-details">{spell.alcance} | {spell.duracion}</span>
+                          <p className="spell-description">{spell.descripcion}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="download-buttons">
         <button onClick={handleDownloadImage} className="download-button">Descargar Imagen</button>
