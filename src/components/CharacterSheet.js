@@ -34,17 +34,25 @@ const CharacterSheet = ({ character, onUpdateCharacter }) => {
 
   const handleDownloadImage = () => {
     if (sheetRef.current) {
-      // Ocultar ambos botones de descarga antes de capturar la imagen
+      // Ocultar botones de descarga y botones interactivos antes de capturar la imagen
       const downloadButtons = sheetRef.current.querySelectorAll('.download-button, .download-json-button');
-      const originalDisplays = Array.from(downloadButtons).map(button => button.style.display);
+      const interactiveButtons = sheetRef.current.querySelectorAll(
+        '.add-spell-btn, .select-spell-btn, .remove-spell-btn, ' +
+        '.add-skill-btn, .remove-skill-btn, ' +
+        '.remove-equipment-btn, ' +
+        '.add-weapon-btn, .remove-weapon-btn'
+      );
       
-      downloadButtons.forEach(button => {
+      const allButtons = [...downloadButtons, ...interactiveButtons];
+      const originalDisplays = allButtons.map(button => button.style.display);
+      
+      allButtons.forEach(button => {
         button.style.display = 'none';
       });
       
       html2canvas(sheetRef.current).then(canvas => {
-        // Restaurar la visibilidad de ambos botones después de capturar
-        downloadButtons.forEach((button, index) => {
+        // Restaurar la visibilidad de todos los botones después de capturar
+        allButtons.forEach((button, index) => {
           button.style.display = originalDisplays[index];
         });
         
@@ -53,8 +61,8 @@ const CharacterSheet = ({ character, onUpdateCharacter }) => {
         link.href = canvas.toDataURL('image/png');
         link.click();
       }).catch(error => {
-        // En caso de error, también restaurar la visibilidad de ambos botones
-        downloadButtons.forEach((button, index) => {
+        // En caso de error, también restaurar la visibilidad de todos los botones
+        allButtons.forEach((button, index) => {
           button.style.display = originalDisplays[index];
         });
         console.error('Error al generar la imagen:', error);

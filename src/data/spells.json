@@ -10,22 +10,6 @@
           "descripcion": "Cura 1d4+1 puntos de daño",
           "componentes": "V, S"
         },
-        "detectar_mal": {
-          "nombre": "Detectar Mal",
-          "nivel": 1,
-          "alcance": "120 pies",
-          "duracion": "2 turnos",
-          "descripcion": "Detecta criaturas malignas en un radio de 120 pies",
-          "componentes": "V, S"
-        },
-        "luz": {
-          "nombre": "Luz",
-          "nivel": 1,
-          "alcance": "120 pies",
-          "duracion": "12 turnos",
-          "descripcion": "Crea una luz brillante en un radio de 30 pies",
-          "componentes": "V, S"
-        },
         "proteccion_contra_mal": {
           "nombre": "Protección contra el Mal",
           "nivel": 1,
@@ -33,14 +17,6 @@
           "duracion": "12 turnos",
           "descripcion": "Otorga +1 a CA y tiradas de salvación contra criaturas malignas",
           "componentes": "V, S, M"
-        },
-        "purificar_comida_y_agua": {
-          "nombre": "Purificar Comida y Agua",
-          "nivel": 1,
-          "alcance": "10 pies",
-          "duracion": "Permanente",
-          "descripcion": "Purifica comida y agua para 12 personas durante un día",
-          "componentes": "V, S"
         },
         "resistir_frio": {
           "nombre": "Resistir Frío",
@@ -58,66 +34,420 @@
           "descripcion": "Elimina el miedo de una criatura",
           "componentes": "V, S"
         },
-        "bendicion": {
-          "nombre": "Bendición",
+        "cooperacion": {
+          "nombre": "Cooperación",
           "nivel": 1,
-          "alcance": "60 pies",
+          "alcance": "Contacto",
+          "duracion": "1 asalto",
+          "descripcion": "Permite a 2-5 clérigos realizar pruebas conjuntas de expulsión de muertos vivientes. El nivel efectivo será el mayor nivel de los clérigos participantes más un nivel por cada clérigo adicional.",
+          "componentes": "V, S"
+        },
+        "crear_agua": {
+          "nombre": "Crear Agua",
+          "nivel": 1,
+          "alcance": "30 metros",
+          "duracion": "Permanente",
+          "descripcion": "Crea hasta 10 litros de agua pura por nivel del lanzador. El agua brota del lugar designado dentro del alcance. Es reversible para corromper agua.",
+          "componentes": "V, S"
+        },
+        "curar_heridas_leves_completo": {
+          "nombre": "Curar Heridas Leves (Versión Completa)",
+          "nivel": 1,
+          "alcance": "Toque",
+          "duracion": "Permanente",
+          "descripcion": "Sana 1d8 puntos de golpe o elimina parálisis. Reversible como Causar Heridas Leves (1d8 daño con ataque exitoso).",
+          "componentes": "V, S"
+        },
+        "detectar_el_mal": {
+          "nombre": "Detectar el Mal",
+          "nivel": 1,
+          "alcance": "30 metros",
           "duracion": "6 turnos",
-          "descripcion": "Otorga +1 a tiradas de ataque y moral a aliados",
+          "descripcion": "Detecta criaturas u objetos malignos en un radio de 30 metros. Los objetos malvados brillan con un aura tenue visible solo para el lanzador.",
+          "componentes": "V, S"
+        },
+        "detectar_magia_clerigo": {
+          "nombre": "Detectar Magia (Clérigo)",
+          "nivel": 1,
+          "alcance": "30 metros",
+          "duracion": "1 turno",
+          "descripcion": "Detecta radiaciones mágicas en un radio de 30 metros y determina su intensidad (débil, media, fuerte o abrumadora). La magia debe estar a la vista.",
+          "componentes": "V, S"
+        },
+        "enredar": {
+          "nombre": "Enredar",
+          "nivel": 1,
+          "alcance": "80 metros",
+          "duracion": "1 turno",
+          "descripcion": "Hace que las plantas se enreden en las criaturas del área. Salvación contra conjuros: éxito permite 1/4 de movimiento, fallo impide movimiento. Requiere vegetación abundante.",
+          "componentes": "V, S"
+        },
+        "fuego_imaginario": {
+          "nombre": "Fuego Imaginario",
+          "nivel": 1,
+          "alcance": "100 metros",
+          "duracion": "5 asaltos/nivel",
+          "descripcion": "Crea luces como pequeñas llamas alrededor de criaturas u objetos. Hace visible al objetivo en la oscuridad desde 100 metros, otorgando +2 a ataques enemigos en oscuridad. Afecta tantos objetivos como nivel del clérigo.",
+          "componentes": "V, S"
+        },
+        "invisibilidad_ante_muertos_vivientes": {
+          "nombre": "Invisibilidad ante los Muertos Vivientes",
+          "nivel": 1,
+          "alcance": "Contacto",
+          "duracion": "10 turnos",
+          "descripcion": "Hace invisible al objetivo para muertos vivientes. Si ataca, se vuelve visible. Muertos vivientes de 5+ dados de golpe tienen salvación para detectar.",
+          "componentes": "V, S"
+        },
+        "localizar_animales_o_plantas": {
+          "nombre": "Localizar Animales o Plantas",
+          "nivel": 1,
+          "alcance": "100 metros + 50 metros/nivel",
+          "duracion": "1 asalto/nivel",
+          "descripcion": "Revela distancia, dirección y cantidad aproximada de cualquier tipo de planta o animal en el área. Cada asalto se puede concentrar en un tipo diferente.",
+          "componentes": "V, S"
+        },
+        "luz_completa": {
+          "nombre": "Luz (Versión Completa)",
+          "nivel": 1,
+          "alcance": "Radio de 20 metros",
+          "duracion": "6 turnos + 1 turno/nivel",
+          "descripcion": "Ilumina un área de 20 metros como una antorcha. Puede lanzarse sobre objetos. Si se lanza sobre los ojos de una criatura, requiere salvación o queda cegada 12 asaltos. Reversible como Oscuridad. No funciona donde hay Oscuridad activa.",
+          "componentes": "V, S"
+        },
+        "luz_cadaverosa": {
+          "nombre": "Luz Cadaverosa",
+          "nivel": 1,
+          "alcance": "10 metros/nivel",
+          "duracion": "12 minutos/nivel",
+          "descripcion": "Hace que un cuerpo muerto o muerto viviente brille con radiación pálida (blanco, amarillo, verde o púrpura). El brillo es ajustable desde tenue hasta luminoso. Afecta: 2 cuerpos pequeños/nivel, 1 mediano/nivel, 1 grande/2 niveles, o 1 enorme/4 niveles.",
+          "componentes": "V, S"
+        },
+        "ordenar": {
+          "nombre": "Ordenar",
+          "nivel": 1,
+          "alcance": "30 metros",
+          "duracion": "1 asalto",
+          "descripcion": "Da una orden de una palabra que la criatura seguirá por 1 asalto. Criaturas con <6 DG e Int <13 afectadas automáticamente. Criaturas con 6+ DG o Int 13+ tienen salvación. No afecta Int <4 o muertos vivientes. Requiere idioma común.",
+          "componentes": "V, S"
+        },
+        "pasar_sin_dejar_huella": {
+          "nombre": "Pasar sin Dejar Huella",
+          "nivel": 1,
+          "alcance": "Contacto",
+          "duracion": "1 asalto/nivel",
+          "descripcion": "El receptor se mueve sin dejar huellas ni olor. Deja rastro mágico detectable por 5 asaltos después. Imposible seguir el rastro por medios normales.",
+          "componentes": "V, S"
+        },
+        "piedra_magica": {
+          "nombre": "Piedra Mágica",
+          "nivel": 1,
+          "alcance": "0",
+          "duracion": "1 hora",
+          "descripcion": "Encanta 3 piedras pequeñas que pueden lanzarse hasta 50 metros en un asalto. Cada piedra es +1, causa 1d4 daño (doble contra muertos vivientes). Efecto se disipa al lanzar o tras 1 hora.",
+          "componentes": "V, S, M"
+        },
+        "proteccion_contra_mal_completa": {
+          "nombre": "Protección contra el Mal (Versión Completa)",
+          "nivel": 1,
+          "alcance": "Toque",
+          "duracion": "12 turnos",
+          "descripcion": "Otorga -1 CA y +1 salvaciones contra criaturas malignas. Impide contacto corporal con criaturas extraplanares o invocadas. Reversible como Protección contra el Bien.",
+          "componentes": "V, S, M"
+        },
+        "purificar_agua_y_comida_completa": {
+          "nombre": "Purificar Agua y Comida (Versión Completa)",
+          "nivel": 1,
+          "alcance": "30 metros",
+          "duracion": "Permanente",
+          "descripcion": "Purifica comida y agua contaminada, en mal estado o envenenada. Purifica hasta 10 metros cúbicos de agua por nivel. Reversible como Pudrir Comida y Agua (puede estropear agua sagrada).",
+          "componentes": "V, S"
+        },
+        "quitar_miedo_completo": {
+          "nombre": "Quitar el Miedo (Versión Completa)",
+          "nivel": 1,
+          "alcance": "10 metros",
+          "duracion": "2 turnos",
+          "descripcion": "Inspira valor al receptor, otorgando +1 por nivel del lanzador a las tiradas de salvación contra ataques de miedo. Reversible como Causar Miedo (huida 1d4 asaltos, salvación anula). Ambos se contrarrestan. No afecta muertos vivientes.",
+          "componentes": "V, S"
+        },
+        "refugio": {
+          "nombre": "Refugio",
+          "nivel": 1,
+          "alcance": "Contacto",
+          "duracion": "2 asaltos + 1 asalto/nivel",
+          "descripcion": "Protege contra ataques físicos. Los atacantes deben hacer salvación contra conjuros para impactar. No protege contra conjuros. El protegido no puede atacar o el efecto se disipa, pero puede realizar otras acciones incluyendo conjuros no ofensivos.",
+          "componentes": "V, S"
+        },
+        "resistencia_al_frio_completa": {
+          "nombre": "Resistencia al Frío (Versión Completa)",
+          "nivel": 1,
+          "alcance": "10 metros",
+          "duracion": "6 turnos",
+          "descripcion": "Protege contra frío convencional y mágico. Otorga +2 a salvaciones contra conjuros y ataques de aliento de frío. Reduce 1 punto de daño por dado (mínimo 1 por dado).",
+          "componentes": "V, S"
+        },
+        "tronco_siempreardiente": {
+          "nombre": "Tronco Siempreardiente",
+          "nivel": 1,
+          "alcance": "Toque",
+          "duracion": "1 hora/nivel",
+          "descripcion": "Incrementa el tiempo de combustión de objetos de madera. La madera debe estar ya encendida. Produce el doble de calor que en condiciones normales. Dobla la duración de antorchas.",
           "componentes": "V, S"
         }
+      },
+      "nivel2": {
+        "augurio": {
+          "nombre": "Augurio",
+          "nivel": 2,
+          "alcance": "0",
+          "duracion": "Especial",
+          "descripcion": "Permite consultar a la deidad sobre una acción a realizar en la próxima hora. 70% + 2%/nivel de probabilidad de respuesta correcta (tirada secreta del DM). Respuesta breve: 'bueno' o 'malo'. No funciona para combates.",
+          "componentes": "V, S, M"
+        },
+        "ayuda": {
+          "nombre": "Ayuda",
+          "nivel": 2,
+          "alcance": "Contacto",
+          "duracion": "1 asalto + 1 asalto/nivel",
+          "descripcion": "Otorga +1 a tiradas de ataque y daño, y 1d8 puntos de golpe temporales. Los puntos temporales se disipan al finalizar el conjuro si no se han perdido.",
+          "componentes": "V, S"
+        },
+        "bendecir": {
+          "nombre": "Bendecir",
+          "nivel": 2,
+          "alcance": "20 metros",
+          "duracion": "6 turnos",
+          "descripcion": "El receptor y compañeros elegidos en un área de 6x6 metros ganan +1 a tiradas de ataque, daño y moral durante 6 turnos.",
+          "componentes": "V, S"
+        },
+        "calentar_metal": {
+          "nombre": "Calentar Metal",
+          "nivel": 2,
+          "alcance": "40 metros",
+          "duracion": "10 asaltos",
+          "descripcion": "Calienta aleaciones metálicas con hierro. Asalto 1: muy caliente. Asalto 2+: 1d8 daño/asalto si no se suelta. Asalto 3+: materiales inflamables en contacto arden. Reversible como Enfriar Metal.",
+          "componentes": "V, S"
+        },
+        "canto": {
+          "nombre": "Canto",
+          "nivel": 2,
+          "alcance": "0",
+          "duracion": "Especial",
+          "descripcion": "El clérigo canta otorgando +1 ataque y salvaciones a aliados, -1 a enemigos en 10 metros de radio. Dura mientras cante sin realizar otras acciones. Se interrumpe si recibe daño. Con Plegaria (nivel 3) los modificadores aumentan a ±2.",
+          "componentes": "V"
+        },
+        "conocer_alineamiento": {
+          "nombre": "Conocer Alineamiento",
+          "nivel": 2,
+          "alcance": "3 metros",
+          "duracion": "1 asalto",
+          "descripcion": "Permite detectar el alineamiento de una criatura u objeto. Requiere concentración durante un asalto mirando fijamente al objetivo.",
+          "componentes": "V, S"
+        },
+        "crear_llama": {
+          "nombre": "Crear Llama",
+          "nivel": 2,
+          "alcance": "30 metros",
+          "duracion": "7 asaltos",
+          "descripcion": "Crea fuego convencional en 3 metros cuadrados que causa 1d4 daño/asalto y puede prender materiales inflamables. Reversible para extinguir fuegos no mágicos en el área.",
+          "componentes": "V, S"
+        },
+        "demonio_del_polvo": {
+          "nombre": "Demonio del Polvo",
+          "nivel": 2,
+          "alcance": "30 metros",
+          "duracion": "2 asaltos/nivel",
+          "descripcion": "Convoca un elemental de aire de 2 DG, CA 4, movimiento 50. Torbellino de 0.5m base, 1m alto, 2m altura. Extingue antorchas, fuegos pequeños, disipa gases. Al finalizar crea nube de polvo de 5m que impide visión y conjuros por 1d4 asaltos.",
+          "componentes": "V, S, M"
+        },
+        "detectar_hechizo": {
+          "nombre": "Detectar Hechizo",
+          "nivel": 2,
+          "alcance": "30 metros",
+          "duracion": "1 turno",
+          "descripcion": "Detecta si una criatura está bajo efectos de Hechizar Persona o control mental similar. La criatura hace salvación: éxito = no detecta nada, fallo = revela el conjuro específico. Una criatura/asalto. Reversible para hacer indetectable el control mental.",
+          "componentes": "V, S"
+        },
+        "encantar_serpientes": {
+          "nombre": "Encantar Serpientes",
+          "nivel": 2,
+          "alcance": "20 metros",
+          "duracion": "Especial",
+          "descripcion": "Hipnotiza serpientes dentro del alcance, cesando toda actividad con movimiento oscilante. Puede afectar tantos DG de serpientes como nivel del clérigo.",
+          "componentes": "V, S"
+        },
+        "encontrar_trampas": {
+          "nombre": "Encontrar Trampas",
+          "nivel": 2,
+          "alcance": "10 metros",
+          "duracion": "3 turnos",
+          "descripcion": "Detecta trampas mecánicas o mágicas en línea de visión, que brillan con luz azul tenue solo visible para el lanzador. Revela existencia pero no efectos ni desactivación.",
+          "componentes": "V, S"
+        },
+        "guardia_del_dragon_alado": {
+          "nombre": "Guardia del Dragón Alado",
+          "nivel": 2,
+          "alcance": "30 metros",
+          "duracion": "8 horas",
+          "descripcion": "Crea bruma esférica de 5m radio con forma de dragón alado. Criaturas que la atraviesen: salvación o parálisis por nivel del lanzador asaltos. Detectable: 80% luz normal, 25% penumbra, 0% oscuridad. Se disipa tras golpear.",
+          "componentes": "V, S, M"
+        },
+        "hablar_con_animales": {
+          "nombre": "Hablar con los Animales",
+          "nivel": 2,
+          "alcance": "10 metros",
+          "duracion": "6 turnos",
+          "descripcion": "Permite comprender y comunicarse con cualquier animal no mágico que tenga mente. Puede recibir respuestas sencillas y posiblemente solicitar tareas si el animal es amistoso.",
+          "componentes": "V, S"
+        },
+        "hoja_de_llamas": {
+          "nombre": "Hoja de Llamas",
+          "nivel": 2,
+          "alcance": "Personal",
+          "duracion": "3 asaltos + 1 asalto/nivel",
+          "descripcion": "Crea espada de llamas en la mano que causa 1d4+4 daño y prende objetos inflamables. +4 daño adicional vs muertos vivientes y criaturas sensibles al fuego. Solo 1d4 vs criaturas de fuego.",
+          "componentes": "V, S"
+        },
+        "idea_espontanea_de_steinkel": {
+          "nombre": "Idea Espontánea de Steinkel",
+          "nivel": 2,
+          "alcance": "El lanzador",
+          "duracion": "Instantáneo",
+          "descripcion": "Estimula la memoria del clérigo para recordar algo importante olvidado. El DM revela un episodio, indicio o información relevante que fue pasado por alto. La información puede ser comunicada de forma críptica.",
+          "componentes": "V, S"
+        },
+        "piel_de_corteza": {
+          "nombre": "Piel de Corteza",
+          "nivel": 2,
+          "alcance": "Contacto",
+          "duracion": "5 asaltos + 1 asalto/nivel",
+          "descripcion": "La piel se vuelve dura como corteza de roble. Otorga CA base 6, mejorada en 1 por cada 4 niveles del clérigo (CA 5 en nivel 4, CA 4 en nivel 8, etc.). Concede +1 a todas las tiradas de salvación.",
+          "componentes": "V, S"
+        },
+        "resistencia_al_fuego": {
+          "nombre": "Resistencia al Fuego",
+          "nivel": 2,
+          "alcance": "10 metros",
+          "duracion": "6 turnos",
+          "descripcion": "Protege contra calor convencional y mágico. Otorga +3 a salvaciones contra conjuros y ataques de aliento de fuego. Reduce 1 punto de daño por dado (mínimo 1 por dado).",
+          "componentes": "V, S"
+        },
+        "retener_persona": {
+          "nombre": "Retener Persona",
+          "nivel": 2,
+          "alcance": "120 metros",
+          "duracion": "9 turnos",
+          "descripcion": "Paraliza 1d4 humanoides de tamaño mediano o menor. No afecta criaturas grandes+ o muertos vivientes. Salvación contra conjuros para evitar. Si se dirige a un solo objetivo, -2 a su salvación. Los afectados no pueden moverse ni hablar pero son conscientes.",
+          "componentes": "V, S"
+        },
+        "retraerse": {
+          "nombre": "Retraerse",
+          "nivel": 2,
+          "alcance": "0",
+          "duracion": "Especial",
+          "descripcion": "El clérigo se retrae en el tiempo. Cada asalto real equivale a 2 + 1/nivel asaltos para meditar. Puede lanzar conjuros de curación sobre sí mismo y adivinación como Augurio. Termina al expirar o realizar otras acciones. No puede moverse, solo leer y gesticular para conjuros.",
+          "componentes": "V, S"
+        },
+        "siesta": {
+          "nombre": "Siesta",
+          "nivel": 2,
+          "alcance": "1 criatura/nivel",
+          "duracion": "Especial",
+          "descripcion": "Las criaturas duermen 1 hora y se sienten como si hubieran dormido 8 horas. Recuperan puntos de golpe como descanso nocturno completo. Despiertan energizados y animosos. Solo una vez cada 18 horas. Solo afecta sujetos voluntarios.",
+          "componentes": "V, S"
+        },
+        "silencio": {
+          "nombre": "Silencio",
+          "nivel": 2,
+          "alcance": "50 metros",
+          "duracion": "12 turnos",
+          "descripcion": "Crea área de silencio completo de 10m de diámetro. No se puede emitir sonido dentro, pero se captan sonidos externos. Impide conjuros con componente verbal. Puede lanzarse sobre criatura (se mueve con ella). Criatura reacia tiene salvación para abandonar el área.",
+          "componentes": "V, S"
+        },
+        "subyugar": {
+          "nombre": "Subyugar",
+          "nivel": 2,
+          "alcance": "0",
+          "duracion": "Especial",
+          "descripcion": "Subyuga a todas las criaturas que puedan oír y entender al clérigo en un radio de 30 metros. Las criaturas deben realizar salvación contra conjuros o prestarán toda su atención al clérigo. No afecta a criaturas con más de 4 dados de golpe o sabiduría superior a 15. Dura mientras el lanzador hable. Si el lanzador sufre daño, el conjuro expira. Tras dejar de hablar, las criaturas permanecen inmóviles 1d4 turnos. Cualquier criatura atacada deja de estar subyugada.",
+          "componentes": "V, S"
+        },
+        "trampa_de_fuego_de_sitandras": {
+          "nombre": "Trampa de fuego de Sitandras",
+          "nivel": 2,
+          "alcance": "Contacto",
+          "duracion": "Permanente hasta descargada",
+          "descripcion": "Funciona como trampa mágica en objetos que se puedan cerrar (cajas, barriles, cofres). Solo detectable por ladrones o Disipar magia. Al dispararse causa 1d6+1 punto por nivel del lanzador en radio de 5 metros. Las criaturas en el área realizan salvación: éxito = mitad de daño, fallo = daño completo.",
+          "componentes": "V, S"
+        },
+        "tropezar": {
+          "nombre": "Tropezar",
+          "nivel": 2,
+          "alcance": "Contacto",
+          "duracion": "10 minutos/nivel",
+          "descripcion": "Afecta a un objeto de hasta 5 metros de largo (cuerda, enredadera, liana). El objeto se levanta del suelo lo suficiente para hacer tropezar. Las criaturas que intenten cruzar deben realizar salvación contra conjuro: fallo = tropiezan, caen, sufren 1 punto de daño y quedan aturdidas 1d4 asaltos. Solo afecta a criaturas de tamaño normal o menores.",
+          "componentes": "V, S"
+        },
+        "tronco_siempreardiente": {
+            "nombre": "Tronco Siempreardiente",
+            "nivel": 1,
+            "alcance": "Toque",
+            "duracion": "1 hora/nivel",
+            "descripcion": "Incrementa el tiempo de combustión de objetos de madera. La madera debe estar ya encendida. Produce el doble de calor que en condiciones normales. Dobla la duración de antorchas.",
+            "componentes": "V, S"
+          },
+          "averiguar_edad": {
+            "nombre": "Averiguar Edad",
+            "nivel": 1,
+            "alcance": "Una criatura u objeto",
+            "duracion": "Instantánea",
+            "descripcion": "Por medio de este conjuro es posible conocer la edad de un objeto o criatura con precisión.",
+            "componentes": "V, S"
+          },
+          "guarda_espiritual": {
+            "nombre": "Guarda Espiritual",
+            "nivel": 1,
+            "alcance": "Contacto",
+            "duracion": "1 día/nivel",
+            "descripcion": "A partir de que un clérigo lance este hechizo sobre un individuo, podrá saber cuándo se encuentra en peligro, independientemente de la distancia que los separe, incluso si la criatura se encuentra en un plano de existencia diferente al propio del lanzador del sortilegio, aunque no sabrá el lugar exacto donde está el sujeto en cuestión.",
+            "componentes": "V, S"
+          },
+          "incrementar_peso": {
+            "nombre": "Incrementar Peso",
+            "nivel": 1,
+            "alcance": "1 objeto tocado",
+            "duracion": "1 día/nivel",
+            "descripcion": "Este conjuro divino proporciona el poder de incrementar sustancialmente el peso de un objeto de tamaño mediano no superior a un cofre grande de menos de dos metros de largo. Una vez lanzado, el peso del objeto encantado se duplicará (1d4+1 veces el peso de la persona que intente desplazarlo) siendo casi imposible de mover excepto para el propio clérigo, que ignorará el aumento de peso del objeto en cuestión.",
+            "componentes": "V, S"
+          },
+          "lignario_siempreardiente": {
+            "nombre": "Lignario Siempreardiente",
+            "nivel": 1,
+            "alcance": "Contacto",
+            "duracion": "1 hora/nivel",
+            "descripcion": "Cualquier objeto de madera de tamaño adecuado susceptible de arder podrá ser objetivo de este encantamiento. Una vez lanzado el conjuro, el objeto lignario arderá presa de una llama inextinguible mientras persistan los efectos del conjuro, proveyendo de calor y energía en abundancia a los aventureros que se encuentren alrededor sin consumirse. La madera así afectada irradiará magia. También se puede emplear este efecto sobre un antorcha o luminaria similar para obtener los mismos resultados, pero incrementando con ello la luz natural de la misma y su radio de alcance, a discreción del Narrador.",
+            "componentes": "V, S"
+          },
+          "repelente_de_sabandijas": {
+            "nombre": "Repelente de Sabandijas",
+            "nivel": 1,
+            "alcance": "3 metros cúbicos/nivel",
+            "duracion": "1 hora/nivel",
+            "descripcion": "Mediante este sencillo sortilegio, podremos crear una zona libre de sabandijas pequeñas (menos de 1 DG), tales como insectos rastreros o voladores, roedores, arácnidos, pulgas, piojos, serpientes, lagartos pequeños y demás bichos por el estilo. Estas pequeñas criaturas serán repelidas por el aura que genera el conjuro y se verán impelidas a abandonar el lugar o no penetrar en la zona mientras el encantamiento esté activo.",
+            "componentes": "V, S"
+          },
+          "salto_de_fe": {
+            "nombre": "Salto de Fe",
+            "nivel": 1,
+            "alcance": "Una criatura",
+            "duracion": "1 asalto",
+            "descripcion": "Salto de Fe es uno de los hechizos divinos más utilizados, ya que permite al lanzador apelar a su divinidad predilecta para reclamar su ayuda de cara a una tarea ardua que quiera acometer. De esta manera podrá contar con el auxilio divino siempre que haya sido fiel a sus enseñanzas y credo. Esta ayuda le proporcionará un bonificador +3 a una tirada en particular, o bien un +15% de incremento en una tirada porcentual.",
+            "componentes": "V, S"
+          }
       }
     },
     "mago": {
       "nivel1": {
-        "detectar_magia": {
-          "nombre": "Detectar Magia",
-          "nivel": 1,
-          "alcance": "60 pies",
-          "duracion": "2 turnos",
-          "descripcion": "Detecta objetos mágicos en un radio de 60 pies",
-          "componentes": "V, S"
-        },
-        "disco_flotante": {
-          "nombre": "Disco Flotante",
-          "nivel": 1,
-          "alcance": "20 pies",
-          "duracion": "6 turnos",
-          "descripcion": "Crea un disco invisible que puede cargar 500 monedas de peso",
-          "componentes": "V, S, M"
-        },
-        "leer_idiomas": {
-          "nombre": "Leer Idiomas",
-          "nivel": 1,
-          "alcance": "Personal",
-          "duracion": "2 turnos",
-          "descripcion": "Permite leer cualquier idioma escrito",
-          "componentes": "V, S, M"
-        },
-        "leer_magia": {
-          "nombre": "Leer Magia",
-          "nivel": 1,
-          "alcance": "Personal",
-          "duracion": "2 turnos",
-          "descripcion": "Permite leer escritos mágicos y pergaminos",
-          "componentes": "V, S, M"
-        },
-        "luz_magica": {
-          "nombre": "Luz Mágica",
-          "nivel": 1,
-          "alcance": "120 pies",
-          "duracion": "12 turnos",
-          "descripcion": "Crea luz brillante o ceguera temporal",
-          "componentes": "V, M"
-        },
-        "proyectil_magico": {
-          "nombre": "Proyectil Mágico",
-          "nivel": 1,
-          "alcance": "150 pies",
-          "duracion": "Instantáneo",
-          "descripcion": "Dispara 1d4+1 proyectiles que causan 1d4+1 de daño cada uno",
-          "componentes": "V, S"
-        },
         "proteccion_contra_mal_mago": {
           "nombre": "Protección contra el Mal",
           "nivel": 1,
@@ -131,24 +461,32 @@
           "nivel": 1,
           "alcance": "Personal",
           "duracion": "2 turnos",
-          "descripcion": "Mejora la CA en 2 puntos y bloquea proyectiles mágicos",
+          "descripcion": "Crea barrera invisible alrededor del cuerpo del receptor (pocos centímetros de distancia). Se mueve con el aventurero imitando sus movimientos. Proporciona bonificador de armadura -2 contra armas de proyectil y -4 contra otros ataques. Si un proyectil mágico golpea el escudo, el receptor tiene derecho a tirada de salvación contra conjuros: éxito = sin daño.",
           "componentes": "V, S"
         },
-        "dormir": {
-          "nombre": "Dormir",
+        "grasa": {
+          "nombre": "Grasa",
           "nivel": 1,
-          "alcance": "240 pies",
-          "duracion": "4d4 turnos",
-          "descripcion": "Hace dormir a criaturas con 4d4 dados de golpe",
-          "componentes": "V, S, M"
+          "alcance": "10 metros",
+          "duracion": "3 asaltos + 1 asalto/nivel",
+          "descripcion": "Cubre superficie elegida con capa grasienta resbaladiza (radio máximo 5 metros). Quien intente atravesar debe realizar salvación contra conjuros o resbala y cae automáticamente. Cada asalto siguiente tira salvación para salir hasta que pase o expire el conjuro. Uso alternativo: engrasar objeto para dificultar su uso (misma mecánica de salvación).",
+          "componentes": "V, S"
         },
-        "ventriloquismo": {
-          "nombre": "Ventriloquismo",
+        "hechizar_persona": {
+          "nombre": "Hechizar persona",
           "nivel": 1,
-          "alcance": "60 pies",
-          "duracion": "2 turnos",
-          "descripcion": "Hace que la voz parezca venir de otro lugar",
-          "componentes": "V, M"
+          "alcance": "40 metros",
+          "duracion": "Leer abajo",
+          "descripcion": "Solo afecta humanoides inteligentes/cuasi-inteligentes. Víctima tira salvación contra conjuros: éxito = sin efecto, fallo = hechizada y cree que el lanzador es su mejor amigo, lo defenderá. No afecta animales, criaturas mágicas, muertos vivientes o humanoides >ogro. Lanzador debe hablar lengua de la víctima. No obedece órdenes suicidas. Duración: meses/años con tiradas de salvación según INT: 3-8 (mensual), 9-12 (semanal), 13-18+ (diaria). Se rompe si lanzador ataca deliberadamente a la víctima.",
+          "componentes": "V, S"
+        },
+        "identificar": {
+          "nombre": "Identificar",
+          "nivel": 1,
+          "alcance": "0",
+          "duracion": "1 turno/nivel",
+          "descripcion": "Identifica características de objetos mágicos. Requiere 2 horas ininterrumpidas estudiando auras mágicas antes del conjuro. Puede identificar 1 objeto/nivel del lanzador. Probabilidad: 10%/nivel (máximo 90%) de identificar correctamente, 91-95% no identifica nada, 96-100% identificación incorrecta. Si objeto tiene múltiples características, solo revela una. Para relanzar sobre mismo objeto debe subir nivel. Lanzador pierde 1 CON por objeto examinado, recupera 1 CON/hora de descanso.",
+          "componentes": "V, S, M"
         },
         "armadura": {
           "nombre": "Armadura",
@@ -158,105 +496,413 @@
           "descripcion": "Otorga CA 6 [13] al lanzador",
           "componentes": "V, S, M"
         },
-        "encantar_persona": {
-          "nombre": "Encantar Persona",
+        "agrandar": {
+          "nombre": "Agrandar",
           "nivel": 1,
-          "alcance": "120 pies",
-          "duracion": "Especial",
-          "descripcion": "Encanta a una persona haciéndola amigable",
+          "alcance": "5 metros/nivel",
+          "duracion": "5 asaltos/nivel",
+          "descripcion": "Incrementa el tamaño y peso del objetivo hasta un 10% por nivel del lanzador. El objetivo debe fallar salvación contra conjuros. Crece proporcionalmente en altura, anchura y peso, incluyendo equipo. Las características físicas se ven afectadas pero no las mágicas, CA ni tiradas de ataque. Es reversible (puede reducir) y puede negar el efecto contrario. Límite de reducción: hasta 10% del tamaño original.",
+          "componentes": "V, S"
+        },
+        "alarma": {
+          "nombre": "Alarma",
+          "nivel": 1,
+          "alcance": "10 metros",
+          "duracion": "4 horas + 1/2 hora/nivel",
+          "descripcion": "Protege un área seleccionada. Cualquier criatura que entre provoca un repiqueteo audible en radio de 20 metros (reducido 3m por puerta, 6m por pared) durante 1 asalto. Afecta a criaturas incorpóreas, invisibles y gaseosas, pero no teletransportadas. Versión alternativa: alarma mental solo para el lanzador.",
+          "componentes": "V, S"
+        },
+        "aura_magica": {
+          "nombre": "Aura Mágica",
+          "nivel": 1,
+          "alcance": "Contacto",
+          "duracion": "1 día/nivel",
+          "descripcion": "Enmascara el aura de un objeto (máximo 5 kg/nivel). Puede hacer parecer mágico lo normal y viceversa, o alterar emanaciones mágicas. Identificar tiene 25% de detectar la alteración y requiere Disipar magia para identificar correctamente. No funciona en artefactos mágicos.",
+          "componentes": "V, S"
+        },
+        "bola_de_nieve_de_fistan": {
+          "nombre": "Bola de nieve de Fistan",
+          "nivel": 1,
+          "alcance": "20 metros/nivel",
+          "duracion": "Instantáneo",
+          "descripcion": "Crea una bola de nieve mágica que golpea automáticamente como Proyectil mágico. Causa 1d4 puntos de daño (1d6 a criaturas basadas en fuego como elementales de fuego). Puede dirigirse contra objetos además de criaturas. Considerado una forma menor de Proyectil mágico con ventaja en alcance a niveles superiores.",
+          "componentes": "V, S"
+        },
+        "borrar": {
+          "nombre": "Borrar",
+          "nivel": 1,
+          "alcance": "30 metros",
+          "duracion": "Permanente",
+          "descripcion": "Borra escritura normal y mágica (libros, pergaminos, runas). La escritura no mágica se borra siempre. La escritura mágica tiene 30% + 5% por nivel del lanzador de ser borrada (máximo 90%).",
+          "componentes": "V, S"
+        },
+        "caida_de_pluma": {
+          "nombre": "Caída de pluma",
+          "nivel": 1,
+          "alcance": "cubo de 3 metros",
+          "duracion": "1 asalto/nivel",
+          "descripcion": "Afecta criaturas y objetos en caída libre dentro de un cubo de 3m (máximo 100 kg + 100 kg/nivel). Adquieren masa de pluma, reduciendo velocidad de caída a 0.5 m/s y evitando daño por caída. Al terminar la duración, vuelven a caída normal.",
+          "componentes": "V, S"
+        },
+        "cambiar_el_yo": {
+          "nombre": "Cambiar el yo",
+          "nivel": 1,
+          "alcance": "0",
+          "duracion": "Nivel del lanzador +6 turnos",
+          "descripcion": "El lanzador cambia su aspecto, incluyendo ropa y equipo. Puede transformarse en cualquier criatura bípeda humanoide (variación máxima de tamaño: 0.5m). Mantiene sus características, no gana propiedades especiales. Si actúa extraño, los observadores tienen salvación contra conjuros (o tirada de INT) para detectar el engaño.",
+          "componentes": "V, S"
+        },
+        "cerrar_portal": {
+          "nombre": "Cerrar portal",
+          "nivel": 1,
+          "alcance": "3 metros",
+          "duracion": "2d6 turnos",
+          "descripcion": "Bloquea mágicamente una puerta o similar como si tuviera cerradura. Cancelado por Apertura o Disipar Magia.",
+          "componentes": "V, S"
+        },
+        "punteria_arcana": {
+          "nombre": "Puntería Arcana",
+          "nivel": 1,
+          "alcance": "3 metros",
+          "duracion": "1 asalto/nivel",
+          "descripcion": "Gracias a este sortilegio, el mago es capaz de aumentar su propia puntería o la de una criatura cercana dentro del alcance del conjuro de cara al empleo de dicha habilidad en el uso de armas de proyectil, como arcos, ballestas, hondas o, simplemente, lanzar un objeto a distancia, ya sea una piedra o un jarrón. De esta manera, la criatura afectada recibirá una bonificación a su tirada de ataque de +2. Este conjuro es reversible, también puede utilizarse para imponer un penalizador de -2 a la víctima del sortilegio en sus tiradas a distancia.",
+          "componentes": "V, S"
+        },
+        "puno_petreo_de_karkemish": {
+          "nombre": "Puño Pétreo de Karkemish",
+          "nivel": 1,
+          "alcance": "Toque",
+          "duracion": "1 asalto/nivel",
+          "descripcion": "Al lanzar este sortilegio, el conjurador puede transformar en piedra uno de sus puños, o bien el de otra criatura de su elección. La mano, aun convertida en piedra, mantendrá su flexibilidad, pudiendo asir o manipular objetos, aplastar o desmenuzar como si la Fuerza del hechicero fuera de 18, aplicando los consabidos modificadores. Si se usara la mano para golpear a puñetazos, provocará un daño de 1d8+1.",
           "componentes": "V, S"
         }
       },
       "nivel2": {
-        "detectar_invisibilidad": {
-          "nombre": "Detectar Invisibilidad",
-          "nivel": 2,
-          "alcance": "10 pies por nivel",
-          "duracion": "6 turnos",
-          "descripcion": "Permite ver criaturas y objetos invisibles",
-          "componentes": "V, S, M"
-        },
-        "levitar": {
-          "nombre": "Levitar",
-          "nivel": 2,
-          "alcance": "20 pies por nivel",
-          "duracion": "1 turno por nivel",
-          "descripcion": "Permite flotar verticalmente",
-          "componentes": "V, S, M"
-        },
-        "localizar_objeto": {
-          "nombre": "Localizar Objeto",
-          "nivel": 2,
-          "alcance": "60 pies + 10 pies por nivel",
+        "luz_magica": {
+          "nombre": "Detectar Magia",
+          "nivel": 1,
+          "alcance": "Radio de 20 metros",
           "duracion": "2 turnos",
-          "descripcion": "Localiza un objeto conocido",
-          "componentes": "V, S, M"
-        },
-        "imagen_espejo": {
-          "nombre": "Imagen Espejo",
-          "nivel": 2,
-          "alcance": "Personal",
-          "duracion": "12 turnos",
-          "descripcion": "Crea 1d4 imágenes duplicadas del lanzador",
+          "descripcion": "El conjurador se percata inmediatamente de todos los objetos y criaturas mágicas en un área de 20 metros. Los objetos mágicos brillan con aura tenue solo visible para el lanzador. El brillo no traspasa barreras físicas (muros, puertas, baúles). Un objeto mágico en un cajón secreto brillará si está en alcance, pero no será detectado hasta abrir el cajón.",
           "componentes": "V, S"
         },
-        "fuerza_fantasmal": {
-          "nombre": "Fuerza Fantasmal",
-          "nivel": 2,
-          "alcance": "240 pies",
-          "duracion": "Concentración",
-          "descripcion": "Crea una ilusión visual",
+        "detectar_muertos_vivientes": {
+          "nombre": "Detectar muertos vivientes",
+          "nivel": 1,
+          "alcance": "0",
+          "duracion": "3 turnos",
+          "descripcion": "Detecta criaturas muertas vivientes en un sendero de 3m de ancho y 20m de largo (+3m/nivel) en la dirección que mire el lanzador. Escrutar una dirección requiere 1 asalto y permanecer inmóvil. Indica dirección pero no ubicación específica. Detecta a través de obstáculos pero se bloquea con 30cm de piedra, 1m de madera/tierra o revestimiento metálico delgado. No indica tipo de muerto viviente.",
+          "componentes": "V, S"
+        },
+        "disco_flotante_de_nebula": {
+          "nombre": "Disco flotante de Nébula",
+          "nivel": 1,
+          "alcance": "0",
+          "duracion": "6 turnos",
+          "descripcion": "Crea disco mágico invisible con dimensiones de escudo mediano. Carga máxima: 1000 kg. Flota a altura de cintura del lanzador, mantiene posición y sigue al conjurador (distancia máxima 2m). No puede crearse en espacio ocupado. No sirve como arma por su entidad nebulosa. Al expirar, el disco desaparece y deja caer todo lo que sostuviera.",
           "componentes": "V, S, M"
         },
-        "invisibilidad": {
-          "nombre": "Invisibilidad",
-          "nivel": 2,
-          "alcance": "240 pies",
-          "duracion": "Permanente hasta que se rompa",
-          "descripcion": "Hace invisible a una criatura",
+        "dormir": {
+          "nombre": "Dormir",
+          "nivel": 1,
+          "alcance": "80 metros",
+          "duracion": "4d4 turnos",
+          "descripcion": "Provoca sopor en todas las criaturas del alcance. Solo afecta criaturas pequeñas o humanoides ≤4 DG, máximo 2d8 DG de criaturas. Las de menos DG caen primero. Criaturas <1 DG cuentan como 1 DG. Las criaturas quedan indefensas pero despiertan con herida no mortal. Muertos vivientes y ciertas criaturas son inmunes.",
           "componentes": "V, S, M"
         },
-        "golpe_certero": {
-          "nombre": "Golpe Certero",
-          "nivel": 2,
-          "alcance": "60 pies",
-          "duracion": "1 turno + 1 por nivel",
-          "descripcion": "Otorga +1 a tiradas de ataque",
+        "encontrar_familiar": {
+          "nombre": "Encontrar familiar",
+          "nivel": 1,
+          "alcance": "1,5 km./nivel",
+          "duracion": "Especial",
+          "descripcion": "Llama un familiar animal pequeño que se vincula al lanzador. El familiar gana +3 INT, 4 PG + 1 PG/nivel del amo, CA 6, y tiradas de salvación del amo (éxito = sin daño, fallo = mitad). Longevidad unida al amo. Si está >1,5km pierde 1 PG/día, muere a 0 PG. Si muere: amo tira salvación vs muerte (fallo = muerte, éxito = -1 CON permanente, no puede llamar otro por 1 año). Órdenes básicas, no acciones complejas. Tirada 1d8: 1-Gato (visión nocturna 10m), 2-Cuervo (+1 INT), 3-Rata (+1 salvaciones), 4-Búho (+1 SAB), 5-Sapo (+1 PG), 6-7-Comadreja (+1 sorpresa/iniciativa), 8-Nada.",
           "componentes": "V, S, M"
         },
-        "cerrar": {
-          "nombre": "Cerrar",
-          "nivel": 2,
-          "alcance": "10 pies",
-          "duracion": "2d6 turnos",
-          "descripcion": "Cierra mágicamente una puerta, cofre, etc.",
+        "escudo": {
+          "nombre": "Escudo",
+          "nivel": 1,
+          "alcance": "Personal",
+          "duracion": "2 turnos",
+          "descripcion": "Crea barrera invisible alrededor del cuerpo del receptor (pocos centímetros de distancia). Se mueve con el aventurero imitando sus movimientos. Proporciona bonificador de armadura -2 contra armas de proyectil y -4 contra otros ataques. Si un proyectil mágico golpea el escudo, el receptor tiene derecho a tirada de salvación contra conjuros: éxito = sin daño",
+          "componentes": "V, S"
+        },
+        "grasa": {
+          "nombre": "Grasa",
+          "nivel": 1,
+          "alcance": "10 metros",
+          "duracion": "3 asaltos + 1 asalto/nivel",
+          "descripcion": "Cubre superficie elegida con capa grasienta resbaladiza (radio máximo 5 metros). Quien intente atravesar debe realizar salvación contra conjuros o resbala y cae automáticamente. Cada asalto siguiente tira salvación para salir hasta que pase o expire el conjuro. Uso alternativo: engrasar objeto para dificultar su uso (misma mecánica de salvación).",
+          "componentes": "V, S"
+        },
+        "hechizar_persona": {
+          "nombre": "Hechizar persona",
+          "nivel": 1,
+          "alcance": "40 metros",
+          "duracion": "Leer abajo",
+          "descripcion": "Solo afecta humanoides inteligentes/cuasi-inteligentes. Víctima tira salvación contra conjuros: éxito = sin efecto, fallo = hechizada y cree que el lanzador es su mejor amigo, lo defenderá. No afecta animales, criaturas mágicas, muertos vivientes o humanoides >ogro. Lanzador debe hablar lengua de la víctima. No obedece órdenes suicidas. Duración: meses/años con tiradas de salvación según INT: 3-8 (mensual), 9-12 (semanal), 13-18+ (diaria). Se rompe si lanzador ataca deliberadamente a la víctima.",
+          "componentes": "V, S"
+        },
+        "identificar": {
+          "nombre": "Identificar",
+          "nivel": 1,
+          "alcance": "0",
+          "duracion": "1 turno/nivel",
+          "descripcion": "Identifica características de objetos mágicos. Requiere 2 horas ininterrumpidas estudiando auras mágicas antes del conjuro. Puede identificar 1 objeto/nivel del lanzador. Probabilidad: 10%/nivel (máximo 90%) de identificar correctamente, 91-95% no identifica nada, 96-100% identificación incorrecta. Si objeto tiene múltiples características, solo revela una. Para relanzar sobre mismo objeto debe subir nivel. Lanzador pierde 1 CON por objeto examinado, recupera 1 CON/hora de descanso.",
           "componentes": "V, S, M"
         },
-        "telarana": {
-          "nombre": "Telaraña",
-          "nivel": 2,
-          "alcance": "10 pies",
-          "duracion": "8 turnos",
-          "descripcion": "Crea telarañas pegajosas que atrapan criaturas",
+        "armadura": {
+          "nombre": "Armadura",
+          "nivel": 1,
+          "alcance": "Personal",
+          "duracion": "8 horas",
+          "descripcion": "Otorga CA 6 [13] al lanzador",
           "componentes": "V, S, M"
         },
-        "detectar_pensamientos": {
-          "nombre": "Detectar Pensamientos",
-          "nivel": 2,
-          "alcance": "60 pies",
-          "duracion": "12 turnos",
-          "descripcion": "Lee los pensamientos superficiales de una criatura",
-          "componentes": "V, S, M"
+        "agrandar": {
+          "nombre": "Agrandar",
+          "nivel": 1,
+          "alcance": "5 metros/nivel",
+          "duracion": "5 asaltos/nivel",
+          "descripcion": "Incrementa el tamaño y peso del objetivo hasta un 10% por nivel del lanzador. El objetivo debe fallar salvación contra conjuros. Crece proporcionalmente en altura, anchura y peso, incluyendo equipo. Las características físicas se ven afectadas pero no las mágicas, CA ni tiradas de ataque. Es reversible (puede reducir) y puede negar el efecto contrario. Límite de reducción: hasta 10% del tamaño original.",
+          "componentes": "V, S"
         },
-        "continual_light": {
-          "nombre": "Luz Continua",
-          "nivel": 2,
-          "alcance": "120 pies",
+        "alarma": {
+          "nombre": "Alarma",
+          "nivel": 1,
+          "alcance": "10 metros",
+          "duracion": "4 horas + 1/2 hora/nivel",
+          "descripcion": "Protege un área seleccionada. Cualquier criatura que entre provoca un repiqueteo audible en radio de 20 metros (reducido 3m por puerta, 6m por pared) durante 1 asalto. Afecta a criaturas incorpóreas, invisibles y gaseosas, pero no teletransportadas. Versión alternativa: alarma mental solo para el lanzador.",
+          "componentes": "V, S"
+        },
+        "aura_magica": {
+          "nombre": "Aura Mágica",
+          "nivel": 1,
+          "alcance": "Contacto",
+          "duracion": "1 día/nivel",
+          "descripcion": "Enmascara el aura de un objeto (máximo 5 kg/nivel). Puede hacer parecer mágico lo normal y viceversa, o alterar emanaciones mágicas. Identificar tiene 25% de detectar la alteración y requiere Disipar magia para identificar correctamente. No funciona en artefactos mágicos.",
+          "componentes": "V, S"
+        },
+        "bola_de_nieve_de_fistan": {
+          "nombre": "Bola de nieve de Fistan",
+          "nivel": 1,
+          "alcance": "20 metros/nivel",
+          "duracion": "Instantáneo",
+          "descripcion": "Crea una bola de nieve mágica que golpea automáticamente como Proyectil mágico. Causa 1d4 puntos de daño (1d6 a criaturas basadas en fuego como elementales de fuego). Puede dirigirse contra objetos además de criaturas. Considerado una forma menor de Proyectil mágico con ventaja en alcance a niveles superiores.",
+          "componentes": "V, S"
+        },
+        "borrar": {
+          "nombre": "Borrar",
+          "nivel": 1,
+          "alcance": "30 metros",
           "duracion": "Permanente",
-          "descripcion": "Crea luz permanente o ceguera permanente",
+          "descripcion": "Borra escritura normal y mágica (libros, pergaminos, runas). La escritura no mágica se borra siempre. La escritura mágica tiene 30% + 5% por nivel del lanzador de ser borrada (máximo 90%).",
+          "componentes": "V, S"
+        },
+        "caida_de_pluma": {
+          "nombre": "Caída de pluma",
+          "nivel": 1,
+          "alcance": "cubo de 3 metros",
+          "duracion": "1 asalto/nivel",
+          "descripcion": "Afecta criaturas y objetos en caída libre dentro de un cubo de 3m (máximo 100 kg + 100 kg/nivel). Adquieren masa de pluma, reduciendo velocidad de caída a 0.5 m/s y evitando daño por caída. Al terminar la duración, vuelven a caída normal.",
+          "componentes": "V, S"
+        },
+        "cambiar_el_yo": {
+          "nombre": "Cambiar el yo",
+          "nivel": 1,
+          "alcance": "0",
+          "duracion": "Nivel del lanzador +6 turnos",
+          "descripcion": "El lanzador cambia su aspecto, incluyendo ropa y equipo. Puede transformarse en cualquier criatura bípeda humanoide (variación máxima de tamaño: 0.5m). Mantiene sus características, no gana propiedades especiales. Si actúa extraño, los observadores tienen salvación contra conjuros (o tirada de INT) para detectar el engaño.",
+          "componentes": "V, S"
+        },
+        "cerrar_portal": {
+          "nombre": "Cerrar portal",
+          "nivel": 1,
+          "alcance": "3 metros",
+          "duracion": "2d6 turnos",
+          "descripcion": "Bloquea mágicamente una puerta o similar como si tuviera cerradura. Cancelado por Apertura o Disipar Magia.",
           "componentes": "V, S"
         }
       }
-    }
+    },
+    "druida": {
+        "nivel1": {
+          "afectar_fuegos_normales": {
+            "nombre": "Afectar Fuegos Normales",
+            "nivel": 1,
+            "alcance": "5 metros/nivel",
+            "duracion": "2 asaltos/nivel",
+            "descripcion": "El druida puede cambiar el tamaño de cualquier fuego no mágico en un radio de tres metros desde el punto que designe. Puede hacer que se conviertan en brasas o incrementar la potencia del fuego hasta que llegue a desprender tanta luz como si se estuviera a pleno sol. Aunque en ningún caso puede aumentar o disminuir el daño que produzca el fuego, únicamente su intensidad.",
+            "componentes": "V, S"
+          },
+          "amistad_animal": {
+            "nombre": "Amistad Animal",
+            "nivel": 1,
+            "alcance": "10 metros",
+            "duracion": "Permanente",
+            "descripcion": "El druida consigue la amistad del animal designado dentro del alcance del conjuro, el único requisito es que dicho animal tenga una puntuación de inteligencia entre 1-4 y que las intenciones del druida sean buenas. El animal tiene derecho a una tirada de salvación contra conjuros. El druida puede enseñar un máximo de tres trucos al animal. El druida puede solicitar la amistad de un máximo de dos DG de animales por nivel.",
+            "componentes": "V, S"
+          },
+          "convocar_animales_i": {
+            "nombre": "Convocar Animales I",
+            "nivel": 1,
+            "alcance": "radio de 1,5 km",
+            "duracion": "Especial",
+            "descripcion": "El druida puede llamar mediante este conjuro hasta un máximo de ocho animales de hasta cuatro dados de golpe de los más comunes presentes en el entorno, dentro de una distancia máxima de 1,5 kilómetros. Una vez que hacen acto de presencia, los animales se quedan con el druida hasta acabar la misión específica que les encomiende. Sólo pueden ser llamados animales normales, no se pueden convocar ni monstruos ni animales mágicos.",
+            "componentes": "V, S"
+          },
+          "crear_agua": {
+            "nombre": "Crear Agua",
+            "nivel": 1,
+            "alcance": "30 metros",
+            "duracion": "Permanente",
+            "descripcion": "Este conjuro funciona exactamente igual que el hechizo homónimo de clérigo de primer nivel.",
+            "componentes": "V, S"
+          },
+          "curar_heridas_leves": {
+            "nombre": "Curar Heridas Leves",
+            "nivel": 1,
+            "alcance": "Toque",
+            "duracion": "Permanente",
+            "descripcion": "Este útil conjuro permitirá restañar una herida leve o eliminar la parálisis. Si usamos el conjuro para curar una herida, la misma sanará 1d6+1 puntos de golpe. Por el contrario, no curará punto alguno si el conjuro es empleado para eliminar los efectos de la parálisis. Este sortilegio nunca subirá los puntos de golpe por encima del tope actual del aventurero.",
+            "componentes": "V, S"
+          },
+          "detectar_trampas_y_pozos": {
+            "nombre": "Detectar Trampas y Pozos",
+            "nivel": 1,
+            "alcance": "0",
+            "duracion": "4 asaltos/nivel",
+            "descripcion": "Mediante este conjuro, el lanzador es capaz de detectar trampas, pozos, caídas de pesos y riesgos similares a lo largo de un sendero de tres metros de ancho por doce de largo. Tales riesgos incluyen simples pozos, pesos que caen, trampas con criaturas mortales y trampas primitivas construidas con materiales naturales. El conjuro es direccional: el lanzador tiene que mirar en la dirección deseada para determinar si existe un pozo o ha sido tendida una trampa en esa dirección.",
+            "componentes": "V, S"
+          },
+          "detectar_veneno": {
+            "nombre": "Detectar Veneno",
+            "nivel": 1,
+            "alcance": "10 metros",
+            "duracion": "10 minutos + 1 minuto/nivel",
+            "descripcion": "Una vez lanzado el conjuro, el druida puede detectar si algún objeto o ser vivo es venenoso o ha sido envenenado. Para ello el objeto ha de encontrarse dentro del alcance del conjuro. El druida es capaz detectar automáticamente la existencia del veneno, además existe un 5% de probabilidades por nivel de lanzador de que identifique el tipo de veneno.",
+            "componentes": "V, S"
+          },
+          "enredar": {
+            "nombre": "Enredar",
+            "nivel": 1,
+            "alcance": "80 metros",
+            "duracion": "1 turno",
+            "descripcion": "Este conjuro funciona exactamente igual que el hechizo homónimo de clérigo de primer nivel.",
+            "componentes": "V, S"
+          },
+          "escalada_de_arana": {
+            "nombre": "Escalada de Araña",
+            "nivel": 1,
+            "alcance": "Toque",
+            "duracion": "5 asaltos + 1 asalto/nivel",
+            "descripcion": "El conjuro permite a la criatura tocada trepar como si fuera una araña, pudiendo desplazarse por paredes verticales, techos, etc. La velocidad de movimiento será la mitad de su índice de movimiento normal.",
+            "componentes": "V, S"
+          },
+          "garrote": {
+            "nombre": "Garrote",
+            "nivel": 1,
+            "alcance": "Toque",
+            "duracion": "10 minutos + 1 minuto/nivel",
+            "descripcion": "Por medio de este conjuro, el druida hace que un bastón no mágico obtenga las propiedades de un bastón mágico, otorgando un +1 a las tiradas de ataque y daño. El arma sólo funciona como tal si es usada por el druida.",
+            "componentes": "V, S"
+          },
+          "hechizar_animales": {
+            "nombre": "Hechizar Animales",
+            "nivel": 1,
+            "alcance": "Toque",
+            "duracion": "10 minutos + 1 minuto/nivel",
+            "descripcion": "Este conjuro sólo afecta a animales. La víctima tiene derecho a realizar una tirada de salvación contra conjuros. Si falla, quedará hechizada y creerá que el druida es el mejor de sus amigos, tratando de defenderla ante cualquier amenaza. El druida se podrá comunicar con el animal como si hablaran el mismo idioma. No se puede hechizar a más de un animal por nivel de experiencia del druida. El encantamiento puede durar semanas, aunque la víctima tendrá derecho a una tirada de salvación contra conjuros semanal.",
+            "componentes": "V, S"
+          },
+          "invisibilidad_ante_animales": {
+            "nombre": "Invisibilidad ante los Animales",
+            "nivel": 1,
+            "alcance": "Toque",
+            "duracion": "10 minutos + 1 minuto/nivel",
+            "descripcion": "Una vez lanzado este encantamiento, la criatura tocada se vuelve invisible para los animales normales. Cualquier monstruo o animal de naturaleza mágica sí podrá ver al receptor del conjuro. La invisibilidad incluye el olfato y el oído, por ello la criatura no podrá ser detectada por animales a menos que interaccione con ellos. El druida puede hacer invisible a una criatura por nivel del lanzador.",
+            "componentes": "V, S"
+          },
+          "localizar_animales_o_plantas": {
+            "nombre": "Localizar Animales o Plantas",
+            "nivel": 1,
+            "alcance": "100 metros + 50 metros/nivel",
+            "duracion": "1 asalto/nivel",
+            "descripcion": "El druida puede localizar animales o plantas específicas dentro del alcance del conjuro.",
+            "componentes": "V, S"
+          },
+          "luz": {
+            "nombre": "Luz",
+            "nivel": 1,
+            "alcance": "Radio de 20 metros",
+            "duracion": "6 turnos + 1 turno por nivel del lanzador",
+            "descripcion": "Gracias a este conjuro, el druida podrá iluminar un área de veinte metros a su alrededor, como si estuviera equipado con una antorcha normal. El hechizo puede lanzarse sobre un objeto para que el mismo despida luz. El sortilegio también puede utilizarse para cegar a una criatura, lanzándolo sobre sus ojos. La víctima deberá tener éxito en una tirada de salvación contra conjuros o quedará cegada durante doce asaltos. El reverso de este conjuro es Oscuridad.",
+            "componentes": "V, S"
+          },
+          "montura": {
+            "nombre": "Montura",
+            "nivel": 1,
+            "alcance": "10 metros",
+            "duracion": "2 horas + 1 hora/nivel",
+            "descripcion": "Cuando el druida lanza este conjuro invoca a una montura para que le sirva mientras se mantenga activo el hechizo. La montura invocada dependerá del nivel del lanzador: Nivel 1-3 Mula, Nivel 4-7 Caballo, Nivel 8-12 Camello, Nivel 13-15 Elefante, Nivel 16 Grifo. La montura aparece equipada con una rudimentaria silla de montar.",
+            "componentes": "V, S"
+          },
+          "muro_de_niebla": {
+            "nombre": "Muro de Niebla",
+            "nivel": 1,
+            "alcance": "50 metros",
+            "duracion": "1 hora + 10 minutos/nivel",
+            "descripcion": "Mediante este conjuro, el druida crea un muro de niebla, cubriendo un área máxima de un cubo de seis metros de lado más tres metros por nivel. La niebla es muy espesa y oscurece toda la zona mitigando notablemente la luz disponible en el área. El muro puede ser disipado por un viento fuerte de al menos 30 km/h.",
+            "componentes": "V, S"
+          },
+          "resistencia_al_frio": {
+            "nombre": "Resistencia al Frío",
+            "nivel": 1,
+            "alcance": "Contacto",
+            "duracion": "1 hora/nivel",
+            "descripcion": "El receptor de este conjuro queda protegido de los efectos del frío o del calor, a elección del lanzador. El conjurador podrá soportar temperaturas de -35º C (frío) o +55º C (calor). Más allá de estas temperaturas, el portador sufre la mitad del daño normal que causarían sin dicha protección. Este conjuro no protege del daño causado por frío o calor de procedencia mágica o de armas de aliento, como la gélida bocanada de una sierpe blanca de los hielos.",
+            "componentes": "V, S"
+          },
+          "zancada_prodigiosa": {
+            "nombre": "Zancada Prodigiosa",
+            "nivel": 1,
+            "alcance": "Personal",
+            "duracion": "1 hora/nivel",
+            "descripcion": "Este conjuro permite al druida aumentar su índice de movimiento en 10. A partir del nivel 5, el índice de movimiento aumentaría en 20.",
+            "componentes": "V, S"
+          },
+          "proteccion_contra_criaturas_acuaticas": {
+            "nombre": "Protección contra Criaturas Acuáticas",
+            "nivel": 1,
+            "alcance": "Toque",
+            "duracion": "1 asalto/nivel del lanzador",
+            "descripcion": "Toda criatura, alimaña, depredador y, en definitiva, cualquier animal acuático, evitará atacar al druida cuando lance este conjuro. Este hechizo no es efectivo contra aberraciones, monstruosidades, criaturas mágicas o elementales; funciona solo con animales normales y corrientes.",
+            "componentes": "V, S"
+          },
+          "proteccion_contra_criaturas_aereas": {
+            "nombre": "Protección contra Criaturas Aéreas",
+            "nivel": 1,
+            "alcance": "Toque",
+            "duracion": "1 asalto/nivel del lanzador",
+            "descripcion": "Toda criatura, alimaña, depredador y, en definitiva, cualquier animal aéreo, evitará atacar al druida cuando lance este conjuro. Este hechizo no es efectivo contra aberraciones, monstruosidades, criaturas mágicas o elementales; funciona solo con animales normales y corrientes.",
+            "componentes": "V, S"
+          },
+          "proteccion_contra_criaturas_terrestres": {
+            "nombre": "Protección contra Criaturas Terrestres",
+            "nivel": 1,
+            "alcance": "Toque",
+            "duracion": "1 asalto/nivel del lanzador",
+            "descripcion": "Toda criatura, alimaña, depredador y, en definitiva, cualquier animal terrestre, evitará atacar al druida cuando lance este conjuro. Este hechizo no es efectivo contra aberraciones, monstruosidades, criaturas mágicas o elementales; funciona solo con animales normales y corrientes.",
+            "componentes": "V, S"
+          },
+          "zurron_mistico_de_kulibali": {
+            "nombre": "Zurrón Místico de Kulibali",
+            "nivel": 1,
+            "alcance": "Una bolsa o bolsón apropiado",
+            "duracion": "1 día/nivel del lanzador",
+            "descripcion": "El druida puede encantar un zurrón de tal manera que puede llegar a guardar hasta diez kilos de alimento o cualquier materia orgánica y esta se conservará de manera perfecta, sin deteriorarse o descomponerse durante el tiempo que dure el hechizo. Además, el peso de todo lo que introduzca en este zurrón queda reducido a la mitad.",
+            "componentes": "V, S"
+          }
+        }
+      }
   }
 }
