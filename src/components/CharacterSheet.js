@@ -600,15 +600,7 @@ const calculateAttackBonus = () => {
             </div>
           </div>
 
-          <div className="attack-section">
-            <div className="attack-section-title">Ataques</div>
-            <div className="attack-section-content">
-              <div><label>Ataque Cuerpo a Cuerpo:</label><input type="checkbox" checked={editableCharacter.ataqueCuerpoACuerpo || false} onChange={(e) => handleChange('ataqueCuerpoACuerpo', e.target.checked)} /></div>
-              <div><label>Ataque Proyectiles:</label><input type="checkbox" checked={editableCharacter.ataqueProyectiles || false} onChange={(e) => handleChange('ataqueProyectiles', e.target.checked)} /></div>
-              <div><label>Bonif. Ataque Base:</label><input type="number" value={editableCharacter.bonificadorAtaqueBase || 0} onChange={(e) => handleChange('bonificadorAtaqueBase', e.target.value)} /></div>
-              <div className="final-result">BA Final: {calculateAttackBonus()}</div>
-            </div>
-          </div>
+
         </div>
 
         <div className="right-column">
@@ -780,6 +772,22 @@ const calculateAttackBonus = () => {
           </div>
         </div>
       </div>
+        </div>
+      </div>
+      <div className="combat-section">
+        <div className="combat-title">COMBATE</div>
+        <div className="combat-grid">
+          {[9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6].map((label, index) => (
+            <div key={index} className="combat-field">
+              <label>{label}</label>
+              <input 
+                type="number" 
+                value={editableCharacter.combate?.[index] || ''} 
+                onChange={(e) => handleChange(`combate.${index}`, e.target.value)} 
+                className="combat-input"
+              />
+            </div>
+          ))}
         </div>
       </div>
 

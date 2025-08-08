@@ -1921,3 +1921,61 @@ hr {
 .download-json-button:hover {
   background-color: #1e7e34;
 }
+
+/* Sección de Combate */
+.combat-section {
+  margin: 15px 0;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.combat-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.combat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  max-width: 100%;
+}
+
+.combat-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.combat-field label {
+  font-size: 10px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  min-width: 18px;
+}
+
+.combat-input {
+  width: 22px;
+  height: 18px;
+  text-align: center;
+  border: 1px solid #999;
+  border-radius: 2px;
+  font-size: 9px;
+  padding: 1px;
+}
+
+.combat-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 2px rgba(0, 123, 255, 0.3);
+}
