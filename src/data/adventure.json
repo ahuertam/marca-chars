@@ -1,0 +1,346 @@
+{
+  "messages": {
+    "characterHistory": "Historia del Personaje",
+    "currentStatus": "Estado Actual",
+    "nameInputPlaceholder": "Ingresa el nombre de tu personaje",
+    "completeAdventureButton": "Completar Aventura",
+    "finalHistoryEntry": "Tu nombre es {name}, y tu destino como aventurero comienza ahora.",
+    "adventureCompleted": "¡Aventura completada! Tu personaje ha sido creado.",
+    "noClassesAvailable": "Tus características actuales no cumplen los requisitos para ninguna clase. Continúa entrenando."
+  },
+  "adventureSteps": [
+    {
+      "id": 0,
+      "title": "El Despertar del Destino",
+      "text": "En las brumas del amanecer, despiertas en tu humilde morada. Hoy algo es diferente... el aire vibra con magia ancestral. Un extraño pergamino ha aparecido bajo tu puerta. ¿Cuál es tu origen?",
+      "choices": [
+        {
+          "text": "Hijo de granjeros humanos en las tierras fronterizas",
+          "type": "origin",
+          "value": "Granjero",
+          "nextStep": 1,
+          "effects": {
+            "attributes": { "FUE": 12, "CON": 12 },
+            "gold": 30,
+            "history": "Origen: Granjero humano - Vida dura forjó tu cuerpo"
+          }
+        },
+        {
+          "text": "Descendiente de una antigua familia noble venida a menos",
+          "type": "origin",
+          "value": "Noble",
+          "nextStep": 1,
+          "effects": {
+            "attributes": { "CAR": 12, "INT": 12 },
+            "gold": 100,
+            "history": "Origen: Noble empobrecido - Educación refinada pero sin fortuna"
+          }
+        },
+        {
+          "text": "Huérfano criado en las calles de una gran ciudad",
+          "type": "origin",
+          "value": "Huérfano",
+          "nextStep": 1,
+          "effects": {
+            "attributes": { "DES": 12, "SAB": 12 },
+            "gold": 15,
+            "history": "Origen: Huérfano urbano - Las calles te enseñaron a sobrevivir"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "La Prueba del Titán de Piedra",
+      "text": "El pergamino te guía a una caverna ancestral donde un golem de piedra milenario bloquea el paso. Sus ojos brillan con poder ancestral. 'Solo los fuertes pueden continuar', retumba su voz como el eco de montañas. Debes demostrar tu fuerza física.",
+      "type": "attribute_challenge",
+      "attribute": "FUE",
+      "choices": [
+        {
+          "text": "Intentas mover la piedra masiva que bloquea el paso",
+          "type": "attribute_roll",
+          "difficulty": 12,
+          "nextStep": 2,
+          "effects": {
+            "success": {
+              "attributes": { "FUE": "3d6+3" },
+              "experience": 150,
+              "history": "Fuerza excepcional: Mueves la piedra con facilidad, el golem asiente con respeto"
+            },
+            "failure": {
+              "attributes": { "FUE": "3d6" },
+              "experience": 75,
+              "history": "Fuerza limitada: Luchas pero eventualmente lo logras, ganando determinación"
+            }
+          }
+        },
+        {
+          "text": "Desafías al golem a un combate de fuerza",
+          "type": "attribute_roll",
+          "difficulty": 15,
+          "nextStep": 2,
+          "effects": {
+            "success": {
+              "attributes": { "FUE": "3d6+4" },
+              "equipment": ["Guanteletes del Titán"],
+              "experience": 200,
+              "history": "Victoria heroica: Derrotas al golem en combate y ganas su bendición"
+            },
+            "failure": {
+              "attributes": { "FUE": "3d6+1" },
+              "experience": 100,
+              "history": "Derrota honorable: El golem reconoce tu valor y te permite pasar"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "La Danza de las Cuchillas",
+      "text": "Entras en una cámara circular donde cuchillas afiladas giran en patrones hipnóticos. El aire silba con cada movimiento mortal. Solo la agilidad perfecta te permitirá cruzar sin ser cortado. La danza de la muerte ha comenzado.",
+      "type": "attribute_challenge",
+      "attribute": "DES",
+      "choices": [
+        {
+          "text": "Avanzas con sigilo, estudiando los patrones",
+          "type": "attribute_roll",
+          "difficulty": 13,
+          "nextStep": 3,
+          "effects": {
+            "success": {
+              "attributes": { "DES": "3d6+3" },
+              "equipment": ["Botas de sigilo"],
+              "experience": 150,
+              "history": "Agilidad perfecta: Danzas entre las cuchillas como una sombra"
+            },
+            "failure": {
+              "attributes": { "DES": "3d6" },
+              "experience": 75,
+              "history": "Agilidad suficiente: Recibes algunos cortes pero cruzas exitosamente"
+            }
+          }
+        },
+        {
+          "text": "Corres a máxima velocidad, confiando en tus reflejos",
+          "type": "attribute_roll",
+          "difficulty": 15,
+          "nextStep": 3,
+          "effects": {
+            "success": {
+              "attributes": { "DES": "3d6+4" },
+              "equipment": ["Capa de velocidad"],
+              "experience": 200,
+              "history": "Velocidad sobrehumana: Cruzas tan rápido que las cuchillas no te alcanzan"
+            },
+            "failure": {
+              "attributes": { "DES": "3d6+1" },
+              "experience": 100,
+              "history": "Velocidad arriesgada: Te lastimas pero tu audacia impresiona a los espíritus"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "El Cáliz del Dragón Ancestral",
+      "text": "Ante ti se alza un altar donde reposa un cáliz de obsidiana. Un líquido verde burbujea en su interior, emanando vapores tóxicos. Una inscripción rúnica dice: 'Solo los resistentes pueden beber del veneno del dragón y vivir para contarlo'.",
+      "type": "attribute_challenge",
+      "attribute": "CON",
+      "choices": [
+        {
+          "text": "Bebes el contenido completo de una vez",
+          "type": "attribute_roll",
+          "difficulty": 14,
+          "nextStep": 4,
+          "effects": {
+            "success": {
+              "attributes": { "CON": "3d6+3" },
+              "equipment": ["Inmunidad al veneno menor"],
+              "experience": 150,
+              "history": "Constitución férrea: El veneno fortalece tu cuerpo en lugar de dañarlo"
+            },
+            "failure": {
+              "attributes": { "CON": "3d6" },
+              "experience": 75,
+              "history": "Constitución suficiente: Sobrevives al veneno pero quedas debilitado temporalmente"
+            }
+          }
+        },
+        {
+          "text": "Bebes pequeños sorbos, acostumbrando tu cuerpo gradualmente",
+          "type": "attribute_roll",
+          "difficulty": 11,
+          "nextStep": 4,
+          "effects": {
+            "success": {
+              "attributes": { "CON": "3d6+2" },
+              "experience": 120,
+              "history": "Sabiduría corporal: Tu enfoque metódico minimiza el daño del veneno"
+            },
+            "failure": {
+              "attributes": { "CON": "3d6+1" },
+              "experience": 90,
+              "history": "Precaución prudente: Aunque sufres, tu cuidado te salva de lo peor"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "El Acertijo del Oráculo Eterno",
+      "text": "Una figura encapuchada se materializa ante ti, sus ojos brillan con conocimiento infinito. 'Mortal', susurra con voz etérea, 'para continuar debes resolver el acertijo que ha confundido a sabios durante milenios. Solo la mente más aguda puede descifrar la verdad oculta'.",
+      "type": "attribute_challenge",
+      "attribute": "INT",
+      "choices": [
+        {
+          "text": "Analizas el acertijo usando lógica pura y deducción",
+          "type": "attribute_roll",
+          "difficulty": 13,
+          "nextStep": 5,
+          "effects": {
+            "success": {
+              "attributes": { "INT": "3d6+3" },
+              "equipment": ["Tomo de sabiduría antigua"],
+              "experience": 150,
+              "history": "Intelecto brillante: Resuelves el acertijo con elegancia matemática"
+            },
+            "failure": {
+              "attributes": { "INT": "3d6" },
+              "experience": 75,
+              "history": "Intelecto esforzado: Luchas con el acertijo pero eventualmente encuentras la respuesta"
+            }
+          }
+        },
+        {
+          "text": "Buscas patrones ocultos y conexiones no obvias",
+          "type": "attribute_roll",
+          "difficulty": 15,
+          "nextStep": 5,
+          "effects": {
+            "success": {
+              "attributes": { "INT": "3d6+4" },
+              "equipment": ["Cristal de claridad mental"],
+              "experience": 200,
+              "history": "Genio intuitivo: Ves conexiones que escapan a mentes ordinarias"
+            },
+            "failure": {
+              "attributes": { "INT": "3d6+1" },
+              "experience": 100,
+              "history": "Pensamiento creativo: Tu enfoque único impresiona al oráculo"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "La Visión del Pasado Olvidado",
+      "text": "Te encuentras en un círculo de piedras ancestrales donde las brumas del tiempo se arremolinan. Visiones del pasado danzan ante tus ojos: guerras olvidadas, héroes caídos, secretos perdidos. Solo la verdadera sabiduría puede interpretar estas revelaciones.",
+      "type": "attribute_challenge",
+      "attribute": "SAB",
+      "choices": [
+        {
+          "text": "Meditas profundamente, buscando el significado oculto",
+          "type": "attribute_roll",
+          "difficulty": 12,
+          "nextStep": 6,
+          "effects": {
+            "success": {
+              "attributes": { "SAB": "3d6+3" },
+              "equipment": ["Amuleto de percepción"],
+              "experience": 150,
+              "history": "Sabiduría profunda: Comprendes las lecciones del pasado"
+            },
+            "failure": {
+              "attributes": { "SAB": "3d6" },
+              "experience": 75,
+              "history": "Sabiduría emergente: Las visiones te confunden pero aprendes humildad"
+            }
+          }
+        },
+        {
+          "text": "Confías en tu intuición para guiarte a través de las visiones",
+          "type": "attribute_roll",
+          "difficulty": 14,
+          "nextStep": 6,
+          "effects": {
+            "success": {
+              "attributes": { "SAB": "3d6+4" },
+              "equipment": ["Bastón del vidente"],
+              "experience": 200,
+              "history": "Sabiduría intuitiva: Tu conexión espiritual revela verdades ocultas"
+            },
+            "failure": {
+              "attributes": { "SAB": "3d6+1" },
+              "experience": 100,
+              "history": "Intuición valiosa: Aunque no comprendes todo, tu corazón está en el lugar correcto"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "El Juicio de los Espíritus Heroicos",
+      "text": "Los espíritus de héroes legendarios se manifiestan a tu alrededor, sus formas etéreas brillan con poder ancestral. 'Mortal', habla su líder, 'hemos observado tu viaje. Ahora debes convencernos de que eres digno de seguir nuestros pasos. Habla, y que tu corazón sea tu guía'.",
+      "type": "attribute_challenge",
+      "attribute": "CAR",
+      "choices": [
+        {
+          "text": "Hablas con pasión sobre tu deseo de proteger a los inocentes",
+          "type": "attribute_roll",
+          "difficulty": 13,
+          "nextStep": 7,
+          "effects": {
+            "success": {
+              "attributes": { "CAR": "3d6+3" },
+              "equipment": ["Capa del líder"],
+              "experience": 150,
+              "history": "Carisma noble: Tu sinceridad conmueve a los espíritus heroicos"
+            },
+            "failure": {
+              "attributes": { "CAR": "3d6" },
+              "experience": 75,
+              "history": "Carisma honesto: Aunque tus palabras son simples, tu corazón es puro"
+            }
+          }
+        },
+        {
+          "text": "Desafías a los espíritus con tu determinación inquebrantable",
+          "type": "attribute_roll",
+          "difficulty": 15,
+          "nextStep": 7,
+          "effects": {
+            "success": {
+              "attributes": { "CAR": "3d6+4" },
+              "equipment": ["Corona de liderazgo"],
+              "experience": 200,
+              "history": "Carisma dominante: Tu fuerza de voluntad impresiona incluso a los muertos"
+            },
+            "failure": {
+              "attributes": { "CAR": "3d6+1" },
+              "experience": 100,
+              "history": "Carisma audaz: Tu valentía compensa tu falta de elocuencia"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "El Despertar del Destino",
+      "text": "Has completado las seis pruebas ancestrales. Tus características han sido forjadas por el fuego de la adversidad. Ahora, los espíritus te revelan tu verdadero potencial. Basándose en tus fortalezas, estas son las sendas que puedes seguir:",
+      "type": "dynamic_class_selection",
+      "nextStep": 8
+    },
+    {
+      "id": 8,
+      "title": "El Nombre del Héroe",
+      "text": "Tu destino está sellado, tu clase elegida. Solo falta una cosa: tu nombre. Los vientos susurran que un gran aventurero ha nacido. ¿Cómo serás recordado en las leyendas?",
+      "isNameInput": true
+    }
+  ]
+}

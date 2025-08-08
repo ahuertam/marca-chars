@@ -3,8 +3,15 @@ import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 import './CharacterForm.css';
 import characterData from '../data/characterData.json';
+import equipmentData from '../data/equipment.json';
+import { 
+  roll4d6DropLowest, 
+  calculateAttributeBonus, 
+  rollHitPoints as rollHitPointsUtil // Importar con alias para evitar conflicto
+} from '../utils/diceUtils';
 
-const { characteristicsTooltips, classDescriptions, characterClasses, armaduras } = characterData;
+const { characteristicsTooltips, classDescriptions, characterClasses } = characterData;
+const { armaduras, equipo, armas } = equipmentData;
 
 const initialCharacter = {
   nombre: '',
@@ -86,11 +93,11 @@ const CharacterForm = ({ onSaveCharacter }) => {
 });
 const [mostrarFormularioEquipo, setMostrarFormularioEquipo] = useState(false);
 const handleAgregarEquipoPredefinido = (nombreEquipo) => {
-  const equipo = characterData.equipo[nombreEquipo];
-  if (equipo && !character.equipoSeleccionado.find(item => item.nombre === nombreEquipo)) {
+  const equipment = equipo[nombreEquipo];
+  if (equipment && !character.equipoSeleccionado.find(item => item.nombre === nombreEquipo)) {
     setCharacter({
       ...character,
-      equipoSeleccionado: [...character.equipoSeleccionado, equipo]
+      equipoSeleccionado: [...character.equipoSeleccionado, equipment]
     });
   }
 };
@@ -342,13 +349,16 @@ const handleEliminarEquipo = (index, tipo) => {
     return Math.floor((value - 15) / 2) + 2;
   };
 
+  // Reemplazar la función rollDice existente
   const handleRoll = (stat, modifier = 0) => {
-    const result = rollDice() + parseInt(modifier);
+    const result = roll4d6DropLowest() + parseInt(modifier);
     const newCharacter = { ...character };
     newCharacter.caracteristicas[stat] = result;
-    newCharacter.bonificadores[stat] = calculateBonus(result);
+    newCharacter.bonificadores[stat] = calculateAttributeBonus(result);
     setCharacter(newCharacter);
   };
+  
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -800,9 +810,9 @@ const handleEliminarEquipo = (index, tipo) => {
       className="form-control"
     >
       <option value="">Seleccionar equipo predefinido...</option>
-      {Object.keys(characterData.equipo).map(nombreEquipo => (
+      {Object.keys(equipo).map(nombreEquipo => (
         <option key={nombreEquipo} value={nombreEquipo}>
-          {nombreEquipo} ({characterData.equipo[nombreEquipo].coste}, {characterData.equipo[nombreEquipo].peso})
+          {nombreEquipo} ({equipo[nombreEquipo].coste}, {equipo[nombreEquipo].peso})
         </option>
       ))}
     </select>

@@ -1,13 +1,19 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import characterData from '../data/characterData.json';
 import spellsData from '../data/spells.json';
+import equipmentData from '../data/equipment.json';
 import './CharacterSheet.css';
 
 const CharacterSheet = ({ character, onUpdateCharacter }) => {
   const [editableCharacter, setEditableCharacter] = useState(character);
   const [showSpellModal, setShowSpellModal] = useState(false);
   const sheetRef = useRef(null);
+
+  // Agregar useEffect para actualizar cuando cambie la prop character
+  useEffect(() => {
+    setEditableCharacter(character);
+  }, [character]);
 
   const handleChange = (field, value) => {
     const updatedCharacter = { ...editableCharacter };
@@ -106,7 +112,7 @@ const CharacterSheet = ({ character, onUpdateCharacter }) => {
     const updatedCharacter = { ...editableCharacter };
     
     if (type === 'predefinido') {
-      const equipment = characterData.equipo[equipmentName];
+      const equipment = equipmentData.equipo[equipmentName];
       if (equipment && !updatedCharacter.equipoSeleccionado?.find(item => item.nombre === equipmentName)) {
         updatedCharacter.equipoSeleccionado = [...(updatedCharacter.equipoSeleccionado || []), equipment];
       }

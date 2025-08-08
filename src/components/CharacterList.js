@@ -1,19 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './CharacterList.css';
 
-const CharacterList = ({ onSelectCharacter, onDeleteCharacter }) => {
-  const [characters, setCharacters] = useState([]);
+const CharacterList = ({ characters = [], onSelectCharacter, onDeleteCharacter }) => {
   const fileInputRef = useRef(null);
 
-  useEffect(() => {
-    const storedCharacters = JSON.parse(localStorage.getItem('characters')) || [];
-    setCharacters(storedCharacters);
-  }, []);
-
   const handleDelete = (index) => {
-    const newCharacters = characters.filter((_, i) => i !== index);
-    setCharacters(newCharacters);
-    localStorage.setItem('characters', JSON.stringify(newCharacters));
     if (onDeleteCharacter) onDeleteCharacter(index);
   };
 
@@ -29,12 +20,13 @@ const CharacterList = ({ onSelectCharacter, onDeleteCharacter }) => {
         try {
           const importedCharacter = JSON.parse(e.target.result);
           
-          // Validar que el JSON tenga la estructura básica de un personaje
           if (importedCharacter && typeof importedCharacter === 'object' && importedCharacter.nombre) {
-            // Agregar el personaje importado a la lista
+            // Agregar el personaje importado usando la función del padre
             const updatedCharacters = [...characters, importedCharacter];
-            setCharacters(updatedCharacters);
             localStorage.setItem('characters', JSON.stringify(updatedCharacters));
+            
+            // Forzar actualización recargando desde localStorage en App.js
+            window.location.reload();
             
             alert(`Personaje "${importedCharacter.nombre}" importado exitosamente!`);
           } else {
@@ -50,7 +42,6 @@ const CharacterList = ({ onSelectCharacter, onDeleteCharacter }) => {
       alert('Por favor selecciona un archivo JSON válido.');
     }
     
-    // Limpiar el input para permitir seleccionar el mismo archivo nuevamente
     event.target.value = '';
   };
 

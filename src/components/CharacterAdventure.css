@@ -1,0 +1,335 @@
+.character-adventure {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.adventure-container {
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.adventure-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.adventure-header h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+  transition: width 0.3s ease;
+}
+
+.adventure-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  align-items: start;
+  min-height: 500px;
+}
+
+.story-section {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+}
+
+.adventure-title {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  text-align: center;
+}
+
+.adventure-text {
+  font-size: 1.2em;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+.choices-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.choice-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 18px 25px;
+  border-radius: 10px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.character-info {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.story-section h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.story-section p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.choice-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.choice-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.choice-btn:active {
+  transform: translateY(0);
+}
+
+.name-input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.name-input {
+  padding: 12px;
+  font-size: 1.1em;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.name-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.save-character-btn {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 6px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.save-character-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.character-preview {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 20px;
+}
+
+.character-preview h4 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.character-stats p {
+  margin: 8px 0;
+  font-size: 0.95em;
+}
+
+.character-stats strong {
+  color: #333;
+}
+
+.attributes {
+  margin: 15px 0;
+}
+
+.attributes h5 {
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.attr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  font-size: 0.9em;
+}
+
+.attr-grid span {
+  background: #f8f9fa;
+  padding: 5px;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.equipment, .history {
+  margin: 15px 0;
+}
+
+.equipment h5, .history h5 {
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.equipment ul, .history ul {
+  list-style: none;
+  padding: 0;
+}
+
+.equipment li, .history li {
+  background: #f8f9fa;
+  padding: 5px 10px;
+  margin: 3px 0;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.dice-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dice-result {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  animation: diceRoll 0.5s ease-out;
+}
+
+.dice-result h3 {
+  margin: 0;
+  font-size: 2em;
+  color: #333;
+}
+
+@keyframes diceRoll {
+  0% {
+    transform: scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .adventure-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .character-preview {
+    position: static;
+  }
+}
+
+.class-choice {
+  text-align: left;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.class-name {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.class-description {
+  font-size: 1em;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.class-requirements {
+  font-size: 0.9em;
+  margin-bottom: 4px;
+  opacity: 0.8;
+}
+
+.class-primary-stat {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.no-classes-available {
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+}

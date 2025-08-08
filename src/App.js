@@ -3,6 +3,7 @@ import './App.css';
 import CharacterForm from './components/CharacterForm';
 import CharacterList from './components/CharacterList';
 import CharacterSheet from './components/CharacterSheet';
+import CharacterAdventure from './components/CharacterAdventure';
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -35,8 +36,10 @@ function App() {
   };
 
   const handleUpdateCharacter = (updatedCharacter) => {
+    if (!selectedCharacter || !updatedCharacter) return;
+    
     const updatedCharacters = characters.map(char =>
-      char === selectedCharacter ? updatedCharacter : char
+      char.nombre === selectedCharacter.nombre ? updatedCharacter : char
     );
     setCharacters(updatedCharacters);
     setSelectedCharacter(updatedCharacter);
@@ -62,6 +65,12 @@ function App() {
           >
             Crear Personaje
           </button>
+          <button 
+            onClick={() => setCurrentView('adventure')} 
+            className={currentView === 'adventure' ? 'active' : ''}
+          >
+            Aventura de Personaje
+          </button>
         </div>
       </header>
       <main className="App-main">
@@ -79,9 +88,16 @@ function App() {
               />
             )}
           </div>
-        ) : (
+        ) : currentView === 'create' ? (
           <div className="full-width-view">
             <CharacterForm onSaveCharacter={(character) => {
+              handleSaveCharacter(character);
+              setCurrentView('list');
+            }} />
+          </div>
+        ) : (
+          <div className="full-width-view">
+            <CharacterAdventure onSaveCharacter={(character) => {
               handleSaveCharacter(character);
               setCurrentView('list');
             }} />
