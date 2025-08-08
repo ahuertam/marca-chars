@@ -1,13 +1,41 @@
-# Creador de Personajes - La Marca del Este
+# Generador de Personajes - La Marca del Este
 
-Esta aplicación web permite crear y gestionar personajes para el juego de rol La Marca del Este. Desarrollada con React, ofrece una interfaz intuitiva para la creación y visualización de fichas de personajes.
+Esta aplicación web permite crear y gestionar personajes para el juego de rol La Marca del Este. Desarrollada con React, ofrece una interfaz intuitiva para la creación, visualización y gestión completa de fichas de personajes.
 
-## Características
+## 🎲 Características Principales
 
-- Creación de nuevos personajes
-- Almacenamiento local de personajes
-- Visualización de fichas de personajes
-- Gestión de características, habilidades y equipo
+### Creación de Personajes
+- **Generación automática de características** con tiradas de 4d6 (descartando el menor)
+- **Sistema de clases completo** con 13 clases disponibles (Guerrero, Mago, Clérigo, Ladrón, etc.)
+- **Cálculo automático de bonificadores** basado en las características
+- **Generación de puntos de golpe** según el dado de golpe de cada clase
+- **Sistema de habilidades** específico por clase
+- **Gestión completa de equipo** (armas, armaduras, objetos generales)
+- **Sistema de hechizos** para clases mágicas
+
+### Modo Aventura Interactiva
+- **Creación narrativa de personajes** a través de una aventura paso a paso
+- **Sistema de tiradas de dados** integrado con efectos visuales
+- **Decisiones que afectan las características** del personaje
+- **Historia personalizada** que se genera según las elecciones del jugador
+- **Integración completa** con el sistema de creación tradicional
+
+### Gestión de Personajes
+- **Lista de personajes** con vista previa de información básica
+- **Almacenamiento local** persistente en el navegador
+- **Importación/Exportación** de personajes en formato JSON
+- **Edición completa** de fichas existentes
+- **Eliminación** de personajes con confirmación
+
+### Visualización y Exportación
+- **Ficha de personaje completa** con diseño profesional
+- **Exportación a imagen PNG** de la ficha completa
+- **Descarga en formato JSON** para respaldo
+- **Interfaz responsive** adaptada a diferentes dispositivos
+
+## 🏗️ Arquitectura del Proyecto
+
+### Estructura de Archivos
 
 ## Instalación
 
