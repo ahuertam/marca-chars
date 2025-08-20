@@ -8,6 +8,11 @@ import './CharacterSheet.css';
 const CharacterSheet = ({ character, onUpdateCharacter }) => {
   const [editableCharacter, setEditableCharacter] = useState(character);
   const [showSpellModal, setShowSpellModal] = useState(false);
+  const [newEquipmentName, setNewEquipmentName] = useState('');
+  const [newEquipmentCost, setNewEquipmentCost] = useState('');
+  const [newEquipmentWeight, setNewEquipmentWeight] = useState('');
+  const [showAddEquipment, setShowAddEquipment] = useState(false);
+  const [newObject, setNewObject] = useState('');
   const sheetRef = useRef(null);
 
   // Agregar useEffect para actualizar cuando cambie la prop character
@@ -120,6 +125,51 @@ const CharacterSheet = ({ character, onUpdateCharacter }) => {
     
     setEditableCharacter(updatedCharacter);
     onUpdateCharacter(updatedCharacter);
+  };
+
+  const handleAddCustomEquipment = () => {
+    if (newEquipmentName.trim()) {
+      const updatedCharacter = { ...editableCharacter };
+      const newEquipment = {
+        nombre: newEquipmentName.trim(),
+        coste: newEquipmentCost || '0 mo',
+        peso: newEquipmentWeight || '0 Kg'
+      };
+      
+      updatedCharacter.equipoPersonalizado = [...(updatedCharacter.equipoPersonalizado || []), newEquipment];
+      setEditableCharacter(updatedCharacter);
+      onUpdateCharacter(updatedCharacter);
+      
+      // Limpiar formulario
+      setNewEquipmentName('');
+      setNewEquipmentCost('');
+      setNewEquipmentWeight('');
+      setShowAddEquipment(false);
+    }
+  };
+
+  const handleAddPredefinedEquipment = (equipmentName) => {
+    if (equipmentName) {
+      const equipment = equipmentData.equipo[equipmentName];
+      if (equipment && !editableCharacter.equipoSeleccionado?.find(item => item.nombre === equipmentName)) {
+        const updatedCharacter = { ...editableCharacter };
+        updatedCharacter.equipoSeleccionado = [...(updatedCharacter.equipoSeleccionado || []), equipment];
+        setEditableCharacter(updatedCharacter);
+        onUpdateCharacter(updatedCharacter);
+      }
+    }
+  };
+
+  const handleAddObject = () => {
+    if (newObject.trim()) {
+      const updatedCharacter = { ...editableCharacter };
+      const currentObjects = updatedCharacter.objetos || '';
+      const separator = currentObjects ? '\n' : '';
+      updatedCharacter.objetos = currentObjects + separator + newObject.trim();
+      setEditableCharacter(updatedCharacter);
+      onUpdateCharacter(updatedCharacter);
+      setNewObject('');
+    }
   };
 
   if (!character) return null;
@@ -983,67 +1033,174 @@ const calculateAttackBonus = () => {
       </div>
 
 
-      <div className="objects-equipment">
-        <div className="objects">
-          <label>Objetos</label>
-          <textarea value={editableCharacter.objetos || ''} onChange={(e) => handleChange('objetos', e.target.value)} />
-        </div>
-        <div className="equipment-section">
-          <h3>EQUIPO</h3>
-          
-          {/* Equipo predefinido */}
-          {editableCharacter.equipoSeleccionado && editableCharacter.equipoSeleccionado.length > 0 && (
-            <div className="equipment-subsection">
-              <h4>Equipo Predefinido:</h4>
-              <div className="equipment-list">
-                {editableCharacter.equipoSeleccionado.map((item, index) => (
-                  <div key={index} className="equipment-item">
-                    <span className="equipment-name">{item.nombre}</span>
-                    <span className="equipment-details">({item.coste}, {item.peso})</span>
-                    <button 
-                      className="remove-equipment-btn"
-                      onClick={() => handleRemoveEquipment(index, 'predefinido')}
-                      title="Eliminar equipo"
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          
-          {/* Equipo personalizado */}
-          {editableCharacter.equipoPersonalizado && editableCharacter.equipoPersonalizado.length > 0 && (
-            <div className="equipment-subsection">
-              <h4>Equipo Personalizado:</h4>
-              <div className="equipment-list">
-                {editableCharacter.equipoPersonalizado.map((item, index) => (
-                  <div key={index} className="equipment-item">
-                    <span className="equipment-name">{item.nombre}</span>
-                    <span className="equipment-details">({item.coste}, {item.peso})</span>
-                    <button 
-                      className="remove-equipment-btn"
-                      onClick={() => handleRemoveEquipment(index, 'personalizado')}
-                      title="Eliminar equipo"
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          
-          {/* Equipo adicional (texto libre) */}
-          <div className="equipment-subsection">
-            <h4>Equipo Adicional:</h4>
+      <div className="objects-equipment-container">
+        <div className="objects-section">
+          <div className="section-header">
+            <h3>OBJETOS</h3>
+          </div>
+          <div className="objects-content">
             <textarea 
-              value={editableCharacter.equipo || ''} 
-              onChange={(e) => handleChange('equipo', e.target.value)}
-              placeholder="Equipo adicional..."
-              rows="4"
+              value={editableCharacter.objetos || ''} 
+              onChange={(e) => handleChange('objetos', e.target.value)}
+              placeholder="Lista de objetos del personaje..."
+              rows="6"
             />
+            <div className="add-object-form">
+              <div className="input-group">
+                <input
+                  type="text"
+                  value={newObject}
+                  onChange={(e) => setNewObject(e.target.value)}
+                  placeholder="Nuevo objeto..."
+                  onKeyPress={(e) => e.key === 'Enter' && handleAddObject()}
+                />
+                <button 
+                  onClick={handleAddObject}
+                  disabled={!newObject.trim()}
+                  className="add-btn"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="equipment-section">
+          <div className="section-header">
+            <h3>EQUIPO</h3>
+            <button 
+              className="toggle-add-btn"
+              onClick={() => setShowAddEquipment(!showAddEquipment)}
+              title="Agregar equipo"
+            >
+              +
+            </button>
+          </div>
+          
+          {/* Formulario para agregar equipo */}
+          {showAddEquipment && (
+            <div className="add-equipment-form">
+              <div className="equipment-selector">
+                <select 
+                  onChange={(e) => {
+                    if (e.target.value) {
+                      handleAddPredefinedEquipment(e.target.value);
+                      e.target.value = '';
+                    }
+                  }}
+                >
+                  <option value="">Seleccionar equipo predefinido...</option>
+                  {Object.keys(equipmentData.equipo).map(equipmentName => (
+                    <option key={equipmentName} value={equipmentName}>
+                      {equipmentName} ({equipmentData.equipo[equipmentName].coste}, {equipmentData.equipo[equipmentName].peso})
+                    </option>
+                  ))}
+                </select>
+              </div>
+              
+              <div className="custom-equipment-form">
+                <h5>O agregar equipo personalizado:</h5>
+                <div className="form-row">
+                  <input
+                    type="text"
+                    placeholder="Nombre"
+                    value={newEquipmentName}
+                    onChange={(e) => setNewEquipmentName(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Coste (ej: 5 mo)"
+                    value={newEquipmentCost}
+                    onChange={(e) => setNewEquipmentCost(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Peso (ej: 2 Kg)"
+                    value={newEquipmentWeight}
+                    onChange={(e) => setNewEquipmentWeight(e.target.value)}
+                  />
+                  <button 
+                    onClick={handleAddCustomEquipment}
+                    disabled={!newEquipmentName.trim()}
+                    className="add-custom-btn"
+                  >
+                    Agregar
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Lista de equipo */}
+          <div className="equipment-content">
+            {/* Equipo predefinido */}
+            {editableCharacter.equipoSeleccionado && editableCharacter.equipoSeleccionado.length > 0 && (
+              <div className="equipment-subsection">
+                <h4>Equipo Predefinido:</h4>
+                <div className="equipment-list">
+                  {editableCharacter.equipoSeleccionado.map((item, index) => (
+                    <div key={index} className="equipment-item">
+                      <div className="equipment-info">
+                        <span className="equipment-name">{item.nombre}</span>
+                        <span className="equipment-details">({item.coste}, {item.peso})</span>
+                      </div>
+                      <button 
+                        className="remove-equipment-btn"
+                        onClick={() => handleRemoveEquipment(index, 'predefinido')}
+                        title="Eliminar equipo"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Equipo personalizado */}
+            {editableCharacter.equipoPersonalizado && editableCharacter.equipoPersonalizado.length > 0 && (
+              <div className="equipment-subsection">
+                <h4>Equipo Personalizado:</h4>
+                <div className="equipment-list">
+                  {editableCharacter.equipoPersonalizado.map((item, index) => (
+                    <div key={index} className="equipment-item">
+                      <div className="equipment-info">
+                        <span className="equipment-name">{item.nombre}</span>
+                        <span className="equipment-details">({item.coste}, {item.peso})</span>
+                      </div>
+                      <button 
+                        className="remove-equipment-btn"
+                        onClick={() => handleRemoveEquipment(index, 'personalizado')}
+                        title="Eliminar equipo"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Equipo adicional (texto libre) */}
+            <div className="equipment-subsection">
+              <h4>Equipo Adicional:</h4>
+              <textarea 
+                value={editableCharacter.equipo || ''} 
+                onChange={(e) => handleChange('equipo', e.target.value)}
+                placeholder="Equipo adicional en texto libre..."
+                rows="3"
+              />
+            </div>
+            
+            {/* Mensaje cuando no hay equipo */}
+            {(!editableCharacter.equipoSeleccionado || editableCharacter.equipoSeleccionado.length === 0) &&
+             (!editableCharacter.equipoPersonalizado || editableCharacter.equipoPersonalizado.length === 0) &&
+             (!editableCharacter.equipo || editableCharacter.equipo.trim() === '') && (
+              <div className="no-equipment">
+                <p>No hay equipo agregado. Usa el botón + para agregar equipo.</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
