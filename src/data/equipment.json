@@ -215,6 +215,18 @@
       "coste": "4 mo",
       "daño": "1d6",
       "peso": "2 Kg"
+    },
+    "Flechas (10)": {
+      "nombre": "Flechas (10)",
+      "coste": "3 mo",
+      "daño": "-",
+      "peso": "1/2 Kg"
+    },
+    "Virotes (20)": {
+      "nombre": "Virotes (20)",
+      "coste": "5 mo",
+      "daño": "-",
+      "peso": "1 Kg"
     }
   },
   "armaduras": {
